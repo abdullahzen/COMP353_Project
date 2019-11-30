@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `roles`;
 DROP TABLE IF EXISTS `user_roles`;
 DROP TABLE IF EXISTS `groups`;
-DROP TABLE IF EXISTS  `group_members`;
+DROP TABLE IF EXISTS `group_members`;
 DROP TABLE IF EXISTS `events`;
 DROP TABLE IF EXISTS `bank_information`;
 DROP TABLE IF EXISTS `event_organization_participants`;
@@ -57,7 +57,7 @@ CREATE TABLE `events` (
 
 CREATE TABLE `bank_information` (
   `bank_information_ID` INT(10) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
+  `cardholder_name` VARCHAR(45) NOT NULL,
   `address` VARCHAR(100) NOT NULL,
   `card_number` VARCHAR(16) NOT NULL,
   `expiration_date` DATE NOT NULL,
@@ -80,14 +80,14 @@ CREATE TABLE `posts` (
 );
 
 CREATE TABLE `messages` (
-  `user1_ID` INT(10) NOT NULL,
-  `user2_ID` INT(10) NOT NULL,
+  `sender_ID` INT(10) NOT NULL,
+  `receiver_ID` INT(10) NOT NULL,
   `text` VARCHAR(6000) NOT NULL,
-  PRIMARY KEY (`user1_ID`, `user2_ID`),
-  KEY `user1_ID` (`user1_ID`),
-  KEY `user2_ID` (`user2_ID`),
-  CONSTRAINT `users_ibfk_6` FOREIGN KEY (`user1_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `users_ibfk_7` FOREIGN KEY (`user2_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`sender_ID`, `receiver_ID`),
+  KEY `sender_ID` (`sender_ID`),
+  KEY `receiver_ID` (`receiver_ID`),
+  CONSTRAINT `users_ibfk_6` FOREIGN KEY (`sender_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `users_ibfk_7` FOREIGN KEY (`receiver_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE `post_comments` (

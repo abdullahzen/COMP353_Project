@@ -19,6 +19,7 @@ DROP TABLE IF EXISTS `user_bank_information`;
 CREATE TABLE `users` (
   `user_ID` INT(10) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(254) NOT NULL UNIQUE,
   `password` VARCHAR(300) NOT NULL,
   `address` VARCHAR(100) NOT NULL,
   `phone_number` INT(10) NOT NULL,

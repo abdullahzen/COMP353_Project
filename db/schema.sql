@@ -22,7 +22,7 @@ CREATE TABLE `users` (
   `email` VARCHAR(254) NOT NULL UNIQUE,
   `password` VARCHAR(300) NOT NULL,
   `address` VARCHAR(100) NOT NULL,
-  `phone_number` INT(10) NOT NULL,
+  `phone_number` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`user_ID`)
 );
 
@@ -59,7 +59,7 @@ CREATE TABLE `bank_information` (
   `bank_information_ID` INT(10) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `address` VARCHAR(100) NOT NULL,
-  `card_number` INT(16) NOT NULL,
+  `card_number` VARCHAR(16) NOT NULL,
   `expiration_date` DATE NOT NULL,
   PRIMARY KEY (`bank_information_ID`)
 );

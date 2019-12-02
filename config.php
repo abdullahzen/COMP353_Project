@@ -3,10 +3,10 @@
  * Configuration for database connection
  *
  */
-$host       = '127.0.0.1';
-$username   = 'root';
-$password   = '';
-$dbname     = 'SCC';
+$host       = 'orc353.encs.concordia.ca';
+$username   = 'orc353_2';
+$password   = 'H8Y95r';
+$dbname     = 'orc353_2';
 $dsn        = "mysql:host=$host;dbname=$dbname";
 $options    = array(
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION

@@ -46,10 +46,11 @@ function readSingle($table, $where, $where_value) {
     try  {
         global $conn;
         $sql = "SELECT * FROM $table WHERE $where = $where_value";
+//        var_dump($sql);
         $statement = $conn->prepare($sql);
         $statement->bindValue($where_value, $where);
         $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
@@ -66,7 +67,7 @@ function readAll($table) {
         $sql = "SELECT * FROM $table";
         $statement = $conn->prepare($sql);
         $statement->execute();
-        $result = $statement->fetchAll();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();

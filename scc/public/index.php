@@ -6,7 +6,7 @@
  * Time: 5:20 PM
  */
 
-//include "header.php";
+include "header.php";
 
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@
 </head>
 <body>
 <div align="center">
-<!--    <h2>Hello World!</h2>-->
+    <h2>Hello World!</h2>
 </div>
 </body>
 

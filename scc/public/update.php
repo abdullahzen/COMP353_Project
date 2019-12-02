@@ -11,16 +11,16 @@ require "../app/operations/crud.php";
 if (isset($_POST['submit'])) {
 //    if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();
     try {
-        $update = update('bank_information', $_POST, 'bank_information_ID', $_GET['id']);
+        $update = update($_GET['table'], $_POST, $_GET['key'], $_GET['id']);
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
 }
 
-if (isset($_GET['id'])) {
+if (isset($_GET['table']) && isset($_GET['key']) && isset($_GET['id'])) {
     try {
-        $id = $_GET['id'];
-        $result = readSingle('bank_information', 'bank_information_ID', $id);
+        $result = readSingle($_GET['table'], $_GET['key'], $_GET['id']);
+//        var_dump($result);
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
@@ -37,7 +37,9 @@ include "header.php";
 <div align="center">
     <form method="post">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
-        <?php foreach ($result as $key => $value) : ?>
+        <?php
+            $index = 0;
+            foreach ($result[0] as $key => $value) { ?>
             <label for="<?php echo $key; ?>">
                 <?php echo ucfirst($key); ?>
             </label>
@@ -46,10 +48,12 @@ include "header.php";
                 type="text"
                 name="<?php echo $key; ?>"
                 id="<?php echo $key; ?>"
-                value="<?php echo escape($value); ?>" <?php echo ($key === 'id' ? 'readonly' : null); ?>
+                value="<?php echo escape($value); ?>" <?php echo ($key === $result[$index][0] ? 'readonly' : null); ?>
             />
             <br />
-        <?php endforeach; ?>
+        <?php
+                $index++;
+            } ?>
         <input type="submit" name="submit" value="Submit">
     </form>
 </div>

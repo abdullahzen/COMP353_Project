@@ -15,12 +15,16 @@ if (isset($_POST['submit'])) {
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
+?>
+    <script type="text/javascript">
+        window.location = "<?php echo escape("/read.php?table=" . $_GET['table']) ?>";
+    </script>
+<?php
 }
 
 if (isset($_GET['table']) && isset($_GET['key']) && isset($_GET['id'])) {
     try {
         $result = readSingle($_GET['table'], $_GET['key'], $_GET['id']);
-//        var_dump($result);
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
@@ -48,7 +52,7 @@ include "header.php";
                 type="text"
                 name="<?php echo $key; ?>"
                 id="<?php echo $key; ?>"
-                value="<?php echo escape($value); ?>" <?php echo ($key === $result[$index][0] ? 'readonly' : null); ?>
+                value="<?php echo escape($value); ?>" <?php echo ($key === key($result[0]) ? 'disabled' : null); ?>
             />
             <br />
         <?php

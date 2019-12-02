@@ -36,7 +36,7 @@ CREATE TABLE `groups` (
   `group_ID` INT(10) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `manager_ID` INT(10) NOT NULL,
-  PRIMARY KEY (group_ID),
+  PRIMARY KEY (`group_ID`),
   KEY `manager_ID` (`manager_ID`),
   CONSTRAINT `users_ibfk_2` FOREIGN KEY (`manager_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -44,7 +44,7 @@ CREATE TABLE `groups` (
 CREATE TABLE `events` (
   `event_ID` INT(10) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `address` VARCHAR(10) NOT NULL,
+  `address` VARCHAR(100) NOT NULL,
   `manager_ID` INT(10) NOT NULL,
   `date` DATE NOT NULL, /* Date format is yyyy-mm-dd */
   `expiration_date` DATE,

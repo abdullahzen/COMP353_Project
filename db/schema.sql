@@ -80,10 +80,12 @@ CREATE TABLE `posts` (
 );
 
 CREATE TABLE `messages` (
+  `message_ID` INT(10) NOT NULL AUTO_INCREMENT,
   `sender_ID` INT(10) NOT NULL,
   `receiver_ID` INT(10) NOT NULL,
   `text` VARCHAR(6000) NOT NULL,
-  PRIMARY KEY (`sender_ID`, `receiver_ID`),
+  `timestamp`TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`message_ID`),
   KEY `sender_ID` (`sender_ID`),
   KEY `receiver_ID` (`receiver_ID`),
   CONSTRAINT `users_ibfk_6` FOREIGN KEY (`sender_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE,

@@ -9,10 +9,12 @@
 require "../app/operations/crud.php";
 
 $result = readAll('bank_information');
-//$result = readSingle('bank_information', 'bank_information_ID', 1);
 ?>
 <?php
     include "header.php";
+?>
+<?php
+    if (sizeof($result) > 0) {
 ?>
 <table align="center">
     <thead>
@@ -22,6 +24,7 @@ $result = readAll('bank_information');
             <th>address</th>
             <th>card_number</th>
             <th>expiration_date</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -32,7 +35,12 @@ $result = readAll('bank_information');
                 <td><?php echo escape($row["address"]); ?></td>
                 <td><?php echo escape($row["card_number"]); ?></td>
                 <td><?php echo escape($row["expiration_date"]); ?></td>
+                <td><a href="bank_information_update.php?id=<?php echo escape($row["bank_information_ID"]); ?>">Edit</a></td>
             </tr>
         <?php } ?>
     </tbody>
 </table>
+<?php } else { ?>
+    <blockquote>No results found.</blockquote>
+<?php
+} ?>

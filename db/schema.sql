@@ -134,6 +134,17 @@ CREATE TABLE `event_organization_participants` (
   CONSTRAINT `users_ibfk_5` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE `event_group` (
+  `event_ID` INT(10) NOT NULL,
+  `group_ID` INT(10) NOT NULL,
+  PRIMARY KEY (`event_ID`, `group_ID`),
+  KEY `event_ID` (`event_ID`),
+  KEY `group_ID` (`group_ID`),
+  CONSTRAINT `events_ibfk_2` FOREIGN KEY (`event_ID`) REFERENCES `events` (`event_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `groups_ibfk_3` FOREIGN KEY (`group_ID`) REFERENCES `groups` (`group_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
 CREATE TABLE `group_posts` (
   `group_ID` INT(10) NOT NULL,
   `post_ID` INT(10) NOT NULL,

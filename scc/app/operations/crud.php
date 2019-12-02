@@ -9,12 +9,21 @@
 require "../../config.php";
 require "../../common.php";
 
-$conn = new PDO("mysql:dbname=$dbname;host=$host", $username, $password, $options);
-
-function create($table) {
-
+try {
+    $conn = new PDO("mysql:dbname=$dbname;host=$host", $username, $password, $options);
+} catch(PDOException $error) {
+    echo $sql . "<br>" . $error->getMessage();
 }
 
+function create($table, $inputs) {
+}
+
+/**
+ * @param $table table name
+ * @param $where row target
+ * @param $where_value row value
+ * @return array
+ */
 function readSingle($table, $where, $where_value) {
     try  {
         global $conn;
@@ -28,6 +37,10 @@ function readSingle($table, $where, $where_value) {
     }
 }
 
+/**
+ * @param $table table name
+ * @return array
+ */
 function readAll($table) {
     try  {
         global $conn;

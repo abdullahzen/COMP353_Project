@@ -36,18 +36,18 @@ INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (2,1);
 INSERT INTO `SCC`.`users` (name, email, password, address, phone_number) VALUES ('Jenny Souder', 'jenny.souder@gmail.com', '123456', '3170 Tanner Street, Vancouver, BC V5R 2T4, Canada', 6044562865);
 INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (3,1);
 INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (3,2);
-INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (3,4);
+/*INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (3,4);*/
 
 /* event manager, controller and a participant */
 INSERT INTO `SCC`.`users` (name, email, password, address, phone_number) VALUES ('James Parrish', 'james.parrish@gmail.com' ,'123456', '4245 Galts Ave, Red Deer, AB T4N 2A6, Canada', 4035059447);
 INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (4,2);
 INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (4,3);
-INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (4,4);
+/*INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (4,4);*/
 
 /* event managers and a participant */
 INSERT INTO `SCC`.`users` (name, email, password, address, phone_number) VALUES ('Katherine Lawson', 'katherine.lawson@hotmal.com', '123456', '4917 Eglinton Avenue, Toronto, ON M4P 1A6, Canada', 4164826721);
 INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (5,2);
-INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (5,4);
+/*INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (5,4);*/
 
 /* event managers */
 INSERT INTO `SCC`.`users` (name, email, password, address, phone_number) VALUES ('Leonard Pratt', 'leonard.p@gmail.com','123456', '155 avenue de Port-Royal, Bonnaventure, QC G0C 1E0, Canada', 4187528048);
@@ -71,7 +71,8 @@ INSERT INTO `SCC`.`users` (name, email, password, address, phone_number) VALUES 
 INSERT INTO `SCC`.`users` (name, email, password, address, phone_number) VALUES ('Lucille Sira', 'lucille.sira@outlook.com', '123456', 'De la Providence Avenue, Gatineau, QC J8P 8A5, Canada', 471150417);
 INSERT INTO `SCC`.`users` (name, email, password, address, phone_number) VALUES ('Sara Parada', 'sara.p@hotmail.com', '123456', '2170 Marie Street, Burlington, ON L7R 2G6, Canada', 9056314310);
 INSERT INTO `SCC`.`users` (name, email, password, address, phone_number) VALUES ('Ela Lewis', 'ela.lewis@outlook.com', '123456', '1939 Bay Street, Toronto, ON M5J 2R8, Canada', 6478186713);
-INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (10,4);
+/* the below insert to user roles are not needed anymore as we now have a trigger that does it */
+/*INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (10,4);
 INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (11,4);
 INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (12,4);
 INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (13,4);
@@ -79,7 +80,7 @@ INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (14,4);
 INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (15,4);
 INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (16,4);
 INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (17,4);
-INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (18,4);
+INSERT INTO `SCC`.`user_roles` (user_ID, role_ID) VALUES (18,4); */
 /* ====================================================================*/
 
 

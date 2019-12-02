@@ -8,7 +8,7 @@
 //    $name = mysqli_real_escape_string($db,$_POST['username']);
 //    $password = mysqli_real_escape_string($db,$_POST['password']);
 //
-//    $sql = "SELECT id FROM admin WHERE username = '$name' and password = '$password'";
+//    $sql = "SELECT id FROM users WHERE username = '$name' and password = '$password'";
 //    $result = mysqli_query($db,$sql);
 //    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 //    $active = $row['active'];
@@ -37,6 +37,7 @@
 
 <body>
 <div class="container">
+    <h1>Sign in</h1>
     <form class="px-4 py-3" action="home.php" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>

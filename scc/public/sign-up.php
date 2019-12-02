@@ -14,7 +14,7 @@
 
 <body>
 <div class="container">
-    Sign Up Form
+   <h1>Sign Up Form</h1>
     <hr>
     Please fill in this form to create an account.
     <form class="px-4 py-3" action="home.php" method="post">
@@ -27,7 +27,7 @@
             <input type="text" class="form-control" id="name">
         </div>
         <div class="form-group">
-            <label for="name">Phone number</label>
+            <label for="phone-number">Phone number</label>
             <input type="number" class="form-control" id="phone-number">
         </div>
         <div class="form-group">
@@ -44,9 +44,9 @@
 </body>
 
 </html>
-
+<!---->
 <?php
-//include("config.php");
+//include("./config.php");
 //session_start();
 //
 //// initializing variables
@@ -58,10 +58,10 @@
 //$errors = array();
 //
 //// connect to the database
-//$db = mysqli_connect('localhost', 'root', '', 'registration');
+//$db = mysqli_connect('localhost', 'root', '', 'orc353_2');
 //
 //// REGISTER USER
-//if (isset($_POST['user'])) {
+//if (isset($_POST['users'])) {
 //    // receive all input values from the form
 //    $name = mysqli_real_escape_string($db, $_POST['name']);
 //    $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -96,15 +96,15 @@
 //    if (count($errors) == 0) {
 //        $password = md5($password);//encrypt the password before saving in the database
 //
-//        $query = "INSERT INTO users (name, email, password, address, phone_number)
+//        $query = "INSERT INTO 'orc353_2'.'users' (name, email, password, address, phone_number)
 //  			  VALUES('$name', '$email', '$password', '$address', '$phone_number')";
 //        mysqli_query($db, $query);
 //        $_SESSION['name'] = $name;
 //        $_SESSION['success'] = "You are now logged in";
-//        header('location: index.php');
+//        header('location: home.php');
 //    }
 //
-//
-//
-//
-//
+
+
+
+

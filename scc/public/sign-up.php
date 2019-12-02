@@ -46,6 +46,7 @@
 </html>
 
 <?php
+//include("config.php");
 //session_start();
 //
 //// initializing variables
@@ -60,9 +61,9 @@
 //$db = mysqli_connect('localhost', 'root', '', 'registration');
 //
 //// REGISTER USER
-//if (isset($_POST['users'])) {
+//if (isset($_POST['user'])) {
 //    // receive all input values from the form
-//    $name = mysqli_real_escape_string($db, $_POST['username']);
+//    $name = mysqli_real_escape_string($db, $_POST['name']);
 //    $email = mysqli_real_escape_string($db, $_POST['email']);
 //    $password = mysqli_real_escape_string($db, $_POST['password']);
 //    $address = mysqli_real_escape_string($db, $_POST['address']);
@@ -82,7 +83,7 @@
 //    $user = mysqli_fetch_assoc($result);
 //
 //    if ($user) { // if user exists
-//        if ($user['username'] === $name) {
+//        if ($user['name'] === $name) {
 //            array_push($errors, "Username already exists");
 //        }
 //
@@ -95,15 +96,15 @@
 //    if (count($errors) == 0) {
 //        $password = md5($password);//encrypt the password before saving in the database
 //
-//        $query = "INSERT INTO users (name, email, password)
-//  			  VALUES('$name', '$email', '$password')";
+//        $query = "INSERT INTO users (name, email, password, address, phone_number)
+//  			  VALUES('$name', '$email', '$password', '$address', '$phone_number')";
 //        mysqli_query($db, $query);
 //        $_SESSION['name'] = $name;
 //        $_SESSION['success'] = "You are now logged in";
 //        header('location: index.php');
 //    }
-//}
-
-
-
-
+//
+//
+//
+//
+//

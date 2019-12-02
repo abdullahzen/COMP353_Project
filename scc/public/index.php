@@ -9,6 +9,7 @@
 include "header.php";
 
 ?>
+<link rel="stylesheet" href="css/style.css">
 
 <div align="center">
     <h2>Hello World!</h2>

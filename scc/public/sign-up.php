@@ -1,5 +1,5 @@
 <?php
-//include 'header.php';
+include 'index.php';
 
 ?>
 
@@ -8,15 +8,17 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="css/style.css">
     <title>Sign up</title>
 </head>
 
 <body>
-<div class="container">
+<div class="empty-header-for-sign-in-up"></div>
+<div class="container card-signup">
    <h1>Sign Up Form</h1>
     <hr>
     Please fill in this form to create an account.
+    <hr>
     <form class="px-4 py-3" action="home.php" method="post">
         <div class="form-group">
             <label for="exampleInputEmail">Email address</label>
@@ -38,7 +40,9 @@
             <label for="exampleInputPassword">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword">
         </div>
-        <button type="submit" class=" btn btn-primary">Sign Up</button>
+        <div class="row">
+        <button type="submit" class=" col-12 btn btn-primary">Sign Up</button>
+        </div>
     </form>
 </div>
 </body>

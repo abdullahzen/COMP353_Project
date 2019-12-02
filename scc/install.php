@@ -12,6 +12,8 @@ try {
     $connection = new PDO("mysql:host=$host", $username, $password, $options);
     $sql = file_get_contents("db/schema.sql");
     $connection->exec($sql);
+    $sql = file_get_contents("db/data.sql");
+    $connection->exec($sql);
 
     echo "Database and table users created successfully.";
 } catch(PDOException $error) {

@@ -3,9 +3,9 @@
  * Configuration for database connection
  *
  */
-$host       = '127.0.0.1';
-$username   = 'root';
-$password   = '';
+$host       = 'orc353.encs.concordia.ca';
+$username   = 'orc353_2';
+$password   = 'H8Y95r';
 $dbname     = 'SCC';
 $dsn        = "mysql:host=$host;dbname=$dbname";
 $options    = array(

@@ -6,3 +6,29 @@
     color: white;
     font-size: 30px;
 }
+
+.card-signup,
+.card-signin {
+    text-align: center;
+    border-radius: 1rem;
+    box-shadow: 0 1.5rem 4rem 0 rgba(0, 0, 0, 0.5);
+    border-color: #28074D !important;
+    border-width: 2px;
+    width: 35%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+}
+.navbar{
+    background-color: black;
+    color: white;
+}
+input.form-control.mr-sm-2 {
+    margin-top: 10px;
+}
+div.empty-header-for-sign-in-up {
+    background-color: black;
+    height: 80px;
+}

@@ -1,4 +1,6 @@
 <?php
+include 'index.php';
+
 //include("config.php");
 //session_start();
 //
@@ -30,14 +32,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>SCC</title>
 </head>
 
 <body>
-<div class="container">
+<div class="empty-header-for-sign-in-up"></div>
+
+<div class="container card-signin">
     <h1>Sign in</h1>
+    <hr>
     <form class="px-4 py-3" action="home.php" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
@@ -51,7 +55,9 @@
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Remember me</label>
         </div>
-        <button type="submit" class=" btn btn-primary">Sign in</button>
+        <div class="row">
+            <button type="submit" class=" col-12 btn btn-primary">Sign in</button>
+        </div>
     </form>
 </div>
 </body>

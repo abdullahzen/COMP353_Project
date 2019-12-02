@@ -2,6 +2,7 @@ DROP DATABASE IF EXISTS `SCC`;
 CREATE DATABASE IF NOT EXISTS `SCC`;
 USE `SCC`;
 DROP TRIGGER IF EXISTS `events_validity_date`;
+DROP TRIGGER IF EXISTS `make_user_participant_by_default`;
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `roles`;
 DROP TABLE IF EXISTS `user_roles`;
@@ -172,6 +173,16 @@ BEFORE INSERT
 ON events FOR EACH ROW
 BEGIN
 SET new.expiration_date = DATE_ADD(new.date, INTERVAL 7 YEAR);
+END;
+$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER `make_user_participant_by_default`
+AFTER INSERT
+ON users FOR EACH ROW
+BEGIN
+INSERT INTO user_roles(user_ID, role_ID) VALUES (new.user_ID, 4);
 END;
 $$
 DELIMITER ;

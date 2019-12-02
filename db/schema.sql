@@ -1,6 +1,7 @@
 DROP DATABASE IF EXISTS `SCC`;
 CREATE DATABASE IF NOT EXISTS `SCC`;
 USE `SCC`;
+DROP TRIGGER IF EXISTS `events_validity_date`;
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `roles`;
 DROP TABLE IF EXISTS `user_roles`;
@@ -164,3 +165,13 @@ CREATE TABLE `user_bank_information` (
   CONSTRAINT `users_ibfk_8` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `bank_information_ibfk_1` FOREIGN KEY (`bank_information_ID`) REFERENCES `bank_information` (`bank_information_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+DELIMITER $$
+CREATE TRIGGER `events_validity_date`
+BEFORE INSERT
+ON events FOR EACH ROW
+BEGIN
+SET new.expiration_date = DATE_ADD(new.date, INTERVAL 7 YEAR);
+END;
+$$
+DELIMITER ;

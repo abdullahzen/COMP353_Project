@@ -90,7 +90,7 @@ function readAllEvents() {
                 INNER JOIN users u on u.user_ID = e.user_ID
                 INNER JOIN organizations o on o.organization_ID = e.organization_ID
                 INNER JOIN event_group eg on eg.event_ID = events.event_ID
-                INNER JOIN groups g on g.group_ID = eg.group_ID;";
+                INNER JOIN orc353_2.groups g on g.group_ID = eg.group_ID;";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);

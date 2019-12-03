@@ -1,9 +1,10 @@
+<title>SCC</title>
 <div align="center">
     <h1>SCC 2019 Admin Panel</h1>
     <a href="index.php">Home</a>
     <a href="read.php?table=bank_information">Bank Information</a>
     <a href="read.php?table=events">Events</a>
-    <a href="read.php?table=event_group">Event Group</a>
+    <a href="read.php?table=event_groups">Event Group</a>
     <a href="read.php?table=event_organization_participants">Event Organization Participants</a>
     <a href="read.php?table=groups">Groups</a>
     <a href="read.php?table=group_members">Group Members</a>

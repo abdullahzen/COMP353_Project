@@ -22,6 +22,16 @@ try {
 function create($table, $inputs) {
     try  {
         global $conn;
+        unset($inputs['csrf']);
+        unset($inputs['submit']);
+        $data = $inputs;
+        $set_data = "";
+        for ($i = 0; $i < sizeof($inputs); $i++) {
+            $set_data .= array_keys($inputs)[$i] . " = " . "\"" . $data[array_keys($inputs)[$i]] . "\"";
+            if ($i < sizeof($inputs) - 1) {
+                $set_data .= ", ";
+            }
+        }
         $sql = sprintf(
             "INSERT INTO %s (%s) values (%s)",
             "$table",

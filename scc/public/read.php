@@ -28,9 +28,9 @@ if (isset($_POST["submit"])) {
         delete($_GET['table'], key($result[0]), $_POST["submit"]);
         $success = "User successfully deleted";
 ?>
-        <script type="text/javascript">
-            window.location = "<?php echo escape("/read.php?table=" . $_GET['table']) ?>";
-        </script>
+    <script type="text/javascript">
+        window.location = "<?php echo escape("/read.php?table=" . $_GET['table']) ?>";
+    </script>
 <?php
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
@@ -45,6 +45,7 @@ if (isset($_POST["submit"])) {
 ?>
 <form method="post">
     <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
+    <a href="create.php?table=<?php echo escape($table) ?>">Create new entry for <?php echo escape($table) ?></a>
     <table align="center">
         <thead>
             <tr>

@@ -57,7 +57,8 @@ include "header.php";
             <br />
         <?php
                 $index++;
-            } ?>
+        }
+        ?>
         <input type="submit" name="submit" value="Submit">
     </form>
 </div>

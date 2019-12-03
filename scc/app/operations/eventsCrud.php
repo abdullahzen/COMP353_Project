@@ -89,7 +89,7 @@ function readAllEvents() {
                 INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
                 INNER JOIN users u on u.user_ID = e.user_ID
                 INNER JOIN organizations o on o.organization_ID = e.organization_ID
-                INNER JOIN event_group eg on eg.event_ID = events.event_ID
+                INNER JOIN event_groups eg on eg.event_ID = events.event_ID
                 INNER JOIN orc353_2.groups g on g.group_ID = eg.group_ID;";
         $statement = $conn->prepare($sql);
         $statement->execute();

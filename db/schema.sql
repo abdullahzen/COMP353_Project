@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS `group_posts`;
 DROP TABLE IF EXISTS `messages`;
 DROP TABLE IF EXISTS `post_comments`;
 DROP TABLE IF EXISTS `user_bank_information`;
+DROP TABLE IF EXISTS `event_groups`;
 
 CREATE TABLE `users` (
   `user_ID` INT(10) NOT NULL AUTO_INCREMENT,
@@ -136,7 +137,7 @@ CREATE TABLE `event_organization_participants` (
   CONSTRAINT `users_ibfk_5` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE `event_group` (
+CREATE TABLE `event_groups` (
   `event_ID` INT(10) NOT NULL,
   `group_ID` INT(10) NOT NULL,
   PRIMARY KEY (`event_ID`, `group_ID`),

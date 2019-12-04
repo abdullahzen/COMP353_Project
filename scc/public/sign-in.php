@@ -1,4 +1,5 @@
 <?php
+
 //include 'index.php';
 //
 //include("config.php");
@@ -61,7 +62,11 @@
         </div>
         <br>
         <div>
-            <button type="submit" >Sign in</button>
+            <button type="submit" >
+                <?php
+                session_start();
+                ?>
+                Sign in</button>
         </div>
     </form>
     <hr>

@@ -9,6 +9,9 @@
 <div align="center">
     <h1>SCC 2019 Admin Panel</h1>
     <hr>
+
+<!--    TO DO: add if statements according to user role -->
+
     <a href="index.php">Home</a>
     <a href="read.php?table=bank_information">Bank Information</a>
     <a href="read.php?table=events">Events</a>

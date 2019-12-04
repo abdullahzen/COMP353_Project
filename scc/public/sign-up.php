@@ -40,7 +40,7 @@
             <input type="password" class="form-control" id="password">
         </div><br>
         <div>
-        <button type="submit">Sign Up</button>
+        <button type="submit">Submit</button>
         </div>
     </form>
 </div>

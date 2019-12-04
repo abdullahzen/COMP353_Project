@@ -1,6 +1,6 @@
 <?php
-include 'index.php';
-
+//include 'index.php';
+//
 //include("config.php");
 //session_start();
 //
@@ -23,7 +23,7 @@ include 'index.php';
 //        session_register("name");
 //        $_SESSION['login_user'] = $name;
 //
-//        header("location: home.php");
+//        header("location: index.php");
 //    }else {
 //        $error = "Your Login Name or Password is invalid";
 //    }
@@ -33,6 +33,7 @@ include 'index.php';
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
     <title>SCC</title>
 </head>
 
@@ -42,23 +43,33 @@ include 'index.php';
 <div class="container card-signin">
     <h1>Sign in</h1>
     <hr>
-    <form class="px-4 py-3" action="home.php" method="post">
+    <br>
+    <form class="px-4 py-3" action="role-list.php" method="post">
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1">
+            <label for="email1">Email address</label><br>
+            <input type="email" class="form-control" id="email1">
         </div>
+        <br>
         <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <label for="password1">Password</label><br>
+            <input type="password"  id="password1">
         </div>
+        <br>
         <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+            <input type="checkbox" class="form-check-input" id="Check1">
+            <label class="form-check-label" for="Check1">Remember me</label>
         </div>
-        <div class="row">
-            <button type="submit" class=" col-12 btn btn-primary">Sign in</button>
+        <br>
+        <div>
+            <button type="submit" >Sign in</button>
         </div>
     </form>
+    <hr>
+    <div>Don't have an account?<br>
+        <form action="sign-up.php"><br>
+            <input type="submit" value="Sign Up" />
+        </form>
+    </div>
 </div>
 </body>
 

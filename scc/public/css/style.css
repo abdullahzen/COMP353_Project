@@ -21,6 +21,10 @@
     padding-bottom: 15px;
 
 }
+.card-signup{
+    margin-left: 26rem;
+
+}
 .navbar{
     background-color: black;
     color: white;
@@ -31,4 +35,8 @@ input.form-control.mr-sm-2 {
 div.empty-header-for-sign-in-up {
     background-color: black;
     height: 80px;
+}
+button.col-4.btn.btn-primary {
+    position: relative;
+    left: 17px;
 }

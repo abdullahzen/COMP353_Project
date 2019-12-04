@@ -1,5 +1,5 @@
 <?php
-include 'index.php';
+//include 'index.php';
 
 ?>
 
@@ -7,41 +7,40 @@ include 'index.php';
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
     <title>Sign up</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 <div class="empty-header-for-sign-in-up"></div>
 <div class="container card-signup">
-   <h1>Sign Up Form</h1>
+   <h1>Sign Up</h1>
     <hr>
     Please fill in this form to create an account.
     <hr>
-    <form class="px-4 py-3" action="home.php" method="post">
+    <form class="px-4 py-3" action="role-list.php" method="post">
         <div class="form-group">
-            <label for="exampleInputEmail">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail">
-        </div>
+            <label for="email">Email address</label><br>
+            <input type="email" class="form-control" id="email">
+        </div><br>
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Name</label><br>
             <input type="text" class="form-control" id="name">
-        </div>
+        </div><br>
         <div class="form-group">
-            <label for="phone-number">Phone number</label>
+            <label for="phone-number">Phone number</label><br>
             <input type="number" class="form-control" id="phone-number">
-        </div>
+        </div><br>
         <div class="form-group">
-            <label for="address">Address</label>
+            <label for="address">Address</label><br>
             <input type="text" class="form-control" id="address">
-        </div>
+        </div><br>
         <div class="form-group">
-            <label for="exampleInputPassword">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword">
-        </div>
-        <div class="row">
-        <button type="submit" class=" col-12 btn btn-primary">Sign Up</button>
+            <label for="password">Password</label><br>
+            <input type="password" class="form-control" id="password">
+        </div><br>
+        <div>
+        <button type="submit">Sign Up</button>
         </div>
     </form>
 </div>
@@ -50,7 +49,7 @@ include 'index.php';
 </html>
 <!---->
 <?php
-//include("./config.php");
+//include("../../config.php");
 //session_start();
 //
 //// initializing variables
@@ -105,9 +104,9 @@ include 'index.php';
 //        mysqli_query($db, $query);
 //        $_SESSION['name'] = $name;
 //        $_SESSION['success'] = "You are now logged in";
-//        header('location: home.php');
+////        header('location: index.php');
 //    }
-//
+
 
 
 

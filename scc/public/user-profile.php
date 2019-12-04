@@ -1,28 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: klin
- * Date: 2019-12-01
- * Time: 5:20 PM
- */
-
-//include "header.php";
-
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
+    <title>Admin</title>
 </head>
 <body>
 <div align="center">
-<!--    <h2>Hello World!</h2>-->
+<!--    <h2>Admin Profile</h2>-->
+    <hr>
 
     <?php
-
-    include "sign-in.php";
-
+    include 'header.php';
     ?>
 </div>
 </body>

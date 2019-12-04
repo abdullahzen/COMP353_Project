@@ -1,4 +1,11 @@
-<title>SCC</title>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <title>SCC</title>
+</head>
+<body onload=<?php session_start()?>>
 <div align="center">
     <h1>SCC 2019 Admin Panel</h1>
     <hr>
@@ -18,5 +25,14 @@
     <a href="read.php?table=user_bank_information">User Bank Information</a>
     <a href="read.php?table=user_roles">User Roles</a>
     <a href="read.php?table=users">Users</a>
+    <a href="index.php">
+        <?php
+        session_destroy();
+        ?>
+        Log out</a>
 </div>
 
+</div>
+</body>
+
+</html>

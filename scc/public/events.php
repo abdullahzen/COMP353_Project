@@ -1,8 +1,6 @@
 <?php
 
 require "../app/operations/eventsCrud.php";
-require "../app/operations/auth.php";
-isLoggedIn();
 
 $success = null;
 

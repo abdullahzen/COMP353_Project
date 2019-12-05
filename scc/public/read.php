@@ -7,8 +7,6 @@
  */
 
 require "../app/operations/crud.php";
-require "../app/operations/auth.php";
-isLoggedIn();
 
 $success = null;
 

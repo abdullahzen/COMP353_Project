@@ -1,11 +1,3 @@
-<?php
-require "../app/operations/auth.php";
-
-if (isset($_POST['submit'])) {
-    logout();
-}
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,10 +15,7 @@ if (isset($_POST['submit'])) {
     <a href="user-profile.php">Event Manager</a><br>
     <a href="user-profile.php">Controller</a><br>
     <a href="user-profile.php">Event Participant</a><br>
-    <form method="post">
-        <input type="submit" name="submit" value="Logout">
-    </form>
-</div>
+    <a href="logout.php">Logout</a><br>
 </body>
 
 </html>

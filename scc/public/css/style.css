@@ -1,11 +1,10 @@
 /* Header/Logo Title */
-.header {
-    padding: 60px;
-    text-align: center;
-    background: #1abc9c;
-    color: white;
-    font-size: 30px;
-}
+/*.header {*/
+/*    padding: 60px;*/
+/*    background: #1abc9c;*/
+/*    color: white;*/
+/*    font-size: 30px;*/
+/*}*/
 
 .card-signup,
 .card-signin {
@@ -39,4 +38,53 @@ div.empty-header-for-sign-in-up {
 button.col-4.btn.btn-primary {
     position: relative;
     left: 17px;
+}
+input[type=text],
+input[type=number],
+input[type=password] ,
+input[type=email],
+select {
+    width: 70%;
+    padding: 10px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 70%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+li a:hover,
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.sidenav {
+    overflow: auto;
+    background-color: black;
+    position: fixed;
+
+}
+ul li {
+    display:block;
+    width:100%;
+}
+
+li a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: white;
+    text-align: left;
+    padding: 8px 11px 8px;
+    background-color: black;
+    margin: 0 0 0 -38px;
 }

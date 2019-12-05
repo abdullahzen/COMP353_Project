@@ -16,8 +16,6 @@
 <div class="container card-signup">
    <h1>Sign Up</h1>
     <hr>
-    Please fill in this form to create an account.
-    <hr>
     <form class="px-4 py-3" action="role-list.php" method="post">
         <div class="form-group">
             <label for="email">Email address</label><br>
@@ -40,7 +38,7 @@
             <input type="password" class="form-control" id="password">
         </div><br>
         <div>
-        <button type="submit">Submit</button>
+        <input type="submit"/>
         </div>
     </form>
 </div>

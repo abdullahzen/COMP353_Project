@@ -62,11 +62,7 @@
         </div>
         <br>
         <div>
-            <button type="submit" >
-                <?php
-                session_start();
-                ?>
-                Sign in</button>
+            <input type="submit" />
         </div>
     </form>
     <hr>

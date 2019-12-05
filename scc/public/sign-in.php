@@ -1,6 +1,5 @@
 <?php
 require "../app/operations/auth.php";
-isLoggedIn();
 $error = "";
 
 if(session_id() !== '') {

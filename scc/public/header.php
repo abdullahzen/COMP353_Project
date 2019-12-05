@@ -1,3 +1,8 @@
+<?php
+require "../app/operations/auth.php";
+isLoggedIn();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +10,6 @@
     <link rel="stylesheet" href="css/style.css">
     <title>SCC</title>
 </head>
-<body onload=<?php session_start()?>>
 <div align="center">
     <h1>SCC 2019 Admin Panel</h1>
     <hr>

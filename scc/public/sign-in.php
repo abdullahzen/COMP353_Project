@@ -1,6 +1,6 @@
 <?php
 require "../app/operations/auth.php";
-
+isLoggedIn();
 $error = "";
 
 if(session_id() !== '') {
@@ -14,7 +14,6 @@ if(isset($_POST['submit'])) {
     $user = login($email, $password);
     if(sizeof($user) == 1) {
         ini_set('session.cookie_lifetime', 60 * 60 * 24 * 7);
-        session_start();
         setcookie('name', $user[0]['name']);
         setcookie('email', $user[0]['email']);
         setcookie('time', time());

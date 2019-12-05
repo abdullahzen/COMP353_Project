@@ -33,6 +33,9 @@ function login($email, $password) {
     }
 }
 
+/**
+ * Logout function
+ */
 function logout() {
     if (isset($_SERVER['HTTP_COOKIE'])) {
         $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
@@ -42,6 +45,15 @@ function logout() {
             setcookie($name, '', time()-1000);
             setcookie($name, '', time()-1000, '/');
         }
+        header("location: index.php");
+    }
+}
+
+/**
+ * Redirects to index.php if no session is detected
+ */
+function isLoggedIn() {
+    if($_COOKIE['email'] === null || $_COOKIE['name'] === null || $_COOKIE['time'] === null) {
         header("location: index.php");
     }
 }

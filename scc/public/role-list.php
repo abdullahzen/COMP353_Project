@@ -1,3 +1,7 @@
+<?php
+require "../app/operations/auth.php";
+isLoggedIn();
+?>
 <!DOCTYPE html>
 <html>
 <head>

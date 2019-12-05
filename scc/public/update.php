@@ -7,6 +7,8 @@
  */
 
 require "../app/operations/crud.php";
+require "../app/operations/auth.php";
+isLoggedIn();
 
 if (isset($_POST['submit'])) {
 //    if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();

@@ -35,7 +35,7 @@ if (isset($_GET['table'])) {
 include "header.php";
 ?>
 
-<div align="center">
+<div class="content addToTable" align="center">
     <h1>Add a new entry to: <?php echo $_GET['table'] ?></h1>
     <form method="post">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">

@@ -65,6 +65,7 @@ if(isset($_POST['submit'])) {
         <div class="form-group">
             <label for="error"><?php echo $error ?><br /></label>
         </div>
+        <br>
         <div class="form-group">
             <label for="email">Email address</label><br>
             <input type="text" class="form-control" name="email" id="email">
@@ -79,7 +80,7 @@ if(isset($_POST['submit'])) {
             <input type="checkbox" class="form-check-input" id="Check1">
             <label class="form-check-label" for="Check1">Remember me</label>
         </div>
-        <br/>
+        <br>
         <div>
             <input type="submit" name="submit" value="Login">
         </div>

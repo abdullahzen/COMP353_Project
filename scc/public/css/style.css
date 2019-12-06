@@ -1,12 +1,13 @@
 /* Header/Logo Title */
-.header {
-    padding: 60px;
-    text-align: center;
-    background: #1abc9c;
-    color: white;
-    font-size: 30px;
-}
-
+/*.header {*/
+/*    padding: 60px;*/
+/*    background: #1abc9c;*/
+/*    color: white;*/
+/*    font-size: 30px;*/
+/*}*/
+/*body{*/
+/*   background-color:  #DCDCDC;*/
+/*}*/
 .card-signup,
 .card-signin {
     text-align: center;
@@ -39,4 +40,133 @@ div.empty-header-for-sign-in-up {
 button.col-4.btn.btn-primary {
     position: relative;
     left: 17px;
+}
+input[type=text],
+input[type=number],
+input[type=password] ,
+input[type=email],
+select {
+    width: 70%;
+    padding: 10px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 70%;
+    background-color: black;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+li a:hover,
+input[type=submit]:hover {
+    background-color: #696969;
+}
+
+.sidenav {
+    /*overflow: auto;*/
+    background-color: black;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    /*border-top: 5px solid red;*/
+
+
+}
+ul li {
+    display:block;
+    width:100%;
+}
+
+li a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: white;
+    text-align: left;
+    padding: 8px 11px 8px;
+    background-color: black;
+    margin: 0 0 0 -38px;
+}
+
+
+.topnav {
+    overflow: hidden;
+    background-color: black;
+    /*border-bottom: 5px solid red;*/
+
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #696969;
+    color: white;
+}
+
+
+.topnav-right {
+    float: right;
+}
+ul.col-3 {
+    /*position: absolute;*/
+    /*left: 0.5rem;*/
+}
+div.content {
+    margin-left: 276px;
+    text-align: left;
+    padding: 1px 16px;
+}
+.choose_role {
+    background-color: black;
+    color: white;
+    height: 35px;
+    font-size: 16pt;
+    padding-top: 15px;
+}
+.first-item-on-list{
+    margin-top: 1rem;
+
+}
+.welcome_message{
+    color: white;
+    font-size: 14pt;
+    margin: 21px 0 15px -12px;
+
+}
+.fixed-line{
+    margin-left: -40px;
+}
+.fixed-line:first-child{
+    margin-top: 93px;
+}
+.fixed-line:nth-child(2){
+    /*margin-top: 25px !important;*/
+}
+.addToTable{
+    text-align: center !important;
+    border-radius: 1rem;
+    box-shadow: 0 1.5rem 4rem 0 rgba(0, 0, 0, 0.5);
+    border-color: #28074D !important;
+    border-width: 2px;
+    width: 29%;
+    position: relative;
+    left: 19rem;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
 }

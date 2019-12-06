@@ -6,13 +6,22 @@
     <title>Admin</title>
 </head>
 <body>
-<div align="center">
+<div>
 <!--    <h2>Admin Profile</h2>-->
     <hr>
 
     <?php
     include 'header.php';
     ?>
+
+    <div class="content">
+        <h2>System Administrator</h2>
+        <h4></h4>
+        <ul>
+            <li></li>
+        </ul>
+
+    </div>
 </div>
 </body>
 

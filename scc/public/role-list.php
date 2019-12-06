@@ -15,7 +15,7 @@ isLoggedIn();
 <div align="center">
     <h2>Your Access Roles in SCC -- The Share, Contribute and Comment System</h2>
     <hr>
-    <div>Choose one of the roles to proceed</div>
+    <div class="choose_role">Choose one of the roles to proceed</div>
     <br>
     <?php
         if ($_COOKIE['isAdmin']) {

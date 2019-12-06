@@ -65,22 +65,28 @@ if (isset($_POST["submit"])) {
             foreach ($result as $key => $value) { ?>
                 <tr>
                     <?php
-                        foreach ($result[$index] as $key => $value) {
+                    $index = 0;
+                    foreach ($result as $key => $value) { ?>
+                        <tr>
+                            <?php
+                            foreach ($result[$index] as $key => $value) {
+                                ?>
+                                <td><?php echo $result[$index][$key]; ?></td>
+                                <?php
+                            }
+                            ?>
+                            <td><a href="update.php?table=<?php echo escape($table) ?>&key=<?php echo escape(key($result[$index])) ?>&id=<?php echo escape($result[$index][key($result[$index])]); ?>">Edit</a></td>
+                            <td><button type="submit" name="submit" value="<?php echo escape($result[$index][key($result[$index])]); ?>">Delete</button></td>
+                        </tr>
+                        <?php
+                        $index++;
+                    }
                     ?>
-                            <td><?php echo $result[$index][$key]; ?></td>
-                    <?php
-                        }
-                    ?>
-                    <td><a href="update.php?table=<?php echo escape($table) ?>&key=<?php echo escape(key($result[$index])) ?>&id=<?php echo escape($result[$index][key($result[$index])]); ?>">Edit</a></td>
-                    <td><button type="submit" name="submit" value="<?php echo escape($result[$index][key($result[$index])]); ?>">Delete</button></td>
-                </tr>
-            <?php
-                $index++;
-            }
-            ?>
-        </tbody>
-    </table>
-</form>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
 <?php } else { ?>
     <blockquote>No results found.</blockquote>
 <?php

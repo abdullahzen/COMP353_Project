@@ -8,11 +8,17 @@
 
 require "../app/operations/helper.php";
 require "../app/operations/crud.php";
+require "../app/operations/eventsCrud.php";
 
 if (isset($_POST['submit'])) {
 //    if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();
     try {
-        $create = create($_GET['table'], $_POST);
+        if ($_COOKIE['current_role'] === 'admin') {
+            $create = create($_GET['table'], $_POST);
+        }
+        if ($_COOKIE['current_role'] === 'participant') {
+            $create = createEvent($_POST);
+        }
 ?>
 <script type="text/javascript">
     window.location = "
@@ -50,7 +56,7 @@ include "header.php";
         <?php
             $index = 0;
             foreach ($result as $key => $value) {
-                if($value['Field'] !== $result[0]['Field']) {
+                if($value['Field'] !== $result[0]['Field'] || $_COOKIE['current_role'] === 'admin') {
                     ?>
                     <label for="<?php echo $value['Field']; ?>">
                         <?php echo ucfirst($value['Field']); ?>

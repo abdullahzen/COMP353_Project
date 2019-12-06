@@ -20,6 +20,19 @@ try {
             break;
     }
 //    var_dump($result);
+?>
+<script type="text/javascript">
+    window.location = "
+    <?php
+        if ($_COOKIE['current_role'] === 'admin') {
+            echo "/read.php?table=" . $_GET['table'];
+        }
+        if ($_COOKIE['current_role'] === 'manager' || $_COOKIE['current_role'] === 'participant') {
+            echo "/events.php";
+        }
+        ?>";
+</script>
+<?php
 } catch(PDOException $error) {
     echo $sql . "<br>" . $error->getMessage();
 }
@@ -27,11 +40,13 @@ try {
 if (isset($_POST["submit"])) {
 //    if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();
     try {
-        delete($_GET['table'], key($result[0]), $_POST["submit"]);
+        delete('events', key($result[0]), $_POST["submit"]);
         $success = "User successfully deleted";
-?>
-    
-<?php
+        ?>
+        <script type="text/javascript">
+            window.location = "/events.php";
+        </script>
+        <?php
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
@@ -81,7 +96,7 @@ if (isset($_POST["submit"])) {
                         if($_COOKIE['current_role'] === 'admin' || $_COOKIE['current_role'] === 'manager') {
                     ?>
                             <td><a href="update.php?table=events&key=<?php echo (key($result[$index])) ?>&id=<?php echo ($result[$index][key($result[$index])]); ?>">Edit</a></td>
-                            <td><button type="submit" name="submit" value=\"<?php echo ($result[$index][key($result[$index])]); ?>\">Delete</button></td>
+                            <td><button type="submit" name="submit" value="<?php echo ($result[$index][key($result[$index])]); ?>">Delete</button></td>
                     <?php
                         }
                     ?>

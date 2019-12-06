@@ -9,14 +9,14 @@ try {
 }
 
 /**
- * @param $table table name
- * @param $inputs array_keys of inputs from a form
+ * @param $inputs
  */
-function create($table, $inputs) {
+function createEvent($inputs) {
     try  {
         global $conn;
         unset($inputs['csrf']);
         unset($inputs['submit']);
+        $user_id = $_COOKIE['user_id'];
         $data = $inputs;
         $set_data = "";
         for ($i = 0; $i < sizeof($inputs); $i++) {
@@ -25,15 +25,31 @@ function create($table, $inputs) {
                 $set_data .= ", ";
             }
         }
+
+        //create event
         $sql = sprintf(
-            "INSERT INTO %s (%s) values (%s)",
-            "$table",
+        "INSERT INTO %s (%s) values (%s)",
+            "events",
             implode(", ", array_keys($inputs)),
             ":" . implode(", :", array_keys($inputs))
         );
 
         $statement = $conn->prepare($sql);
         $statement->execute($inputs);
+
+        //sets user to be a manager if not already
+        if($_COOKIE['isManager'] === false) {
+            $sql = sprintf(
+                "INSERT INTO %s (%s) values (%s)",
+                "user_roles",
+                implode(", ", array('user_ID', 'role_ID')),
+                ":" . implode(", :", array($user_id, '2'))
+            );
+
+            $statement = $conn->prepare($sql);
+            $statement->execute($inputs);
+            setcookie('isManager', true);
+        }
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
@@ -45,30 +61,13 @@ function create($table, $inputs) {
  * @param $where_value row value
  * @return array
  */
-function readSingle($table, $where, $where_value) {
+function readSingleEvent($table, $where, $where_value) {
     try  {
         global $conn;
         $sql = "SELECT * FROM $table WHERE $where = $where_value";
 //        var_dump($sql);
         $statement = $conn->prepare($sql);
         $statement->bindValue($where_value, $where);
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    } catch(PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
-    }
-}
-
-/**
- * @param $table table name
- * @return array
- */
-function readAll($table) {
-    try  {
-        global $conn;
-        $sql = "SELECT * FROM $table";
-        $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -127,7 +126,7 @@ function readParticipatingEvents() {
                 INNER JOIN users u on u.user_ID = e.user_ID
                 INNER JOIN organizations o on o.organization_ID = e.organization_ID
                 INNER JOIN event_groups eg on eg.event_ID = events.event_ID
-                INNER JOIN orc353_2.groups g on g.group_ID = eg.group_ID WHERE e.user_ID = $user_id";
+                INNER JOIN orc353_2.groups g on g.group_ID = eg.group_ID WHERE e.user_ID = '.$user_id.'";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -143,7 +142,7 @@ function readParticipatingEvents() {
  * @param $where row target
  * @param $where_value row value
  */
-function update($table, $inputs, $where, $where_value) {
+function updateEvent($table, $inputs, $where, $where_value) {
     try {
         global $conn;
         unset($inputs['csrf']);
@@ -164,7 +163,7 @@ function update($table, $inputs, $where, $where_value) {
     }
 }
 
-function delete($table, $where, $where_value) {
+function deleteEvent($table, $where, $where_value) {
     try {
         global $conn;
         $sql = "DELETE FROM $table WHERE $where = $where_value";

@@ -39,6 +39,7 @@ include "header.php";
 ?>
 
 <div align="center">
+    <h1>Update <?php echo $_GET['table'] ?></h1>
     <form method="post">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
         <?php

@@ -7,7 +7,6 @@
  */
 
 require "../../config.php";
-require "../../common.php";
 
 try {
     $conn = new PDO("mysql:dbname=$dbname;host=$host", $username, $password, $options);

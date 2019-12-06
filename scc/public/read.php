@@ -47,6 +47,7 @@ if (isset($_POST["submit"])) {
     <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
     <a href="create.php?table=<?php echo escape($table) ?>">Create new entry for <?php echo escape($table) ?></a>
     <table align="center">
+        <h1>Table: <?php echo $_GET['table'] ?></h1>
         <thead>
             <tr>
                 <?php foreach($result[0] as $key => $value){ ?>

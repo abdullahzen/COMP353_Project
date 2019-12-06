@@ -1,5 +1,6 @@
 <?php
 require "../app/operations/auth.php";
+require "../app/operations/crud.php";
 $error = "";
 
 if(session_id() !== '') {
@@ -11,12 +12,33 @@ if(isset($_POST['submit'])) {
     $email = escape($_POST['email']);
     $password = escape($_POST['password']);
     $user = login($email, $password);
+    $roles = readSingle('user_roles', 'user_ID', $user[0]['user_ID']);
     if(sizeof($user) == 1) {
         ini_set('session.cookie_lifetime', 60 * 60 * 24 * 7);
+        setcookie('user_id', $user[0]['user_ID']);
         setcookie('name', $user[0]['name']);
         setcookie('email', $user[0]['email']);
         setcookie('time', time());
-//        header("location: role-list.php");
+        setcookie('isAdmin', false);
+        setcookie('isManager', false);
+        setcookie('isController', false);
+        setcookie('isParticipant', false);
+        for($i = 0; $i < sizeof($roles); $i++) {
+            switch($roles[$i]['role_ID']) {
+                case 1:
+                    setcookie('isAdmin', true);
+                    break;
+                case 2:
+                    setcookie('isManager', true);
+                    break;
+                case 3:
+                    setcookie('isController', true);
+                    break;
+                case 4:
+                    setcookie('isParticipant', true);
+                    break;
+            }
+        }
         header("location: index.php");
     } else {
         $error = "Your Login Name or Password is invalid";

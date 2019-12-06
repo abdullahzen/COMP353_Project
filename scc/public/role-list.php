@@ -1,7 +1,8 @@
 <?php
 require "../app/operations/auth.php";
+require "../app/operations/crud.php";
 isLoggedIn();
-
+//var_dump($_COOKIE);
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,10 +17,20 @@ isLoggedIn();
     <hr>
     <div>Choose one of the roles to proceed</div>
     <br>
-    <a href="user-profile.php">Administrator</a><br>
-    <a href="user-profile.php">Event Manager</a><br>
-    <a href="user-profile.php">Controller</a><br>
-    <a href="user-profile.php">Event Participant</a><br>
+    <?php
+        if ($_COOKIE['isAdmin']) {
+            echo "<a href='user-profile.php'>Administrator</a><br>";
+        }
+        if ($_COOKIE['isManager']) {
+            echo "<a href='user-profile.php'>Event Manager</a><br>";
+        }
+        if ($_COOKIE['isController']) {
+            echo "<a href='user-profile.php'>Controller</a><br>";
+        }
+        if ($_COOKIE['isParticipant']) {
+            echo "<a href='user-profile.php'>Event Participant</a><br>";
+        }
+    ?>
     <a href="logout.php">Logout</a><br>
 </body>
 

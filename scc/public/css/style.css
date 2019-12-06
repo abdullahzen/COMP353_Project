@@ -22,7 +22,8 @@
     padding-bottom: 15px;
 
 }
-.card-signup{
+.card-signup,
+.card-signin{
     margin-left: 26rem;
 
 }
@@ -74,6 +75,8 @@ input[type=submit]:hover {
     background-color: black;
     position: fixed;
     top: 0;
+    width: 21%;
+
     bottom: 0;
     /*border-top: 5px solid red;*/
 
@@ -126,7 +129,7 @@ ul.col-3 {
     /*left: 0.5rem;*/
 }
 div.content {
-    margin-left: 276px;
+    margin-left: 21rem;
     text-align: left;
     padding: 1px 16px;
 }
@@ -169,4 +172,18 @@ div.content {
     margin-bottom: 50px;
     padding-top: 15px !important;
     padding-bottom: 15px !important;
+}
+.center{
+    text-align: center;
+}
+.addMargin{
+    margin-left: 15rem;
+    margin-top: 0;
+
+}
+.display{
+    display: block;
+}
+.hide{
+    display: none;
 }

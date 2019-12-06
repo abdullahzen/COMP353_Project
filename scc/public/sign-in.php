@@ -56,7 +56,7 @@ if(isset($_POST['submit'])) {
 <body>
 <div class="empty-header-for-sign-in-up"></div>
 
-<div class="container card-signin">
+<div class="center card-signin">
     <h1>Sign in</h1>
     <hr>
     <br>

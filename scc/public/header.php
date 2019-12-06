@@ -20,14 +20,14 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
 </head>
 <a href="index.php">Home</a>
 <div>
-    <h1 style="text-align: center;" >SCC 2019</h1>
+    <h1 class="center addMargin" >SCC 2019</h1>
     <hr>
     <div class="topnav">
         <!-- we can have elements of the left of the header (insert here)-->
         <div class="topnav-right">
             <a href="home.php?role=<?php echo $_GET['role']?>"><i class="fa fa-home"></i></a>
             <a href="role-list.php">Switch Access Role</a>|
-            <a href="index.php">Log out</a>
+            <a href="logout.php">Log out</a>
         </div>
     </div>
     <hr>
@@ -41,7 +41,7 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
             <?php
                 if ($_COOKIE['isAdmin'] && $_COOKIE['current_role'] === 'admin') {
                     echo "
-                        <li class='first-item-on-list'><a href='read.php?table=events'>Manage Events</a></li>
+                    <li class='first-item-on-list'><a href='read.php?table=events'>Manage Events</a></li>
                         <li><a href='read.php?table=roles'>Manage Roles</a></li>
                         <li><a href='read.php?table=users'>Manage Users</a></li>
                         <li><a href='read.php?table=groups'>Manage Groups</a></li>
@@ -55,6 +55,7 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
                         <li><a href='read.php?table=bank_information'>Manage Bank Information</a></li>
                         <li><a href='read.php?table=user_bank_information'>Manage User Bank Information</a></li>
                         <li><a href='read.php?table=event_organization_participants'>Manage Event Organization Participants</a></li>
+                        
                     ";
                 }
                 if ($_COOKIE['isManager'] && $_COOKIE['current_role'] === 'manager') {

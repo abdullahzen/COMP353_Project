@@ -43,46 +43,51 @@ if (isset($_POST["submit"])) {
 <?php
     if (sizeof($result) > 0) {
 ?>
-<form method="post">
-    <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
-    <div align="right">
-        <a href="create.php?table=<?php echo escape($table) ?>">Create new entry for <?php echo escape($table) ?></a>
-    </div>
-    <table align="center">
-        <h1>Table: <?php echo $_GET['table'] ?></h1>
-        <thead>
-            <tr>
-                <?php foreach($result[0] as $key => $value){ ?>
-                    <th>
-                        <?php echo $key; ?>
-                    </th>
-                <?php } ?>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $index = 0;
-            foreach ($result as $key => $value) { ?>
-            <tr>
-                <?php
-                foreach ($result[$index] as $key => $value) {
-                    ?>
-                    <td><?php echo $result[$index][$key]; ?></td>
+        <div class="content">
+            <form method="post">
+                <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
+                <div align="right">
+                    <a href="create.php?table=<?php echo escape($table) ?>">Create new entry for <?php echo escape($table) ?></a>
+                </div>
+                <table align="center">
+                    <div>
+                        <h1>Table: <?php echo $_GET['table'] ?></h1>
+                    </div>
+                    <thead>
+                    <tr>
+                        <?php foreach($result[0] as $key => $value){ ?>
+                            <th>
+                                <?php echo $key; ?>
+                            </th>
+                        <?php } ?>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <?php
-                }
-                ?>
-                <td><a href="update.php?table=<?php echo escape($table) ?>&key=<?php echo escape(key($result[$index])) ?>&id=<?php echo escape($result[$index][key($result[$index])]); ?>">Edit</a></td>
-                <td><button type="submit" name="submit" value="<?php echo escape($result[$index][key($result[$index])]); ?>">Delete</button></td>
-            </tr>
-            <?php
-                $index++;
-            }
-            ?>
-        </tbody>
-    </table>
-</form>
+                    $index = 0;
+                    foreach ($result as $key => $value) { ?>
+                        <tr>
+                            <?php
+                            foreach ($result[$index] as $key => $value) {
+                                ?>
+                                <td><?php echo $result[$index][$key]; ?></td>
+                                <?php
+                            }
+                            ?>
+                            <td><a href="update.php?table=<?php echo escape($table) ?>&key=<?php echo escape(key($result[$index])) ?>&id=<?php echo escape($result[$index][key($result[$index])]); ?>">Edit</a></td>
+                            <td><button type="submit" name="submit" value="<?php echo escape($result[$index][key($result[$index])]); ?>">Delete</button></td>
+                        </tr>
+                        <?php
+                        $index++;
+                    }
+                    ?>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
 
 <?php } else { ?>
     <blockquote>No results found.</blockquote>

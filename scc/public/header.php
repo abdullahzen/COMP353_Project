@@ -25,7 +25,7 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
     <div class="topnav">
         <!-- we can have elements of the left of the header (insert here)-->
         <div class="topnav-right">
-            <a href="home.php?role=<?php echo $_GET['role']?>"><i class="fa fa-home"></i></a>
+            <a href="home.php"><i class="fa fa-home"></i></a>
             <a href="role-list.php">Switch Access Role</a>|
             <a href="logout.php">Log out</a>
         </div>

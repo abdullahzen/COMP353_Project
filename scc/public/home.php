@@ -23,6 +23,8 @@ if ($_GET['role'] === NULL) {
     ?>
 
     <div class="content">
+<!--        --><?php //var_dump($_COOKIE['user_id'])?>
+<!--        --><?php //var_dump($_COOKIE['current_role'])?>
         <h2>Hi, <?php echo $_COOKIE['name'] ?>!</h2>
     </div>
 </div>

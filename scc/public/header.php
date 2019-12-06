@@ -18,7 +18,6 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
 
     <title>SCC</title>
 </head>
-<a href="index.php">Home</a>
 <div>
     <h1 style="text-align: center;" >SCC 2019</h1>
     <hr>
@@ -27,7 +26,7 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
         <div class="topnav-right">
             <a href="home.php?role=<?php echo $_GET['role']?>"><i class="fa fa-home"></i></a>
             <a href="role-list.php">Switch Access Role</a>|
-            <a href="index.php">Log out</a>
+            <a href="logout.php">Log out</a>
         </div>
     </div>
     <hr>
@@ -41,7 +40,8 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
             <?php
                 if ($_COOKIE['isAdmin'] && $_COOKIE['current_role'] === 'admin') {
                     echo "
-                        <li class='first-item-on-list'><a href='read.php?table=events'>Manage Events</a></li>
+                        <li class='first-item-on-list'><a href='home.php'>Home</a></li>
+                        <li><a href='read.php?table=events'>Manage Events</a></li>
                         <li><a href='read.php?table=roles'>Manage Roles</a></li>
                         <li><a href='read.php?table=users'>Manage Users</a></li>
                         <li><a href='read.php?table=groups'>Manage Groups</a></li>
@@ -59,20 +59,25 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
                 }
                 if ($_COOKIE['isManager'] && $_COOKIE['current_role'] === 'manager') {
                     echo "
-                        <li class='first-item-on-list'><a href='index.php'>Create Event</a></li>
-                        <li><a href='events.php'>My Events</a></li>
+                        <li class='first-item-on-list'><a href='home.php'>Home</a></li>
+                        <li><a href='events.php'>My Managed Events</a></li>
+                        <li><a href='home.php'>My Managed Groups [NOT DONE]</a></li>
                         ";
                 }
                 if ($_COOKIE['isController'] && $_COOKIE['current_role'] === 'controller') {
                     echo "
-                        <li class='first-item-on-list'><a href='index.php'>Controller Action 1</a></li>
+                        <li class='first-item-on-list'><a href='home.php'>Home [NOT STARTED]</a></li>
+                        <li><a href='index.php'>Controller Action 1</a></li>
                         <li><a href='index.php'>Controller Action 2</a></li>
                         ";
                 }
                 if ($_COOKIE['isParticipant'] && $_COOKIE['current_role'] === 'participant') {
                     echo "
-                        <li class='first-item-on-list'><a href='index.php'>Participant Action 1</a></li>
-                        <li><a href='index.php'>Participant Action 2</a></li>
+                        <li class='first-item-on-list'><a href='home.php'>Home [NEED TO DISPLAY POSTS]</a></li>
+                        <li><a href='home.php'>My Groups [NOT DONE]</a></li>
+                        <li><a href='events.php'>My Events</a></li>
+                        <li><a href='home.php'>Create Group [NOT DONE]</a></li>
+                        <li><a href='create.php?table=events'>Create Event</a></li>
                         ";
                 }
             ?>

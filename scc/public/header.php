@@ -59,19 +59,19 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
                 }
                 if ($_COOKIE['isManager'] && $_COOKIE['current_role'] === 'manager') {
                     echo "
-                        <li class='first-item-on-list'><a href='index.php?table=events'>Manager Action 1</a></li>
-                        <li><a href='index.php'>Manager Action 2</a></li>
+                        <li class='first-item-on-list'><a href='index.php'>Create Event</a></li>
+                        <li><a href='events.php'>My Events</a></li>
                         ";
                 }
                 if ($_COOKIE['isController'] && $_COOKIE['current_role'] === 'controller') {
                     echo "
-                        <li class='first-item-on-list'><a href='index.php?table=events'>Controller Action 1</a></li>
+                        <li class='first-item-on-list'><a href='index.php'>Controller Action 1</a></li>
                         <li><a href='index.php'>Controller Action 2</a></li>
                         ";
                 }
                 if ($_COOKIE['isParticipant'] && $_COOKIE['current_role'] === 'participant') {
                     echo "
-                        <li class='first-item-on-list'><a href='index.php?table=events'>Participant Action 1</a></li>
+                        <li class='first-item-on-list'><a href='index.php'>Participant Action 1</a></li>
                         <li><a href='index.php'>Participant Action 2</a></li>
                         ";
                 }

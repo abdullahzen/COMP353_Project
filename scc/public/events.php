@@ -4,12 +4,11 @@ require "../app/operations/eventsCrud.php";
 
 $success = null;
 
-
-    try {
-        $result = readAllEvents();
-    } catch(PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
-    }
+try {
+    $result = readAllEvents();
+} catch(PDOException $error) {
+    echo $sql . "<br>" . $error->getMessage();
+}
 
 if (isset($_POST["submit"])) {
 //    if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();
@@ -31,8 +30,8 @@ if (isset($_POST["submit"])) {
     if (sizeof($result) > 0) {
 ?>
 <form method="post">
-    <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
-    <a href="create.php?table=<?php echo escape($table) ?>">Create new entry for <?php echo escape($table) ?></a>
+    <input name="csrf" type="hidden" value="<?php echo ($_SESSION['csrf']); ?>">
+    <a href="create.php?table=<?php echo ($table) ?>">Create new entry for <?php echo ($table) ?></a>
     <table align="center">
         <thead>
             <tr>
@@ -57,8 +56,8 @@ if (isset($_POST["submit"])) {
                     <?php
                         }
                     ?>
-                    <td><a href="update.php?table=<?php echo escape($table) ?>&key=<?php echo escape(key($result[$index])) ?>&id=<?php echo escape($result[$index][key($result[$index])]); ?>">Edit</a></td>
-                    <td><button type="submit" name="submit" value="<?php echo escape($result[$index][key($result[$index])]); ?>">Delete</button></td>
+                    <td><a href="update.php?table=<?php echo ($table) ?>&key=<?php echo (key($result[$index])) ?>&id=<?php echo ($result[$index][key($result[$index])]); ?>">Edit</a></td>
+                    <td><button type="submit" name="submit" value="<?php echo ($result[$index][key($result[$index])]); ?>">Delete</button></td>
                 </tr>
             <?php
                 $index++;

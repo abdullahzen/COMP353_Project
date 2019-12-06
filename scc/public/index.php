@@ -6,25 +6,8 @@
  * Time: 5:20 PM
  */
 
-//include "header.php";
-
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<div align="center">
-<!--    <h2>Hello World!</h2>-->
-
-    <?php
-
-    include "sign-in.php";
-
-    ?>
-</div>
-</body>
-
-</html>
+if($_COOKIE['email'] !== null && $_COOKIE['name'] !== null && $_COOKIE['time'] !== null) {
+    header("location: role-list.php");
+} else {
+    header("location: sign-in.php");
+}

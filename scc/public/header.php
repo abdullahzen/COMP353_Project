@@ -1,3 +1,7 @@
+<?php
+require "../app/operations/auth.php";
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +23,7 @@
         <div class="topnav-right">
             <a href="user-profile.php"><i class="fa fa-home"></i></a>
             <a href="role-list.php">Switch Access Role</a>|
-            <a href="index.php"> <?php session_destroy(); ?> Log out</a>
+            <a href="index.php">Log out</a>
         </div>
     </div>
     <hr>

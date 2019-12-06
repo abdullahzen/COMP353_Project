@@ -1,7 +1,8 @@
 <?php
-//require "sign-in.php";
-?>
+require "../app/operations/auth.php";
+isLoggedIn();
 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Role List</title>
 </head>
-<body onload=<?php session_start()?>>
+<body>
 <div align="center">
     <h2>Your Access Roles in SCC -- The Share, Contribute and Comment System</h2>
     <hr>
@@ -19,12 +20,7 @@
     <a href="user-profile.php">Event Manager</a><br>
     <a href="user-profile.php">Controller</a><br>
     <a href="user-profile.php">Event Participant</a><br>
-    <a href="index.php">
-        <?php
-        session_destroy();
-        ?>
-        Log out</a>
-</div>
+    <a href="logout.php">Logout</a><br>
 </body>
 
 </html>

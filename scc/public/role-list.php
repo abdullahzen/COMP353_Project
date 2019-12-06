@@ -13,7 +13,7 @@
 <div align="center">
     <h2>Your Access Roles in SCC -- The Share, Contribute and Comment System</h2>
     <hr>
-    <div>Choose one of the roles to proceed</div>
+    <div class="choose_role">Choose one of the roles to proceed</div>
     <br>
     <a href="user-profile.php">Administrator</a><br>
     <a href="user-profile.php">Event Manager</a><br>

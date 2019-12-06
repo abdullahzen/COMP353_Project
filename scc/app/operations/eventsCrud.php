@@ -1,7 +1,6 @@
 <?php
 
 require "../../config.php";
-require "../../common.php";
 
 try {
     $conn = new PDO("mysql:dbname=$dbname;host=$host", $username, $password, $options);
@@ -79,7 +78,6 @@ function readAll($table) {
 }
 
 /**
- * @param $table table name
  * @return array
  */
 function readAllEvents() {
@@ -90,7 +88,46 @@ function readAllEvents() {
                 INNER JOIN users u on u.user_ID = e.user_ID
                 INNER JOIN organizations o on o.organization_ID = e.organization_ID
                 INNER JOIN event_groups eg on eg.event_ID = events.event_ID
-                INNER JOIN orc353_2.groups g on g.group_ID = eg.group_ID;";
+                INNER JOIN orc353_2.groups g on g.group_ID = eg.group_ID";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+/**
+ * @return array
+ */
+function readManagedEvents() {
+    try  {
+        global $conn;
+        $user_id = $_COOKIE['user_id'];
+        $sql = "SELECT * FROM events WHERE events.manager_ID = '.$user_id.'";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+/**
+ * @return array
+ */
+function readParticipatingEvents() {
+    try  {
+        global $conn;
+        $user_id = $_COOKIE['user_id'];
+        $sql = "SELECT * FROM events 
+                INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
+                INNER JOIN users u on u.user_ID = e.user_ID
+                INNER JOIN organizations o on o.organization_ID = e.organization_ID
+                INNER JOIN event_groups eg on eg.event_ID = events.event_ID
+                INNER JOIN orc353_2.groups g on g.group_ID = eg.group_ID WHERE e.user_ID = $user_id";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -131,7 +168,7 @@ function delete($table, $where, $where_value) {
     try {
         global $conn;
         $sql = "DELETE FROM $table WHERE $where = $where_value";
-        var_dump($sql);
+//        var_dump($sql);
         $statement = $conn->prepare($sql);
         $statement->bindValue($where_value, $where);
         $statement->execute();

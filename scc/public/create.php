@@ -14,9 +14,17 @@ if (isset($_POST['submit'])) {
     try {
         $create = create($_GET['table'], $_POST);
 ?>
-    <script type="text/javascript">
-        window.location = "<?php echo "/read.php?table=" . $_GET['table'] ?>";
-    </script>
+<script type="text/javascript">
+    window.location = "
+    <?php
+        if ($_COOKIE['current_role'] === 'admin') {
+            echo "/read.php?table=" . $_GET['table'];
+        }
+        if ($_COOKIE['current_role'] === 'manager') {
+            echo "/events.php";
+        }
+    ?>";
+</script>
 <?php
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
@@ -42,21 +50,28 @@ include "header.php";
         <?php
             $index = 0;
             foreach ($result as $key => $value) {
-//                if($value['Field'] !== $result[0]['Field']) {
-        ?>
-                <label for="<?php echo $value['Field']; ?>">
-                <?php echo ucfirst($value['Field']); ?>
-                </label>
-                <br/>
-                <input
-                    type="text"
-                    name="<?php echo $value['Field']; ?>"
-                    id="<?php echo $value['Field']; ?>"
-                    value=""
-                />
-                <br/>
-                <?php
-                $index++;
+                if($value['Field'] !== $result[0]['Field']) {
+                    ?>
+                    <label for="<?php echo $value['Field']; ?>">
+                        <?php echo ucfirst($value['Field']); ?>
+                    </label>
+                    <br/>
+                    <input
+                        type="text"
+                        name="<?php echo $value['Field']; ?>"
+                        id="<?php echo $value['Field']; ?>"
+                        <?php
+                            if ($_GET['table'] === 'events' && $_COOKIE['user_id'] !== NULL && $value['Field'] === 'manager_ID' && $_COOKIE['current_role'] === 'participant') {
+                                echo "value = '" . escape($_COOKIE['user_id']) . "' readonly";
+                            } else {
+                                echo "value = ''";
+                            }
+                        ?>
+                    />
+                    <br/>
+                    <?php
+                    $index++;
+                }
             }
         ?>
         <input type="submit" name="submit" value="Submit">

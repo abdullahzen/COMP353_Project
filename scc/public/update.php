@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
     }
 ?>
     <script type="text/javascript">
-        window.location = "<?php echo escape("/read.php?table=" . $_GET['table']) ?>";
+        window.location = "<?php echo "/read.php?table=" . $_GET['table'] ?>";
     </script>
 <?php
 }
@@ -39,7 +39,6 @@ include "header.php";
 ?>
 
 <div align="center">
-    <h1>Update <?php echo $_GET['table'] ?></h1>
     <form method="post">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
         <?php

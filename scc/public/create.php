@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
         $create = create($_GET['table'], $_POST);
 ?>
     <script type="text/javascript">
-        window.location = "<?php echo escape("/read.php?table=" . $_GET['table']) ?>";
+        window.location = "<?php echo "/read.php?table=" . $_GET['table'] ?>";
     </script>
 <?php
     } catch(PDOException $error) {
@@ -42,9 +42,9 @@ include "header.php";
         <?php
             $index = 0;
             foreach ($result as $key => $value) {
-                if($value['Field'] !== $result[0]['Field']) {
+//                if($value['Field'] !== $result[0]['Field']) {
         ?>
-                    <label for="<?php echo $value['Field']; ?>">
+                <label for="<?php echo $value['Field']; ?>">
                 <?php echo ucfirst($value['Field']); ?>
                 </label>
                 <br/>
@@ -58,7 +58,6 @@ include "header.php";
                 <?php
                 $index++;
             }
-        }
         ?>
         <input type="submit" name="submit" value="Submit">
     </form>

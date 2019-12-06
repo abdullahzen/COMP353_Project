@@ -29,7 +29,7 @@ if (isset($_POST["submit"])) {
         $success = "User successfully deleted";
 ?>
     <script type="text/javascript">
-        window.location = "<?php echo escape("/read.php?table=" . $_GET['table']) ?>";
+        window.location = "<?php echo "/read.php?table=" . $_GET['table'] ?>";
     </script>
 <?php
     } catch(PDOException $error) {
@@ -45,7 +45,9 @@ if (isset($_POST["submit"])) {
 ?>
 <form method="post">
     <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
-    <a href="create.php?table=<?php echo escape($table) ?>">Create new entry for <?php echo escape($table) ?></a>
+    <div align="right">
+        <a href="create.php?table=<?php echo escape($table) ?>">Create new entry for <?php echo escape($table) ?></a>
+    </div>
     <table align="center">
         <h1>Table: <?php echo $_GET['table'] ?></h1>
         <thead>
@@ -63,29 +65,24 @@ if (isset($_POST["submit"])) {
             <?php
             $index = 0;
             foreach ($result as $key => $value) { ?>
-                <tr>
-                    <?php
-                    $index = 0;
-                    foreach ($result as $key => $value) { ?>
-                        <tr>
-                            <?php
-                            foreach ($result[$index] as $key => $value) {
-                                ?>
-                                <td><?php echo $result[$index][$key]; ?></td>
-                                <?php
-                            }
-                            ?>
-                            <td><a href="update.php?table=<?php echo escape($table) ?>&key=<?php echo escape(key($result[$index])) ?>&id=<?php echo escape($result[$index][key($result[$index])]); ?>">Edit</a></td>
-                            <td><button type="submit" name="submit" value="<?php echo escape($result[$index][key($result[$index])]); ?>">Delete</button></td>
-                        </tr>
-                        <?php
-                        $index++;
-                    }
+            <tr>
+                <?php
+                foreach ($result[$index] as $key => $value) {
                     ?>
-                    </tbody>
-                </table>
-            </form>
-        </div>
+                    <td><?php echo $result[$index][$key]; ?></td>
+                    <?php
+                }
+                ?>
+                <td><a href="update.php?table=<?php echo escape($table) ?>&key=<?php echo escape(key($result[$index])) ?>&id=<?php echo escape($result[$index][key($result[$index])]); ?>">Edit</a></td>
+                <td><button type="submit" name="submit" value="<?php echo escape($result[$index][key($result[$index])]); ?>">Delete</button></td>
+            </tr>
+            <?php
+                $index++;
+            }
+            ?>
+        </tbody>
+    </table>
+</form>
 
 <?php } else { ?>
     <blockquote>No results found.</blockquote>

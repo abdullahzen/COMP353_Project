@@ -1,6 +1,9 @@
 <?php
 require "../app/operations/auth.php";
 isLoggedIn();
+if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
+    header("location: home.php?role=".$_GET['role']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +25,7 @@ isLoggedIn();
     <div class="topnav">
         <!-- we can have elements of the left of the header (insert here)-->
         <div class="topnav-right">
-            <a href="user-profile.php"><i class="fa fa-home"></i></a>
+            <a href="home.php?role=<?php echo $_GET['role']?>"><i class="fa fa-home"></i></a>
             <a href="role-list.php">Switch Access Role</a>|
             <a href="index.php">Log out</a>
         </div>
@@ -36,7 +39,7 @@ isLoggedIn();
             <li class="welcome_message">Welcome to the SCC System!</li>
             <hr class="fixed-line">
             <?php
-                if ($_COOKIE['isAdmin']) {
+                if ($_COOKIE['isAdmin'] && $_COOKIE['current_role'] === 'admin') {
                     echo "
                         <li class='first-item-on-list'><a href='read.php?table=events'>Manage Events</a></li>
                         <li><a href='read.php?table=roles'>Manage Roles</a></li>
@@ -54,20 +57,25 @@ isLoggedIn();
                         <li><a href='read.php?table=event_organization_participants'>Manage Event Organization Participants</a></li>
                     ";
                 }
-                if ($_COOKIE['isManager']) {
+                if ($_COOKIE['isManager'] && $_COOKIE['current_role'] === 'manager') {
                     echo "
+                        <li class='first-item-on-list'><a href='index.php?table=events'>Manager Action 1</a></li>
+                        <li><a href='index.php'>Manager Action 2</a></li>
                         ";
                 }
-                if ($_COOKIE['isController']) {
+                if ($_COOKIE['isController'] && $_COOKIE['current_role'] === 'controller') {
                     echo "
+                        <li class='first-item-on-list'><a href='index.php?table=events'>Controller Action 1</a></li>
+                        <li><a href='index.php'>Controller Action 2</a></li>
                         ";
                 }
-                if ($_COOKIE['isParticipant']) {
+                if ($_COOKIE['isParticipant'] && $_COOKIE['current_role'] === 'participant') {
                     echo "
+                        <li class='first-item-on-list'><a href='index.php?table=events'>Participant Action 1</a></li>
+                        <li><a href='index.php'>Participant Action 2</a></li>
                         ";
                 }
             ?>
-            <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
 </div>

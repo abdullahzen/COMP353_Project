@@ -19,16 +19,16 @@ isLoggedIn();
     <br>
     <?php
         if ($_COOKIE['isAdmin']) {
-            echo "<a href='user-profile.php'>Administrator</a><br>";
+            echo "<a href='home.php?role=admin'>Administrator</a><br>";
         }
         if ($_COOKIE['isManager']) {
-            echo "<a href='user-profile.php'>Event Manager</a><br>";
+            echo "<a href='home.php?role=manager'>Event Manager</a><br>";
         }
         if ($_COOKIE['isController']) {
-            echo "<a href='user-profile.php'>Controller</a><br>";
+            echo "<a href='home.php?role=controller'>Controller</a><br>";
         }
         if ($_COOKIE['isParticipant']) {
-            echo "<a href='user-profile.php'>Event Participant</a><br>";
+            echo "<a href='home.php?role=participant'>Event Participant</a><br>";
         }
     ?>
     <a href="logout.php">Logout</a><br>

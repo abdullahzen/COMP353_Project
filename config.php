@@ -3,7 +3,12 @@
  * Configuration for database connection
  *
  */
-$host       = 'orc353.encs.concordia.ca';
+$env        = 'server';
+if ($env == 'server'){
+    $host = 'orc353.encs.concordia.ca';
+} else {
+    $host = 'localhost';
+}
 $username   = 'orc353_2';
 $password   = 'H8Y95r';
 $dbname     = 'orc353_2';

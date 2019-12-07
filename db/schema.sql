@@ -168,7 +168,8 @@ CREATE TABLE `user_bank_information` (
   CONSTRAINT `bank_information_ibfk_1` FOREIGN KEY (`bank_information_ID`) REFERENCES `bank_information` (`bank_information_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-DELIMITER $$
+/* The triggers below can be found under install.php. They were moved there to be executed autmatically with the install script. */
+/*DELIMITER $$
 CREATE TRIGGER `events_validity_date`
 BEFORE INSERT
 ON events FOR EACH ROW
@@ -186,4 +187,4 @@ BEGIN
 INSERT INTO user_roles(user_ID, role_ID) VALUES (new.user_ID, 4);
 END;
 $$
-DELIMITER ;
+DELIMITER ;*/

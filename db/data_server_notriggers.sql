@@ -36,18 +36,18 @@ INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (2,1);
 INSERT INTO `orc353_2`.`users` (name, email, password, address, phone_number) VALUES ('Jenny Souder', 'jenny.souder@gmail.com', '123456', '3170 Tanner Street, Vancouver, BC V5R 2T4, Canada', 6044562865);
 INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (3,1);
 INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (3,2);
--- INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (3,4);
+INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (3,4);
 
 /* event manager, controller and a participant */
 INSERT INTO `orc353_2`.`users` (name, email, password, address, phone_number) VALUES ('James Parrish', 'james.parrish@gmail.com' ,'123456', '4245 Galts Ave, Red Deer, AB T4N 2A6, Canada', 4035059447);
 INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (4,2);
 INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (4,3);
--- INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (4,4);
+INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (4,4);
 
 /* event managers and a participant */
 INSERT INTO `orc353_2`.`users` (name, email, password, address, phone_number) VALUES ('Katherine Lawson', 'katherine.lawson@hotmal.com', '123456', '4917 Eglinton Avenue, Toronto, ON M4P 1A6, Canada', 4164826721);
 INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (5,2);
--- INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (5,4);
+INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (5,4);
 
 /* event managers */
 INSERT INTO `orc353_2`.`users` (name, email, password, address, phone_number) VALUES ('Leonard Pratt', 'leonard.p@gmail.com','123456', '155 avenue de Port-Royal, Bonnaventure, QC G0C 1E0, Canada', 4187528048);
@@ -72,34 +72,34 @@ INSERT INTO `orc353_2`.`users` (name, email, password, address, phone_number) VA
 INSERT INTO `orc353_2`.`users` (name, email, password, address, phone_number) VALUES ('Sara Parada', 'sara.p@hotmail.com', '123456', '2170 Marie Street, Burlington, ON L7R 2G6, Canada', 9056314310);
 INSERT INTO `orc353_2`.`users` (name, email, password, address, phone_number) VALUES ('Ela Lewis', 'ela.lewis@outlook.com', '123456', '1939 Bay Street, Toronto, ON M5J 2R8, Canada', 6478186713);
 /* the below insert to user roles are not needed anymore as we now have a trigger that does it, but encs doesn't allow us to run triggers, so re-enabling them. */
--- INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (10,4);
--- INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (11,4);
--- INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (12,4);
--- INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (13,4);
--- INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (14,4);
--- INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (15,4);
--- INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (16,4);
--- INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (17,4);
--- INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (18,4);
+INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (10,4);
+INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (11,4);
+INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (12,4);
+INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (13,4);
+INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (14,4);
+INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (15,4);
+INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (16,4);
+INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (17,4);
+INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (18,4);
 /* ====================================================================*/
 
 
 /* ====================================================================*/
 /* events table dump */
 /* events that have groups associated to them */
-INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price) VALUES ('James Williams Birthday Party', '1608 Boulevard Cremazie, Quebec, QC G1R 1B8', 5, '2019-12-05', 30);
-INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price) VALUES ('Steve and Lina Wedding Party', '2144 Jade St, West Vancouver, BC V7V 1Y8', 4, '2020-02-01', 140);
-INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price) VALUES ('World Medical Conference 2019', '2412 No. 3 Road Richmond, BC V6X 2B8', 3, '2020-05-10', 500);
-INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price) VALUES ('Coding Workshop', '216 Sherbrooke Ouest,Montreal, QC H4A 1H3', 5, '2020-01-24', 15);
-INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price) VALUES ('Jana Birthday Party', '272 Boulevard Cremazie, Quebec, QC G1R 1B8', 6, '2020-01-05',30);
-INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price) VALUES ('Kayne and Jessica Engagement Party', '4253 Nelson Street, Manitouwadge, ON P0T 2C0', 7, '2020-06-24', 120);
-INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price) VALUES ('ITSolutions Corporation Farewell Party', '3989 rue des Églises Est, St Hippolyte, QC J0R 1P0', 6, '2020-03-01', 40);
-INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price) VALUES ('Veterans Memorial', '2965 Leslie Street, Newmarket, ON L3Y 2A3', 7, '2020-03-02', 50);
-INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price) VALUES ('John Graduation Party', '4499 Bayfield St, Oak Ridges, ON L4E 2Z8', 3, '2020-06-25', 100);
-INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price) VALUES ('ITSolutions Christmas Party', '956 Dominion St, Avonmore, ON K0C 1C0', 4, '2019-12-25', 110);
-INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price) VALUES ('Concordias Career Fair 2019', '1148 Robson St, Vancouver, BC V6B 3K9', 4, '2020-04-29', 40);
+INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('James Williams Birthday Party', '1608 Boulevard Cremazie, Quebec, QC G1R 1B8', 5, '2019-12-05', '2026-12-05', 30);
+INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('Steve and Lina Wedding Party', '2144 Jade St, West Vancouver, BC V7V 1Y8', 4, '2020-02-01', '2027-02-01', 140);
+INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('World Medical Conference 2019', '2412 No. 3 Road Richmond, BC V6X 2B8', 3, '2020-05-10', '2027-05-10', 500);
+INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('Coding Workshop', '216 Sherbrooke Ouest,Montreal, QC H4A 1H3', 5, '2020-01-24', '2027-01-24', 15);
+INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('Jana Birthday Party', '272 Boulevard Cremazie, Quebec, QC G1R 1B8', 6, '2020-01-05', '2027-01-05', 30);
+INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('Kayne and Jessica Engagement Party', '4253 Nelson Street, Manitouwadge, ON P0T 2C0', 7, '2020-06-24', '2034-06-24', 120);
+INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('ITSolutions Corporation Farewell Party', '3989 rue des Églises Est, St Hippolyte, QC J0R 1P0', 6, '2020-03-01', '2027-03-01', 40);
+INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('Veterans Memorial', '2965 Leslie Street, Newmarket, ON L3Y 2A3', 7, '2020-03-02', '2027-03-02', 50);
+INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('John Graduation Party', '4499 Bayfield St, Oak Ridges, ON L4E 2Z8', 3, '2020-06-25', '2027-06-25', 100);
+INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('ITSolutions Christmas Party', '956 Dominion St, Avonmore, ON K0C 1C0', 4, '2019-12-25', '2026-12-25', 110);
+INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('Concordias Career Fair 2019', '1148 Robson St, Vancouver, BC V6B 3K9', 4, '2020-04-29', '2027-04-29', 40);
 /* events without any groups associated to them */
-INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price) VALUES ('Build Your CV Event', '4264 Papineau Avenue, Montreal, QC H2K 4J5', 6, '2020-03-13', 15);
+INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('Build Your CV Event', '4264 Papineau Avenue, Montreal, QC H2K 4J5', 6, '2020-03-13', '2027-03-13', 15);
 /* ====================================================================*/
 
 

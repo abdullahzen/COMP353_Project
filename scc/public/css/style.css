@@ -75,8 +75,7 @@ input[type=submit]:hover {
     background-color: black;
     position: fixed;
     top: 0;
-    width: 21%;
-
+    width: 18%;
     bottom: 0;
     /*border-top: 5px solid red;*/
 
@@ -129,7 +128,7 @@ ul.col-3 {
     /*left: 0.5rem;*/
 }
 div.content {
-    margin-left: 21rem;
+    margin-left: 17rem;
     text-align: left;
     padding: 1px 16px;
 }
@@ -186,4 +185,45 @@ div.content {
 }
 .hide{
     display: none;
+}
+.table_template {
+    border-collapse: collapse;
+    /* text-align: center; */
+    margin-left: auto;
+    margin-right: auto;
+    /* align-self: center; */
+    /* width: 100%; */
+}
+
+.table_template td, .table_template th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table_template tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.table_template tr:hover {
+    background-color: #ddd;
+}
+
+.table_template th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: black;
+    color: white;
+}
+.create_new,
+.edit_button,
+button{
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: black;
+    cursor: pointer;
 }

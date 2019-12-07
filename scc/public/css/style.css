@@ -215,8 +215,10 @@ div.content {
     background-color: black;
     color: white;
 }
+.log_out_button,
 .create_new,
 .edit_button,
+.role_list_option,
 button{
     text-decoration: none;
     padding: 10px 20px;
@@ -226,4 +228,13 @@ button{
     box-sizing: border-box;
     color: black;
     cursor: pointer;
+}
+.log_out_button,
+.role_list_option{
+    margin-bottom: 1rem;
+    width: 12%;
+}
+.log_out_button{
+    background-color: black;
+    color: white;
 }

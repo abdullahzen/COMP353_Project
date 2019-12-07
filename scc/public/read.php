@@ -51,7 +51,7 @@ if (isset($_POST["submit"])) {
                 </div>
                 <table class="table_template center" >
                     <div>
-                        <h1>Manage <?php echo $_GET['table'] ?></h1>
+                        <h1 class="center">Manage <?php echo $_GET['table'] ?></h1>
                     </div>
                     <thead>
                     <tr>

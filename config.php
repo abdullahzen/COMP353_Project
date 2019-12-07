@@ -9,5 +9,6 @@ $password   = 'H8Y95r';
 $dbname     = 'orc353_2';
 $dsn        = "mysql:host=$host;dbname=$dbname";
 $options    = array(
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ERRMODE_WARNING
 );

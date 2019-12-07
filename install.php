@@ -12,8 +12,21 @@ try {
     $connection = new PDO("mysql:host=$host", $username, $password, $options);
     $sql = file_get_contents("db/schema.sql");
     $connection->exec($sql);
+    $connection->exec("CREATE TRIGGER `events_validity_date`
+    BEFORE INSERT
+    ON events FOR EACH ROW
+    BEGIN
+    SET new.expiration_date = DATE_ADD(new.date, INTERVAL 7 YEAR);
+    END");
+    $connection->exec("CREATE TRIGGER `make_user_participant_by_default`
+    AFTER INSERT
+    ON users FOR EACH ROW
+    BEGIN
+    INSERT INTO user_roles(user_ID, role_ID) VALUES (new.user_ID, 4);
+    END");
     $sql = file_get_contents("db/data.sql");
     $connection->exec($sql);
+    
 
     echo "Database and table users created successfully.";
 } catch(PDOException $error) {

@@ -6,7 +6,7 @@
  * Time: 10:08 PM
  */
 
-require "../../config.php";
+require "../config.php";
 
 try {
     $conn = new PDO("mysql:dbname=$dbname;host=$host", $username, $password, $options);

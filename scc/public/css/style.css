@@ -1,0 +1,240 @@
+/* Header/Logo Title */
+/*.header {*/
+/*    padding: 60px;*/
+/*    background: #1abc9c;*/
+/*    color: white;*/
+/*    font-size: 30px;*/
+/*}*/
+/*body{*/
+/*   background-color:  #DCDCDC;*/
+/*}*/
+.card-signup,
+.card-signin {
+    text-align: center;
+    border-radius: 1rem;
+    box-shadow: 0 1.5rem 4rem 0 rgba(0, 0, 0, 0.5);
+    border-color: #28074D !important;
+    border-width: 2px;
+    width: 35%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+}
+.card-signup,
+.card-signin{
+    margin-left: 26rem;
+
+}
+.navbar{
+    background-color: black;
+    color: white;
+}
+input.form-control.mr-sm-2 {
+    margin-top: 10px;
+}
+div.empty-header-for-sign-in-up {
+    background-color: black;
+    height: 80px;
+}
+button.col-4.btn.btn-primary {
+    position: relative;
+    left: 17px;
+}
+input[type=text],
+input[type=number],
+input[type=password] ,
+input[type=email],
+select {
+    width: 70%;
+    padding: 10px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 70%;
+    background-color: black;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+li a:hover,
+input[type=submit]:hover {
+    background-color: #696969;
+}
+
+.sidenav {
+    /*overflow: auto;*/
+    background-color: black;
+    position: fixed;
+    top: 0;
+    width: 18%;
+    bottom: 0;
+    /*border-top: 5px solid red;*/
+
+
+}
+ul li {
+    display:block;
+    width:100%;
+}
+
+li a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: white;
+    text-align: left;
+    padding: 8px 11px 8px;
+    background-color: black;
+    margin: 0 0 0 -38px;
+}
+
+
+.topnav {
+    overflow: hidden;
+    background-color: black;
+    /*border-bottom: 5px solid red;*/
+
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #696969;
+    color: white;
+}
+
+
+.topnav-right {
+    float: right;
+}
+ul.col-3 {
+    /*position: absolute;*/
+    /*left: 0.5rem;*/
+}
+div.content {
+    margin-left: 17rem;
+    text-align: left;
+    padding: 1px 16px;
+}
+.choose_role {
+    background-color: black;
+    color: white;
+    height: 35px;
+    font-size: 16pt;
+    padding-top: 15px;
+}
+.first-item-on-list{
+    margin-top: 1rem;
+
+}
+.welcome_message{
+    color: white;
+    font-size: 14pt;
+    margin: 21px 0 15px -12px;
+
+}
+.fixed-line{
+    margin-left: -40px;
+}
+.fixed-line:first-child{
+    margin-top: 93px;
+}
+.fixed-line:nth-child(2){
+    /*margin-top: 25px !important;*/
+}
+.addToTable{
+    text-align: center !important;
+    border-radius: 1rem;
+    box-shadow: 0 1.5rem 4rem 0 rgba(0, 0, 0, 0.5);
+    border-color: #28074D !important;
+    border-width: 2px;
+    width: 29%;
+    position: relative;
+    left: 19rem;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+.center{
+    text-align: center;
+}
+.addMargin{
+    margin-left: 15rem;
+    margin-top: 0;
+
+}
+.display{
+    display: block;
+}
+.hide{
+    display: none;
+}
+.table_template {
+    border-collapse: collapse;
+    /* text-align: center; */
+    margin-left: auto;
+    margin-right: auto;
+    /* align-self: center; */
+    /* width: 100%; */
+}
+
+.table_template td, .table_template th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table_template tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.table_template tr:hover {
+    background-color: #ddd;
+}
+
+.table_template th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: black;
+    color: white;
+}
+.log_out_button,
+.create_new,
+.edit_button,
+.role_list_option,
+button{
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: black;
+    cursor: pointer;
+}
+.log_out_button,
+.role_list_option{
+    margin-bottom: 1rem;
+    width: 12%;
+}
+.log_out_button{
+    background-color: black;
+    color: white;
+}

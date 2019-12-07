@@ -3,7 +3,7 @@
  * Configuration for database connection
  *
  */
-$env        = 'server';
+$env        = 'local';
 if ($env == 'server'){
     $host = 'orc353.encs.concordia.ca';
 } else {

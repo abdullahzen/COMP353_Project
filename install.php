@@ -31,9 +31,8 @@ try {
         $sql = file_get_contents("db/data_server_notriggers.sql");
         $connection->exec($sql);
     }
-    
-    
 
+    header("location: index.php");
     echo "Database and table users created successfully.";
 } catch(PDOException $error) {
     echo $sql . "<br>" . $error->getMessage();

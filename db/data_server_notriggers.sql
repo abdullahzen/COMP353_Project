@@ -198,52 +198,52 @@ INSERT INTO `orc353_2`.`event_organization_participants` (event_ID, organization
 
 /* ====================================================================*/
 /* group_members table data dump */
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (1, 4);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (1, 10);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (1, 11);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (2, 12);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (2, 13);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (2, 5);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (2, 3);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (3, 14);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (3, 15);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (4, 16);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (4, 17);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (4, 18);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (5, 10);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (5, 11);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (5, 12);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (6, 13);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (6, 14);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (6, 15);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (7, 16);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (7, 17);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (7, 3);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (8, 4);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (8, 5);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (9, 18);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (9, 10);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (9, 11);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (10, 12);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (10, 13);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (10, 14);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (10, 15);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (11, 16);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (11, 17);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (1, 4, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (1, 10, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (1, 11, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (2, 12, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (2, 13, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (2, 5, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (2, 3, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (3, 14, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (3, 15, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (4, 16, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (4, 17, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (4, 18, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (5, 10, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (5, 11, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (5, 12, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (6, 13, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (6, 14, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (6, 15, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (7, 16, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (7, 17, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (7, 3, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (8, 4, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (8, 5, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (9, 18, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (9, 10, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (9, 11, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (10, 12, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (10, 13, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (10, 14, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (10, 15, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (11, 16, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (11, 17, TRUE);
 
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (12, 16);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (12, 17);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (12, 18);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (13, 12);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (13, 3);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (13, 13);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (14, 11);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (14, 10);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (14, 18);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (15, 16);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (15, 17);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (16, 12);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID) VALUES (16, 14);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (12, 16, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (12, 17, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (12, 18, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (13, 12, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (13, 3, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (13, 13, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (14, 11, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (14, 10, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (14, 18, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (15, 16, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (15, 17, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (16, 12, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (16, 14, TRUE);
 /* ====================================================================*/
 
 
@@ -267,6 +267,22 @@ INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 15', 'Post 15 
 INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 16', 'Post 16 text', NULL);
 INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 17', 'Post 17 text', NULL); 
 INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 18', 'Post 18 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 19', 'Post 19 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 20', 'Post 20 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 21', 'Post 21 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 22', 'Post 22 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 23', 'Post 23 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 24', 'Post 24 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 25', 'Post 25 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 26', 'Post 26 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 27', 'Post 27 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 28', 'Post 28 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 29', 'Post 29 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 30', 'Post 30 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 31', 'Post 31 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 32', 'Post 32 text', NULL); 
+INSERT INTO `orc353_2`.`posts` (title, text, media) VALUES ('Post 33', 'Post 33 text', NULL); 
+
 /* ====================================================================*/
 
 
@@ -295,6 +311,31 @@ INSERT INTO `orc353_2`.`group_posts` (group_ID, post_ID) VALUES (16 ,16);
 INSERT INTO `orc353_2`.`group_posts` (group_ID, post_ID) VALUES (1 ,17); 
 INSERT INTO `orc353_2`.`group_posts` (group_ID, post_ID) VALUES (2 ,18); 
 /* ====================================================================*/
+
+
+/* ====================================================================*/
+/* event_posts table data dump 
+
+   Note: groups have posts and events have posts through the groups associated to them.
+*/
+
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (1 ,19); 
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (2 ,20); 
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (3 ,21); 
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (4 ,22); 
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (5 ,23); 
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (6 ,24); 
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (7 ,25); 
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (8 ,26);
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (9 ,27); 
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (10 ,28);
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (11 ,29); 
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (12 ,30);
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (1 ,31); 
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (1 ,32); 
+INSERT INTO `orc353_2`.`event_posts` (event_ID, post_ID) VALUES (2 ,33); 
+/* ====================================================================*/
+
 
 
 /* ====================================================================*/

@@ -117,6 +117,7 @@ CREATE TABLE `user_roles` (
 CREATE TABLE `group_members` (
   `group_ID` INT(10) NOT NULL,
   `user_ID` INT(10) NOT NULL,
+  `admitted` BOOLEAN DEFAULT FALSE,
   PRIMARY KEY (`group_ID`, `user_ID`),
   KEY `group_ID` (`group_ID`),
   KEY `user_ID` (`user_ID`),
@@ -146,6 +147,16 @@ CREATE TABLE `event_groups` (
   CONSTRAINT `events_ibfk_2` FOREIGN KEY (`event_ID`) REFERENCES `events` (`event_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `groups_ibfk_3` FOREIGN KEY (`group_ID`) REFERENCES `groups` (`group_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 
+);
+
+CREATE TABLE `event_posts` (
+  `event_ID` INT(10) NOT NULL,
+  `post_ID` INT(10) NOT NULL,
+  PRIMARY KEY (`event_ID`, `post_ID`),
+  KEY `event_ID` (`event_ID`),
+  KEY `post_ID` (`post_ID`),
+  CONSTRAINT `events_ibfk_4` FOREIGN KEY (`event_ID`) REFERENCES `events` (`event_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`post_ID`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE `group_posts` (

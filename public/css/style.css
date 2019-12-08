@@ -22,14 +22,22 @@
     padding-bottom: 15px;
 
 }
+.card-event{
+    text-align: center;
+    border-radius: 1rem;
+    box-shadow: 0 1.5rem 4rem 0 rgba(0, 0, 0, 0.5);
+    border-color: #28074D !important;
+    border-width: 10px;
+    width: 70%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
 .card-signup,
 .card-signin{
     margin-left: 26rem;
 
-}
-.navbar{
-    background-color: black;
-    color: white;
 }
 input.form-control.mr-sm-2 {
     margin-top: 10px;
@@ -65,10 +73,10 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
 }
-li a:hover,
+/* li a:hover,
 input[type=submit]:hover {
     background-color: #696969;
-}
+} */
 
 .sidenav {
     /*overflow: auto;*/
@@ -81,7 +89,7 @@ input[type=submit]:hover {
 
 
 }
-ul li {
+/* ul li {
     display:block;
     width:100%;
 }
@@ -95,7 +103,7 @@ li a {
     padding: 8px 11px 8px;
     background-color: black;
     margin: 0 0 0 -38px;
-}
+} */
 
 
 .topnav {

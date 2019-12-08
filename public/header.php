@@ -1,91 +1,101 @@
 <?php
 require "../app/operations/auth.php";
+require "./bootstrap.php";
+
 isLoggedIn();
 if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
     header("location: home.php?role=".$_GET['role']);
 }
 ?>
 
-<!DOCTYPE html>
-<html>
 <head>
-    <meta charset="UTF-8">
-    <!--    get the style sheet-->
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <!--    get the style sheet-->
+  <link rel="stylesheet" href="css/style.css">
 
-    <!--    added library for home icon-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!--    added library for home icon-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>SCC</title>
+  <title>SCC</title>
 </head>
-<a href="index.php">Home</a>
-<div>
-    <h1 class="center addMargin" >SCC 2019</h1>
-    <hr>
-    <div class="topnav">
-        <!-- we can have elements of the left of the header (insert here)-->
-        <div class="topnav-right">
-            <a href="home.php"><i class="fa fa-home"></i></a>
-            <a href="role-list.php">Switch Access Role</a>|
-            <a href="logout.php">Log out</a>
-        </div>
-    </div>
-    <hr>
 
-    <!--    TO DO: add if statements according to user role -->
-    <div class="row sidenav">
-        <ul class="col-3">
-            <hr class="fixed-line">
-            <li class="welcome_message">Welcome to the SCC System!</li>
-            <hr class="fixed-line">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="home.php">SCC 2019</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="events.php">Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="groups.php">Groups</a>
+      </li>
+      <?php if ($_COOKIE['isAdmin'] && $_COOKIE['current_role'] === 'admin' ||
+                       $_COOKIE['isManager'] && $_COOKIE['current_role'] === 'manager'||
+                       $_COOKIE['isController'] && $_COOKIE['current_role'] === 'controller') {?>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Manage
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <?php
-                if ($_COOKIE['isAdmin'] && $_COOKIE['current_role'] === 'admin') {
-                    echo "
-                       
-                    <li class='first-item-on-list'><a href='read.php?table=events'>Manage Events</a></li>
-                        <li><a href='read.php?table=roles'>Manage Roles</a></li>
-                        <li><a href='read.php?table=users'>Manage Users</a></li>
-                        <li><a href='read.php?table=groups'>Manage Groups</a></li>
-                        <li><a href='read.php?table=group_members'>Manage Group Members</a></li>
-                        <li><a href='read.php?table=posts'>Manage Posts</a></li>
-                        <li><a href='read.php?table=group_posts'>Manage Group Posts</a></li>
-                        <li><a href='read.php?table=organizations'>Manage Organizations</a></li>
-                        <li><a href='read.php?table=post_comments'>Manage Post Comments</a></li>
-                        <li><a href='read.php?table=user_roles'>Manage User Roles</a></li>
-                        <li><a href='read.php?table=event_groups'>Manage Event Group</a></li>
-                        <li><a href='read.php?table=bank_information'>Manage Bank Information</a></li>
-                        <li><a href='read.php?table=user_bank_information'>Manage User Bank Information</a></li>
-                        <li><a href='read.php?table=event_organization_participants'>Manage Event Organization Participants</a></li>
-                        
-                    ";
-                }
-                if ($_COOKIE['isManager'] && $_COOKIE['current_role'] === 'manager') {
-                    echo "
-                        <li class='first-item-on-list'><a href='home.php'>Home</a></li>
-                        <li><a href='events.php'>My Managed Events</a></li>
-                        <li><a href='home.php'>My Managed Groups [NOT DONE]</a></li>
-                        ";
-                }
-                if ($_COOKIE['isController'] && $_COOKIE['current_role'] === 'controller') {
-                    echo "
-                        <li class='first-item-on-list'><a href='home.php'>Home [NOT STARTED]</a></li>
-                        <li><a href='index.php'>Controller Action 1</a></li>
-                        <li><a href='index.php'>Controller Action 2</a></li>
-                        ";
-                }
-                if ($_COOKIE['isParticipant'] && $_COOKIE['current_role'] === 'participant') {
-                    echo "
-                        <li class='first-item-on-list'><a href='home.php'>Home [NEED TO DISPLAY POSTS]</a></li>
-                        <li><a href='home.php'>My Groups [NOT DONE]</a></li>
-                        <li><a href='events.php'>My Events</a></li>
-                        <li><a href='home.php'>Create Group [NOT DONE]</a></li>
-                        <li><a href='create.php?table=events'>Create Event</a></li>
-                        ";
-                }
-            ?>
-        </ul>
-    </div>
-</div>
-</body>
+            if ($_COOKIE['isAdmin'] && $_COOKIE['current_role'] === 'admin') {?>
+                    <a class='dropdown-item' href='read.php?table=events'>Events</a>
+                    <a class='dropdown-item' href='read.php?table=event_organization_participants'>Events Participants</a>
+                    <a class='dropdown-item' href='read.php?table=event_groups'>Events Groups</a>
+                    <div class='dropdown-divider'></div>
+                    <a class='dropdown-item' href='read.php?table=groups'>Groups</a>
+                    <a class='dropdown-item' href='read.php?table=group_members'>Group Members</a>
+                    <a class='dropdown-item' href='read.php?table=group_posts'>Group Posts</a>
+                    <div class='dropdown-divider'></div>
+                    <a class='dropdown-item' href='read.php?table=posts'>Posts</a>
+                    <a class='dropdown-item' href='read.php?table=post_comments'>Post Comments</a>
+                    <div class='dropdown-divider'></div>
+                    <a class='dropdown-item' href='read.php?table=users'>Users</a>
+                    <a class='dropdown-item' href='read.php?table=user_roles'>User Roles</a>
+                    <a class='dropdown-item' href='read.php?table=user_bank_information'>User Bank Information</a>
+                    <div class='dropdown-divider'></div>
+                    <a class='dropdown-item' href='read.php?table=roles'>Roles</a>
+                    <a class='dropdown-item' href='read.php?table=bank_information'>Bank Information</a>
+                    <a class='dropdown-item' href='read.php?table=organizations'>Organizations</a>      
+            <?php } 
+            if ($_COOKIE['isManager'] && $_COOKIE['current_role'] === 'manager') { ?>
+                    <a class='dropdown-item' href='read.php?table=events'>Events</a>
+                    <a class='dropdown-item' href='read.php?table=event_organization_participants'>Events Participants</a>
+                    <a class='dropdown-item' href='read.php?table=event_groups'>Events Groups</a>
+                    <div class='dropdown-divider'></div>
+                    <a class='dropdown-item' href='read.php?table=groups'>Groups</a>
+                    <a class='dropdown-item' href='read.php?table=group_members'>Group Members</a>
+            <?php } 
+            if ($_COOKIE['isController'] && $_COOKIE['current_role'] === 'controller') { ?>
+                    <a class='dropdown-item' href='read.php?table=events'>Events</a>
+            <?php } ?>
+        </div>
+      </li>
+    <?php } ?>
 
-</html>
+    <?php if ($_COOKIE['isParticipant'] && $_COOKIE['current_role'] === 'participant') {?>
+        <li class='nav-item active'>
+            <a class='nav-link' href='events.php'>My Events</a>
+        </li>
+        <li class='nav-item active'>
+            <a class='nav-link' href='groups.php'>My Groups</a>
+        </li>
+        <li class='nav-item active'>
+            <a class='nav-link' href='create.php?table=groups'>Create Group</a>
+        </li>
+        <li class='nav-item active'>
+            <a class='nav-link' href='read.php?table=users'>My Profile</a>
+        </li>
+    <?php } ?>
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>

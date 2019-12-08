@@ -178,12 +178,37 @@ function updateGroup($table, $inputs, $where, $where_value) {
     }
 }
 
+function isGroupMember($user_id, $group_id){
+    try  {
+        global $conn;
+        $sql = "SELECT DISTINCT ge.* FROM `orc353_2`.groups g
+                INNER JOIN group_members ge on g.group_ID = ge.group_ID
+                INNER JOIN users u on u.user_ID = ge.user_ID 
+                WHERE u.user_ID = $user_id AND g.group_ID = $group_id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if (sizeof($result) > 0){
+            if ($result[0]['admitted'] == 1){
+                return 'joined';
+            } else {
+                return 'pending';
+            }
+        } else {
+            return 'not';
+        }
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
 function getGoupsMembersNumber(){
     try  {
         global $conn;
         $sql = "SELECT DISTINCT g.*, COUNT(*) AS members_num FROM `orc353_2`.groups g
                 INNER JOIN group_members ge on g.group_ID = ge.group_ID
                 INNER JOIN users u on u.user_ID = ge.user_ID 
+                WHERE ge.admitted = TRUE
                 GROUP BY g.group_ID";
         $statement = $conn->prepare($sql);
         $statement->execute();

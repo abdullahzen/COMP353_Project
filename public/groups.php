@@ -9,13 +9,9 @@ $error = null;
 try {
     $result = readAllGroups();
     $members_num = getGoupsMembersNumber();
-    if ($_COOKIE['current_role'] === 'participant' && $_GET['user_id']){
+    if ($_GET['user_id']){
         $result = readGroupsMemberOf($_GET['user_id']);
     }
-    if ($_COOKIE['current_role'] === 'manager' && $_GET['user_id']){
-        $result = readManagedGroups($_GET['user_id']);
-    }
-
 
 if (isset($_POST["submit"])) {
 //    if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();
@@ -113,20 +109,31 @@ if (isset($_GET["join"])){
                             <span
                         class="badge badge-info badge-pill align-right">Managing</span>
                         <?php } ?>
+                        <?php $group_mem = isGroupMember($_COOKIE['user_id'], $result[$index]['group_ID']);
+                         if ($group_mem === 'pending'){?>
+                                <span
+                          class="badge badge-warning badge-pill align-right">Pending Membership</span>
+                        <?php }else if ($group_mem === 'joined'){ ?>
+                          <span
+                          class="badge badge-success badge-pill align-right">Joined</span>
+                        <?php } ?>
                 </medium>
               </div>
               <p class="mb-1">
                 <b>Associated Event(s):</b>:<br> 
-                <?php if ($_COOKIE['current_role'] === 'manager' || $_COOKIE['current_role'] === 'admin' || ($_COOKIE['user_id'] === $result[$index]['manager_ID'])){?>
+                <?php if ($_COOKIE['current_role'] === 'admin' || ($_COOKIE['user_id'] === $result[$index]['manager_ID'])){?>
                   <div class="btn btn-secondary pull-right"
                   onclick="window.location='update.php?table=groups&key=<?php echo escape(key($result[$index])) ?>&id=<?php echo escape($result[$index][key($result[$index])]);?>';">
                   Edit</div>
                   <button class="btn btn-danger pull-right" style="margin-right: 5px;" type="submit" name="submit"
                     value="<?php echo escape($result[$index][key($result[$index])]); ?>">Delete</button>
                 <?php } ?>
+                <?php $group_mem = isGroupMember($_COOKIE['user_id'], $result[$index]['group_ID']);
+                if ( $group_mem === 'not'){?>
                 <div class="btn btn-primary pull-right" style="margin-right: 5px;"
                   onclick="window.location='groups.php?group_id=<?php echo $result[$index]['group_ID']?>&user_id=<?php echo $_COOKIE['user_id']?>&join=';">
-                  Join Group</div>
+                  Request to Join Group</div>
+                <?php } ?>
                 <?php $associatedEvents = readEventsFromGroup($result[$index]['group_ID']);
                       if (sizeof($associatedEvents) > 0){
                         $index2 = 0;

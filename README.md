@@ -64,6 +64,17 @@ email: robert_p@yahoo.ca,
 password: 123456
 
 
+Changes made since the demo:
+-----------------------------
+1-
+
+2-
+
+3-
+
+4-
+
+
 List of Files included in the submission:
 ------------------------------------------
 

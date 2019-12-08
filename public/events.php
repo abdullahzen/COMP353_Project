@@ -5,21 +5,15 @@ require "../app/operations/eventsCrud.php";
 $success = null;
 
 try {
-    switch($_COOKIE['current_role']) {
-        case 'admin':
-            $result = readAllEvents();
-            break;
-        case 'manager':
-            $result = readManagedEvents();
-            break;
-        case 'controller':
-            $result = readAllEvents();
-            break;
-        case 'participant':
-            $result = readParticipatingEvents();
-            break;
+    $result = readAllEvents();
+    $participants_num = getEventParticipantsNumber();
+    if ($_COOKIE['current_role'] === 'participant' && $_GET['user_id']){
+        $result = readParticipatingEvents($_GET['user_id']);
     }
-//    var_dump($result);
+    if ($_COOKIE['current_role'] === 'manager' && $_GET['user_id']){
+        $result = readManagedEvents($_GET['user_id']);
+    }
+
 
 if (isset($_POST["submit"])) {
 //    if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();
@@ -63,7 +57,8 @@ window.location = "/events.php";
     <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
     <div class="row">
       <div class="col-10">
-        <h2>Events</h2>
+          
+        <h2><?php if ($_GET['user_id']) {echo "My ";}?>Events</h2>
       </div>
         <div class="col-2">
         <div class="btn btn-secondary " onclick="window.location='create.php?table=events'">Add a new Event
@@ -84,9 +79,13 @@ window.location = "/events.php";
                 <medium><?php if ($result[$index]['status'] == 1){?>
                   <span class="badge badge-success badge-pill align-right">Active</span>
                   <?php } else { ?><span class="badge badge-danger badge-pill align-right">Archived</span> <?php } ?>
-                  <span
-                    class="badge badge-dark badge-pill align-right"><?php echo $result[$index]['participants_num'] ?>
-                    participants</span>
+                        <span
+                        class="badge badge-dark badge-pill align-right"><?php echo $participants_num[$index]['participants_num'] ?>
+                        participants</span>
+                        <?php if ($_COOKIE['current_role'] === 'manager' && $_COOKIE['user_id'] === $result[$index]['manager_ID']){?>
+                            <span
+                        class="badge badge-info badge-pill align-right">Managing</span>
+                        <?php } ?>
                 </medium>
               </div>
               <p class="mb-1">

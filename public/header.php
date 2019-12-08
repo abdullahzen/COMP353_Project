@@ -33,9 +33,32 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
       <li class="nav-item">
         <a class="nav-link" href="groups.php">Groups</a>
       </li>
+
+      <?php if ($_COOKIE['isManager'] && $_COOKIE['current_role'] === 'manager') {?>
+        <li class='nav-item '>
+            <a class='nav-link' href='events.php?user_id=<?php echo $_COOKIE['user_id']?>'>My Events</a>
+        </li>
+        <li class='nav-item '>
+            <a class='nav-link' href='groups.php'>My Groups</a>
+        </li>
+    <?php } ?>
+
+    <?php if ($_COOKIE['isParticipant'] && $_COOKIE['current_role'] === 'participant') {?>
+        <li class='nav-item '>
+            <a class='nav-link' href='events.php?user_id=<?php echo $_COOKIE['user_id']?>'>My Events</a>
+        </li>
+        <li class='nav-item '>
+            <a class='nav-link' href='groups.php'>My Groups</a>
+        </li>
+    <?php } ?>
+
+
+
       <?php if ($_COOKIE['isAdmin'] && $_COOKIE['current_role'] === 'admin' ||
                        $_COOKIE['isManager'] && $_COOKIE['current_role'] === 'manager'||
                        $_COOKIE['isController'] && $_COOKIE['current_role'] === 'controller') {?>
+      
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Manage
@@ -77,25 +100,54 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
       </li>
     <?php } ?>
 
-    <?php if ($_COOKIE['isParticipant'] && $_COOKIE['current_role'] === 'participant') {?>
-        <li class='nav-item active'>
-            <a class='nav-link' href='events.php'>My Events</a>
-        </li>
-        <li class='nav-item active'>
-            <a class='nav-link' href='groups.php'>My Groups</a>
-        </li>
-        <li class='nav-item active'>
-            <a class='nav-link' href='create.php?table=groups'>Create Group</a>
-        </li>
-        <li class='nav-item active'>
-            <a class='nav-link' href='read.php?table=users'>My Profile</a>
-        </li>
-    <?php } ?>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Create
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <?php
+            if ($_COOKIE['isAdmin'] && $_COOKIE['current_role'] === 'admin') {?>
+                    <a class='dropdown-item' href='create.php?table=events'>New Event</a>
+                    <a class='dropdown-item' href='create.php?table=event_organization_participants'>New Event Participant</a>
+                    <a class='dropdown-item' href='create.php?table=event_groups'>New Events Group</a>
+                    <div class='dropdown-divider'></div>
+                    <a class='dropdown-item' href='create.php?table=groups'>New Group</a>
+                    <a class='dropdown-item' href='create.php?table=group_members'>New Group Member</a>
+                    <a class='dropdown-item' href='create.php?table=group_posts'>New Group Posts</a>
+                    <div class='dropdown-divider'></div>
+                    <a class='dropdown-item' href='create.php?table=posts'>New Post</a>
+                    <a class='dropdown-item' href='create.php?table=post_comments'>New Post Comment</a>
+                    <div class='dropdown-divider'></div>
+                    <a class='dropdown-item' href='create.php?table=users'>New User</a>
+                    <a class='dropdown-item' href='create.php?table=user_roles'>New User Role</a>
+                    <a class='dropdown-item' href='create.php?table=user_bank_information'>New User Bank Information</a>
+                    <div class='dropdown-divider'></div>
+                    <a class='dropdown-item' href='create.php?table=roles'>New Role</a>
+                    <a class='dropdown-item' href='create.php?table=bank_information'>New Bank Information</a>
+                    <a class='dropdown-item' href='create.php?table=organizations'>New Organization</a>      
+            <?php } 
+            if ($_COOKIE['isManager'] && $_COOKIE['current_role'] === 'manager') { ?>
+                    <a class='dropdown-item' href='create.php?table=events'>New Event</a>
+                    <a class='dropdown-item' href='create.php?table=event_organization_participants'>New Events Participant</a>
+                    <a class='dropdown-item' href='create.php?table=event_groups'>New Events Group</a>
+                    <div class='dropdown-divider'></div>
+                    <a class='dropdown-item' href='create.php?table=groups'>New Group</a>
+                    <a class='dropdown-item' href='create.php?table=group_members'>New Group Member</a>
+            <?php } 
+            if ($_COOKIE['isParticipant'] && $_COOKIE['current_role'] === 'participant') { ?>
+                    <a class='dropdown-item' href='create.php?table=groups'>New Group</a>
+                    <a class='dropdown-item' href='create.php?table=posts'>New Post</a>
+            <?php } ?>
+        </div>
+      </li>
 
+    <li class='nav-item pull-right'>
+            <a class='nav-link' href='read.php?table=users'>My Profile</a>
+    </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form> -->
   </div>
 </nav>

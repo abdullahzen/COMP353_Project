@@ -119,11 +119,13 @@ function readAllEventsParticipants() {
 /**
  * @return array
  */
-function readManagedEvents() {
+function readManagedEvents($user_id) {
     try  {
         global $conn;
-        $user_id = $_COOKIE['user_id'];
-        $sql = "SELECT * FROM events WHERE events.manager_ID = '.$user_id.'";
+        $sql = "SELECT DISTINCT events.* FROM events 
+        INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
+        INNER JOIN users u on u.user_ID = e.user_ID 
+        WHERE e.user_ID = $user_id OR events.manager_ID = $user_id";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -136,16 +138,14 @@ function readManagedEvents() {
 /**
  * @return array
  */
-function readParticipatingEvents() {
+function readParticipatingEvents($user_id) {
     try  {
         global $conn;
-        $user_id = $_COOKIE['user_id'];
-        $sql = "SELECT * FROM events 
-                INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
-                INNER JOIN users u on u.user_ID = e.user_ID
-                INNER JOIN organizations o on o.organization_ID = e.organization_ID
-                INNER JOIN event_groups eg on eg.event_ID = events.event_ID
-                INNER JOIN orc353_2.groups g on g.group_ID = eg.group_ID WHERE e.user_ID = '.$user_id.'";
+        $sql = "SELECT DISTINCT events.*, COUNT(*) AS participants_num FROM events 
+        INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
+        INNER JOIN users u on u.user_ID = e.user_ID  
+        WHERE e.user_ID = $user_id
+        GROUP BY events.event_ID";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -177,6 +177,22 @@ function updateEvent($table, $inputs, $where, $where_value) {
         $sql = "UPDATE $table SET $set_data WHERE $where = $where_value";
         $statement = $conn->prepare($sql);
         $statement->execute($data);
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+function getEventParticipantsNumber(){
+    try  {
+        global $conn;
+        $sql = "SELECT DISTINCT events.*, COUNT(*) AS participants_num FROM events 
+                INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
+                INNER JOIN users u on u.user_ID = e.user_ID 
+                GROUP BY events.event_ID";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }

@@ -6,8 +6,9 @@ if ($_GET['role'] === NULL) {
     header("location: home.php?role=".$_COOKIE['current_role']);
 }
 ?>
-<!DOCTYPE html>
-<html>
+ <?php
+        include 'header.php';
+?>
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
@@ -17,10 +18,6 @@ if ($_GET['role'] === NULL) {
 <div>
 <!--    <h2>Admin Profile</h2>-->
     <hr>
-
-    <?php
-        include 'header.php';
-    ?>
 
     <div class="content">
 <!--        --><?php //var_dump($_COOKIE['user_id'])?>

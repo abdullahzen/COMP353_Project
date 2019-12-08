@@ -2,7 +2,7 @@
 
 require "../app/operations/eventsCrud.php";
 require "../app/operations/crud.php";
-require "./bootstrap.php";
+include "header.php";
 
 $success = null;
 
@@ -43,9 +43,6 @@ if (isset($_POST["submit"])) {
         echo $sql . "<br>" . $error->getMessage();
     }
 }
-?>
-<?php
-    include "header.php";
 ?>
 <?php
     if ($result) {

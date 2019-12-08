@@ -82,6 +82,25 @@ function readSingleEvent($table, $where, $where_value) {
 function readAllEvents() {
     try  {
         global $conn;
+        $sql = "SELECT DISTINCT events.*, COUNT(*) AS participants_num FROM events 
+                INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
+                INNER JOIN users u on u.user_ID = e.user_ID 
+                GROUP BY events.event_ID";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+/**
+ * @return array
+ */
+function readAllEventsParticipants() {
+    try  {
+        global $conn;
         $sql = "SELECT * FROM events 
                 INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
                 INNER JOIN users u on u.user_ID = e.user_ID
@@ -163,10 +182,10 @@ function updateEvent($table, $inputs, $where, $where_value) {
     }
 }
 
-function deleteEvent($table, $where, $where_value) {
+function deleteEvent($where, $where_value) {
     try {
         global $conn;
-        $sql = "DELETE FROM $table WHERE $where = $where_value";
+        $sql = "DELETE FROM events WHERE $where = $where_value";
 //        var_dump($sql);
         $statement = $conn->prepare($sql);
         $statement->bindValue($where_value, $where);

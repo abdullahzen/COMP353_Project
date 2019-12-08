@@ -20,7 +20,11 @@ if (isset($_POST["submit"])) {
     try {
         deleteEvent(key($result[0]), $_POST["submit"]);
         $success = "event successfully deleted";
-        header('location: events.php');
+        if ($_GET['user_id']){
+          header('location: events.php?user_id=$_GET["user_id"]');
+        } else {
+          header('location: events.php');
+        }    
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
@@ -29,21 +33,6 @@ if (isset($_POST["submit"])) {
 <?php
 } catch(PDOException $error) {
     echo $sql . "<br>" . $error->getMessage();
-}
-
-if (isset($_POST["submit"])) {
-//    if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();
-    try {
-        delete('events', key($result[0]), $_POST["submit"]);
-        $success = "Event successfully deleted";
-        ?>
-<script type="text/javascript">
-window.location = "/events.php";
-</script>
-<?php
-    } catch(PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
-    }
 }
 ?>
 <?php

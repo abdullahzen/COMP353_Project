@@ -34,25 +34,14 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
         <a class="nav-link" href="groups.php">Groups</a>
       </li>
 
-      <?php if ($_COOKIE['isManager'] && $_COOKIE['current_role'] === 'manager') {?>
+    <?php if ($_COOKIE['isParticipant'] && $_COOKIE['current_role'] === 'participant' || $_COOKIE['isManager'] && $_COOKIE['current_role'] === 'manager') {?>
         <li class='nav-item '>
             <a class='nav-link' href='events.php?user_id=<?php echo $_COOKIE['user_id']?>'>My Events</a>
         </li>
         <li class='nav-item '>
-            <a class='nav-link' href='groups.php'>My Groups</a>
+            <a class='nav-link' href='groups.php?user_id=<?php echo $_COOKIE['user_id']?>'>My Groups</a>
         </li>
     <?php } ?>
-
-    <?php if ($_COOKIE['isParticipant'] && $_COOKIE['current_role'] === 'participant') {?>
-        <li class='nav-item '>
-            <a class='nav-link' href='events.php?user_id=<?php echo $_COOKIE['user_id']?>'>My Events</a>
-        </li>
-        <li class='nav-item '>
-            <a class='nav-link' href='groups.php'>My Groups</a>
-        </li>
-    <?php } ?>
-
-
 
       <?php if ($_COOKIE['isAdmin'] && $_COOKIE['current_role'] === 'admin' ||
                        $_COOKIE['isManager'] && $_COOKIE['current_role'] === 'manager'||

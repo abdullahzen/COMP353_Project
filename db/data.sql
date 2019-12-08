@@ -106,22 +106,22 @@ INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price) VALUES 
 /* ====================================================================*/
 /* groups table data dump */
 /* groups associated to events */
-INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('James Williams Birthday Party', 5);
-INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Steve and Lina Wedding Party', 4);
-INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('World Medical Conference 2019', 3);
-INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Coding Workshop', 5);
-INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Jana Birthday Party', 6);
-INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Kayne and Jessica Engagement Party', 7);
-INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('ITSolutions Corporation Farewell Party', 6);
-INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Veterans Memorial', 7);
-INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('John Graduation Party', 3);
-INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('ITSolutions Christmas Party', 4);
-INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Concordias Career Fair 2019', 4);
+INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('James Williams Birthday Party Group', 5);
+INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Steve and Lina Wedding Party Group', 4);
+INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('World Medical Conference 2019 Group', 3);
+INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Coding Workshop Group', 5);
+INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Jana Birthday Party Group', 6);
+INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Kayne and Jessica Engagement Party Group', 7);
+INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('ITSolutions Corporation Farewell Party Group', 6);
+INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Veterans Memorial Group', 7);
+INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('John Graduation Party Group', 3);
+INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('ITSolutions Christmas Party Group', 4);
+INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Concordias Career Fair 2019 Group', 4);
 
 /* general groups created by users */
 INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Johnny Surprise Party', 10);
 INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('COMP353 Group', 11);
-INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Business Events Sharing', 13);
+INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Business Events Sharing Group', 13);
 INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Stocks and the market group', 14);
 INSERT INTO `orc353_2`.`groups` (name, manager_ID) VALUES ('Coding help group', 18);
 /* ====================================================================*/

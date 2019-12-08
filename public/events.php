@@ -60,11 +60,10 @@ if (isset($_POST["submit"])) {
           <?php
             $index = 0;
             foreach ($result as $key => $value) { ?>
-          <li>
-            <a style='border-color:black;' href="event.php?id=<?php echo escape($result[$index]['event_ID'])?>"
-              class="list-group-item list-group-item-action flex-column align-items-start">
+          <li class="list-group-item list-group-item-action flex-column align-items-start" style='border-color:black;'>
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1"><?php echo $result[$index]['name'] ?></h5>
+              <a  href="event.php?id=<?php echo escape($result[$index]['event_ID'])?>"
+              ><h5 class="mb-1"><?php echo $result[$index]['name'] ?></h5></a>
                 <medium><?php if ($result[$index]['status'] == 1){?>
                   <span class="badge badge-success badge-pill align-right">Active</span>
                   <?php } else { ?><span class="badge badge-danger badge-pill align-right">Archived</span> <?php } ?>
@@ -88,7 +87,6 @@ if (isset($_POST["submit"])) {
                   value="<?php echo escape($result[$index][key($result[$index])]); ?>">Delete</button>
                 <b>Price</b>: <?php echo $result[$index]['price']; ?>
               </p>
-            </a>
           </li>
           <?php
                 $index++;

@@ -199,14 +199,10 @@ function getEventParticipantsNumber(){
 }
 
 function deleteEvent($where, $where_value) {
-    try {
-        global $conn;
-        $sql = "DELETE FROM events WHERE $where = $where_value";
+    global $conn;
+    $sql = "DELETE FROM events WHERE $where = $where_value";
 //        var_dump($sql);
-        $statement = $conn->prepare($sql);
-        $statement->bindValue($where_value, $where);
-        $statement->execute();
-    } catch(PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
-    }
+    $statement = $conn->prepare($sql);
+    $statement->bindValue($where_value, $where);
+    $statement->execute();
 }

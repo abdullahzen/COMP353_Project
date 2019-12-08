@@ -16,22 +16,22 @@ try {
 
 
 if (isset($_POST["submit"])) {
-//    if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();
     try {
         deleteEvent(key($result[0]), $_POST["submit"]);
-        $success = "event successfully deleted";
+        $success = "Event successfully deleted";
+        var_dump($success);
         if ($_GET['user_id']){
           header('location: events.php?user_id=$_GET["user_id"]');
         } else {
           header('location: events.php');
         }    
-    } catch(PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
+    } catch(PDOException $e) {
+        $error = "Failed to delete event.";
     }
 }
 ?>
 <?php
-} catch(PDOException $error) {
+} catch(PDOException $e) {
     echo $sql . "<br>" . $error->getMessage();
 }
 ?>
@@ -41,6 +41,16 @@ if (isset($_POST["submit"])) {
 <?php
     if (sizeof($result) > 0) {
 ?>
+<?php if ($success != null){ ?>
+  <div class="alert alert-success" role="alert">
+  <?php echo $success ?>
+  </div>
+<?php } ?>
+<?php if ($error != null){ ?>
+  <div class="alert alert-danger" role="alert">
+  <?php echo $error ?>
+  </div>
+<?php } ?>
 <div class="container">
   <form method="post">
     <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
@@ -80,11 +90,13 @@ if (isset($_POST["submit"])) {
                 <b>Location</b>: <?php echo $result[$index]['address']; ?><br>
                 <b>Date</b>: <?php echo $result[$index]['date']; ?><br>
                 <b>Expiration</b>: <?php echo $result[$index]['expiration_date']; ?><br>
+                <?php if ($_COOKIE['current_role'] === 'manager' || $_COOKIE['current_role'] === 'admin' || ($_COOKIE['user_id'] === $result[$index]['manager_ID'])){?>
                 <div class="btn btn-secondary pull-right"
                   onclick="window.location='update.php?table=events&key=<?php echo escape(key($result[$index])) ?>&id=<?php echo escape($result[$index][key($result[$index])]);?>';">
                   Edit</div>
                 <button class="btn btn-danger pull-right" style="margin-right: 5px;" type="submit" name="submit"
                   value="<?php echo escape($result[$index][key($result[$index])]); ?>">Delete</button>
+                <?php } ?>
                 <b>Price</b>: <?php echo $result[$index]['price']; ?>
               </p>
           </li>

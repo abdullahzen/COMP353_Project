@@ -29,7 +29,7 @@ function createComment($inputs) {
         //create event
         $sql = sprintf(
         "INSERT INTO %s (%s) values (%s)",
-            "events",
+            "post_comments",
             implode(", ", array_keys($inputs)),
             ":" . implode(", :", array_keys($inputs))
         );
@@ -64,8 +64,8 @@ function createComment($inputs) {
 function readSingleComment($comment_id) {
     try  {
         global $conn;
-        $sql = "SELECT g.* FROM `orc353_2`.groups g
-            WHERE g.group_ID = $comment_id";
+        $sql = "SELECT g.* FROM `orc353_2`.post_comments c
+            WHERE c.comment_ID = $comment_id";
 //        var_dump($sql);
         $statement = $conn->prepare($sql);
         $statement->execute();
@@ -82,9 +82,7 @@ function readSingleComment($comment_id) {
 function readAllComments() {
     try  {
         global $conn;
-        $sql = "SELECT DISTINCT g.* FROM `orc353_2`.groups g
-                INNER JOIN group_members ge on ge.group_ID = g.group_ID
-                INNER JOIN users u on u.user_ID = ge.user_ID";
+        $sql = "SELECT DISTINCT c.* FROM `orc353_2`.post_comments c";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -142,13 +140,11 @@ function updateComment($table, $inputs, $where, $where_value) {
     }
 }
 
-function deleteComment($where,$where_value) {
+function deleteComment($comment_id) {
     try {
         global $conn;
-        $sql = "DELETE FROM orc353_2.groups WHERE $where = $where_value";
-//        var_dump($sql);
+        $sql = "DELETE FROM orc353_2.post_comments WHERE post_comment_ID = $comment_id";
         $statement = $conn->prepare($sql);
-        $statement->bindValue($where_value, $where);
         $statement->execute();
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();

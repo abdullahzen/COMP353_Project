@@ -260,3 +260,7 @@ button{
         margin-bottom: 2.77rem;
     }
 }
+
+a {
+    cursor: pointer;
+}

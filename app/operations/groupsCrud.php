@@ -88,7 +88,8 @@ function readPostsOfGroup($group_id) {
         $sql = "SELECT p.* FROM `orc353_2`.groups g
             INNER JOIN group_posts gp on gp.group_ID = g.group_ID
             INNER JOIN posts p on p.post_ID = gp.post_ID
-            WHERE g.group_ID = $group_id";
+            WHERE g.group_ID = $group_id
+            ORDER BY p.timestamp DESC";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);

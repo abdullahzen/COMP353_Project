@@ -11,7 +11,7 @@ try {
 /**
  * @param $inputs
  */
-function createEvent($inputs) {
+function createComment($inputs) {
     try  {
         global $conn;
         unset($inputs['csrf']);
@@ -29,7 +29,7 @@ function createEvent($inputs) {
         //create event
         $sql = sprintf(
         "INSERT INTO %s (%s) values (%s)",
-            "events",
+            "post_comments",
             implode(", ", array_keys($inputs)),
             ":" . implode(", :", array_keys($inputs))
         );
@@ -61,13 +61,13 @@ function createEvent($inputs) {
  * @param $where_value row value
  * @return array
  */
-function readSingleEvent($table, $where, $where_value) {
+function readSingleComment($comment_id) {
     try  {
         global $conn;
-        $sql = "SELECT * FROM $table WHERE $where = $where_value";
+        $sql = "SELECT g.* FROM `orc353_2`.post_comments c
+            WHERE c.comment_ID = $comment_id";
 //        var_dump($sql);
         $statement = $conn->prepare($sql);
-        $statement->bindValue($where_value, $where);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -79,13 +79,10 @@ function readSingleEvent($table, $where, $where_value) {
 /**
  * @return array
  */
-function readAllEvents() {
+function readAllComments() {
     try  {
         global $conn;
-        $sql = "SELECT DISTINCT events.*, COUNT(*) AS participants_num FROM events 
-                INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
-                INNER JOIN users u on u.user_ID = e.user_ID 
-                GROUP BY events.event_ID";
+        $sql = "SELECT DISTINCT c.* FROM `orc353_2`.post_comments c";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -98,58 +95,19 @@ function readAllEvents() {
 /**
  * @return array
  */
-function readAllEventsParticipants() {
+function isCommentOwner($comment_id, $user_id) {
     try  {
         global $conn;
-        $sql = "SELECT * FROM events 
-                INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
-                INNER JOIN users u on u.user_ID = e.user_ID
-                INNER JOIN organizations o on o.organization_ID = e.organization_ID
-                INNER JOIN event_groups eg on eg.event_ID = events.event_ID
-                INNER JOIN orc353_2.groups g on g.group_ID = eg.group_ID";
+        $sql = "SELECT * FROM `orc353_2`.post_comments c
+        WHERE c.commenter_ID = $user_id AND c.comment_ID = $comment_id";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    } catch(PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
-    }
-}
-
-/**
- * @return array
- */
-function readManagedEvents($user_id) {
-    try  {
-        global $conn;
-        $sql = "SELECT DISTINCT events.* FROM events 
-        INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
-        INNER JOIN users u on u.user_ID = e.user_ID 
-        WHERE e.user_ID = $user_id OR events.manager_ID = $user_id";
-        $statement = $conn->prepare($sql);
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    } catch(PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
-    }
-}
-
-/**
- * @return array
- */
-function readParticipatingEvents($user_id) {
-    try  {
-        global $conn;
-        $sql = "SELECT DISTINCT events.*, COUNT(*) AS participants_num FROM events 
-        INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
-        INNER JOIN users u on u.user_ID = e.user_ID  
-        WHERE e.user_ID = $user_id
-        GROUP BY events.event_ID";
-        $statement = $conn->prepare($sql);
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
+        if (sizeof($result) > 0){
+            return true;
+        } else {
+            return false;
+        }
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
@@ -161,7 +119,7 @@ function readParticipatingEvents($user_id) {
  * @param $where row target
  * @param $where_value row value
  */
-function updateEvent($table, $inputs, $where, $where_value) {
+function updateComment($table, $inputs, $where, $where_value) {
     try {
         global $conn;
         unset($inputs['csrf']);
@@ -182,13 +140,22 @@ function updateEvent($table, $inputs, $where, $where_value) {
     }
 }
 
-function getEventParticipantsNumber(){
+function deleteComment($comment_id) {
+    try {
+        global $conn;
+        $sql = "DELETE FROM orc353_2.post_comments WHERE post_comment_ID = $comment_id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+function readPostComments($post_ID){
     try  {
         global $conn;
-        $sql = "SELECT DISTINCT events.*, COUNT(*) AS participants_num FROM events 
-                INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
-                INNER JOIN users u on u.user_ID = e.user_ID 
-                GROUP BY events.event_ID";
+        $sql = "SELECT DISTINCT c.* FROM `orc353_2`.post_comments c
+                WHERE c.post_ID = $post_ID";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -198,51 +165,13 @@ function getEventParticipantsNumber(){
     }
 }
 
-function deleteEvent($where, $where_value) {
-    global $conn;
-    $sql = "DELETE FROM events WHERE $where = $where_value";
-//        var_dump($sql);
-    $statement = $conn->prepare($sql);
-    $statement->bindValue($where_value, $where);
-    $statement->execute();
-}
-
-function isEventParticipant($user_id, $event_id){
+function addCommentToPost($post_id, $comment, $user_id){
     try  {
         global $conn;
-        $sql = "SELECT DISTINCT e.* FROM `orc353_2`.events e
-                INNER JOIN event_organization_participants ev on ev.event_ID = e.event_ID
-                WHERE ev.user_ID = $user_id AND e.event_ID = $event_id";
+        $sql = "INSERT INTO post_comments (post_ID, comment, commenter_ID) VALUES ($post_id, '$comment', $user_id)";
         $statement = $conn->prepare($sql);
         $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        if (sizeof($result) > 0){
-            return true;
-        } else {
-            return false;
-        }
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
-        return false;
-    }
-}
-
-function isEventManager($user_id, $event_id){
-    try  {
-        global $conn;
-        $sql = "SELECT DISTINCT e.* FROM `orc353_2`.events e
-                INNER JOIN users u on e.manager_ID = u.user_ID
-                WHERE u.user_ID = $user_id AND e.event_ID = $event_id";
-        $statement = $conn->prepare($sql);
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        if (sizeof($result) > 0){
-            return true;
-        } else {
-            return false;
-        }
-    } catch(PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
-        return false;
     }
 }

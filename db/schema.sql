@@ -79,7 +79,11 @@ CREATE TABLE `posts` (
   `title` VARCHAR(60) NOT NULL,
   `text` VARCHAR(4000) NOT NULL,
   `media` MEDIUMBLOB,
-  PRIMARY KEY (`post_ID`)
+  `poster_ID` INT(10) NOT NULL,
+  `timestamp`TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`post_ID`),
+  KEY `poster_ID` (`poster_ID`),
+  CONSTRAINT `users_ibfk_9` FOREIGN KEY (`poster_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE `messages` (
@@ -99,9 +103,13 @@ CREATE TABLE `post_comments` (
   `post_comment_ID` INT(10) NOT NULL AUTO_INCREMENT,
   `post_ID` INT(10) NOT NULL,
   `comment` VARCHAR(4000) NOT NULL,
+  `timestamp`TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `commenter_ID` INT(10) NOT NULL,
   PRIMARY KEY (`post_comment_ID`),
   KEY `post_ID` (`post_ID`),
-  CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`post_ID`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `commenter_ID` (`commenter_ID`),
+  CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`post_ID`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `users_ibfk_10` FOREIGN KEY (`commenter_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE `user_roles` (
@@ -156,7 +164,7 @@ CREATE TABLE `event_posts` (
   KEY `event_ID` (`event_ID`),
   KEY `post_ID` (`post_ID`),
   CONSTRAINT `events_ibfk_4` FOREIGN KEY (`event_ID`) REFERENCES `events` (`event_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`post_ID`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `posts_ibfk_3` FOREIGN KEY (`post_ID`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE `group_posts` (

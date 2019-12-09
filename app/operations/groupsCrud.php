@@ -61,13 +61,36 @@ function createGroup($inputs) {
  * @param $where_value row value
  * @return array
  */
-function readSingleGroup($table, $where, $where_value) {
+function readSingleGroup($group_id) {
     try  {
         global $conn;
-        $sql = "SELECT * FROM $table WHERE $where = $where_value";
+        $sql = "SELECT g.* FROM `orc353_2`.groups g
+            WHERE g.group_ID = $group_id";
 //        var_dump($sql);
         $statement = $conn->prepare($sql);
-        $statement->bindValue($where_value, $where);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+/**
+ * @param $table table name
+ * @param $where row target
+ * @param $where_value row value
+ * @return array
+ */
+function readPostsOfGroup($group_id) {
+    try  {
+        global $conn;
+        $sql = "SELECT p.* FROM `orc353_2`.groups g
+            INNER JOIN group_posts gp on gp.group_ID = g.group_ID
+            INNER JOIN posts p on p.post_ID = gp.post_ID
+            WHERE g.group_ID = $group_id
+            ORDER BY p.timestamp DESC";
+        $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -151,6 +174,67 @@ function readGroupsMemberOf($user_id) {
     }
 }
 
+
+/**
+ * @return array
+ */
+function readGroupMembers($group_id) {
+    try  {
+        global $conn;
+        $sql = "SELECT u.*, ge.* FROM orc353_2.groups g
+        INNER JOIN group_members ge on g.group_ID = ge.group_ID
+        INNER JOIN users u on u.user_ID = ge.user_ID 
+        WHERE g.group_ID = $group_id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+function addMemberToGroup($group_id, $user_id){
+    try  {
+        global $conn;
+        $sql = "INSERT INTO group_members (group_ID, user_ID, admitted) VALUES ($group_id, $user_id, TRUE)";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+function admitMemberToGroup($group_id, $user_id){
+    try  {
+        global $conn;
+        $sql = "UPDATE group_members SET admitted = TRUE WHERE group_ID = $group_id AND user_ID = $user_id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+function isInCurrentGroup($user_id, $group_id){
+    try  {
+        global $conn;
+        $sql = "SELECT * FROM group_members ge
+        WHERE ge.user_ID = $user_id AND ge.group_ID = $group_id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if (sizeof($result) > 0){
+            return true;
+        } else {
+            return false;
+        }
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+        return false;
+    }
+}
+
 /**
  * @param $table table name
  * @param $inputs input
@@ -196,6 +280,24 @@ function isGroupMember($user_id, $group_id){
             }
         } else {
             return 'not';
+        }
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+function isGroupManager($user_id, $group_id){
+    try  {
+        global $conn;
+        $sql = "SELECT DISTINCT g.* FROM `orc353_2`.groups g
+                WHERE g.manager_ID = $user_id AND g.group_ID = $group_id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if (sizeof($result) > 0){
+            return true;
+        } else {
+            return false;
         }
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();

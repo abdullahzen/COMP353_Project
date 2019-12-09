@@ -90,7 +90,7 @@ if (isset($_POST["submit"])) {
                 <b>Location</b>: <?php echo $result[$index]['address']; ?><br>
                 <b>Date</b>: <?php echo $result[$index]['date']; ?><br>
                 <b>Expiration</b>: <?php echo $result[$index]['expiration_date']; ?><br>
-                <?php if ($_COOKIE['current_role'] === 'manager' || $_COOKIE['current_role'] === 'admin' || ($_COOKIE['user_id'] === $result[$index]['manager_ID'])){?>
+                <?php if (($_COOKIE['current_role'] === 'manager' && $result[$index]['manager_ID'] == $_COOKIE['user_id']) || $_COOKIE['current_role'] === 'admin'){?>
                 <div class="btn btn-secondary pull-right"
                   onclick="window.location='update.php?table=events&key=<?php echo escape(key($result[$index])) ?>&id=<?php echo escape($result[$index][key($result[$index])]);?>';">
                   Edit</div>

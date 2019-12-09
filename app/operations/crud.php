@@ -32,7 +32,7 @@ function create($table, $inputs) {
             }
         }
         $sql = sprintf(
-            "INSERT INTO %s (%s) values (%s)",
+            "INSERT INTO `orc353_2`.%s (%s) values (%s)",
             "$table",
             implode(", ", array_keys($inputs)),
             ":" . implode(", :", array_keys($inputs))
@@ -54,7 +54,7 @@ function create($table, $inputs) {
 function readSingle($table, $where, $where_value) {
     try  {
         global $conn;
-        $sql = "SELECT * FROM $table WHERE $where = $where_value";
+        $sql = "SELECT * FROM `orc353_2`.$table WHERE $where = $where_value";
 //        var_dump($sql);
         $statement = $conn->prepare($sql);
         $statement->bindValue($where_value, $where);
@@ -73,7 +73,7 @@ function readSingle($table, $where, $where_value) {
 function readAll($table) {
     try  {
         global $conn;
-        $sql = "SELECT * FROM $table";
+        $sql = "SELECT * FROM `orc353_2`.$table";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -102,7 +102,7 @@ function update($table, $inputs, $where, $where_value) {
                 $set_data .= ", ";
             }
         }
-        $sql = "UPDATE $table SET $set_data WHERE $where = $where_value";
+        $sql = "UPDATE `orc353_2`.$table SET $set_data WHERE $where = $where_value";
         $statement = $conn->prepare($sql);
         $statement->execute($data);
     } catch(PDOException $error) {
@@ -113,7 +113,7 @@ function update($table, $inputs, $where, $where_value) {
 function delete($table, $where, $where_value) {
     try {
         global $conn;
-        $sql = "DELETE FROM $table WHERE $where = $where_value";
+        $sql = "DELETE FROM `orc353_2`.$table WHERE $where = $where_value";
         var_dump($sql);
         $statement = $conn->prepare($sql);
         $statement->bindValue($where_value, $where);

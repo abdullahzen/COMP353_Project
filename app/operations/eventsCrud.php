@@ -206,3 +206,43 @@ function deleteEvent($where, $where_value) {
     $statement->bindValue($where_value, $where);
     $statement->execute();
 }
+
+function isEventParticipant($user_id, $event_id){
+    try  {
+        global $conn;
+        $sql = "SELECT DISTINCT e.* FROM `orc353_2`.events e
+                INNER JOIN event_organization_participants ev on ev.event_ID = e.event_ID
+                WHERE ev.user_ID = $user_id AND e.event_ID = $event_id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if (sizeof($result) > 0){
+            return true;
+        } else {
+            return false;
+        }
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+        return false;
+    }
+}
+
+function isEventManager($user_id, $event_id){
+    try  {
+        global $conn;
+        $sql = "SELECT DISTINCT e.* FROM `orc353_2`.events e
+                INNER JOIN users u on e.manager_ID = u.user_ID
+                WHERE u.user_ID = $user_id AND e.event_ID = $event_id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if (sizeof($result) > 0){
+            return true;
+        } else {
+            return false;
+        }
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+        return false;
+    }
+}

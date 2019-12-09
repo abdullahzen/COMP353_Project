@@ -83,6 +83,18 @@ INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (17,4);
 INSERT INTO `orc353_2`.`user_roles` (user_ID, role_ID) VALUES (18,4);
 /* ====================================================================*/
 
+/* ====================================================================*/
+/* organizations table data dump */
+INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Concordia University', 'non-profit');
+INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('ITSolutions', 'private');
+INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Birthday party', 'family');
+INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Wedding', 'personal');
+INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Engagement party', 'personal');
+INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Workshop', 'non-profit');
+INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Government', 'public');
+INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Party', 'personal');
+INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Event Manager', 'SCC');
+/* ====================================================================*/
 
 /* ====================================================================*/
 /* events table dump */
@@ -141,20 +153,6 @@ INSERT INTO `orc353_2`.`event_groups` (event_ID, group_ID) VALUES (9, 9);
 INSERT INTO `orc353_2`.`event_groups` (event_ID, group_ID) VALUES (10, 10);
 INSERT INTO `orc353_2`.`event_groups` (event_ID, group_ID) VALUES (11, 11);
 /* ====================================================================*/
-
-
-/* ====================================================================*/
-/* organizations table data dump */
-INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Concordia University', 'non-profit');
-INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('ITSolutions', 'private');
-INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Birthday party', 'family');
-INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Wedding', 'personal');
-INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Engagement party', 'personal');
-INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Workshop', 'non-profit');
-INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Government', 'public');
-INSERT INTO `orc353_2`.`organizations` (name, type) VALUES ('Party', 'personal');
-/* ====================================================================*/
-
 
 /* ====================================================================*/
 /* event_organization_participants table data dump */

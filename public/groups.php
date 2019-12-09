@@ -131,7 +131,7 @@ if (isset($_GET["join"])){
               </div>
               <p class="mb-1">
                 <b>Associated Event(s):</b><br> 
-                <?php if (/*$_COOKIE['current_role'] === 'admin' ||*/ ($_COOKIE['user_id'] === $result[$index]['manager_ID'])){?>
+                <?php if ($_COOKIE['current_role'] === 'admin' || ($_COOKIE['user_id'] === $result[$index]['manager_ID'])){?>
                   <div class="btn btn-secondary pull-right"
                   onclick="window.location='update.php?table=groups&key=<?php echo escape(key($result[$index])) ?>&id=<?php echo escape($result[$index][key($result[$index])]);?>';">
                   Edit</div>

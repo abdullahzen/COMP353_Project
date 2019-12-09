@@ -77,7 +77,7 @@ if (isset($_POST["submit"])) {
         <b>Price</b><br>
         <?php echo $result['price'] ?> <br>
     </p>
-    <a href="#" class="btn btn-primary">Pariticpants</a><br><br>
+    <a href="#" class="btn btn-primary">Participants</a><br><br>
     <div class="card-footer text-muted">
     <b>Event Managed by <?php readSingle('users', 'user_ID', $result['manager_ID'])[0] ?></b>
 </div>

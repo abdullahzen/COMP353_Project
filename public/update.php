@@ -46,8 +46,9 @@ if (isset($_GET['table']) && isset($_GET['key']) && isset($_GET['id'])) {
 include "header.php";
 ?>
 
-<div align="right">
+<div class="update" align="right">
     <h1 align="Right">Update entry in: <?php echo $_GET['table'] ?></h1>
+    <hr>
     <form method="post">
         <input name="csrf" type="hidden" value="<?php echo ($_SESSION['csrf']); ?>">
         <?php

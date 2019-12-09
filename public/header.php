@@ -133,6 +133,12 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
     <li class='nav-item pull-right'>
             <a class='nav-link' href='read.php?table=users'>My Profile</a>
     </li>
+        <li class='nav-item'>
+            <a class='nav-link' href='role-list.php'>Switch Access Role</a>
+        </li>
+        <li class='nav-item'>
+            <a class='nav-link' href='logout.php'>Log out</a>
+        </li>
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

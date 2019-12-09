@@ -120,7 +120,7 @@ try {
 <div class="container">
 
     <h3><b>Group: <?php echo $result['name'] ?></b></h3>
-    <h5><b>Group Manager: <a href="window.location='user.php?id=<?php echo $result['manager_ID'] ?>;'"><?php echo readSingle('users', 'user_ID', $result['manager_ID'])[0]['name'] ?></a></b></h6>
+    <h5><b>Group Manager: <a href="window.location='user.php?id=<?php echo $result['manager_ID'] ?>;'"><?php echo readSingle('users', 'user_ID', $result['manager_ID'])[0]['name'] ?></a></b></h5>
     <!-- members modal -->
     <!-- Button trigger modal -->
     <div class="row">

@@ -48,8 +48,10 @@ if (isset($_GET['table'])) {
 <?php
 include "header.php";
 ?>
-
-<div class="content addToTable" align="center">
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-9">
+<div class="addToTable">
     <h1>Add a new entry to: <?php echo $_GET['table'] ?></h1>
     <form method="post">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
@@ -82,4 +84,6 @@ include "header.php";
         ?>
         <input type="submit" name="submit" value="Submit">
     </form>
+</div>
+</div>
 </div>

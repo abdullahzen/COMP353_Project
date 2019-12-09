@@ -48,7 +48,7 @@ include "header.php";
 <div class="row">
     <div class="col-4"></div>
     <div class=" update col-4">
-    <h1>Update <?php echo $_GET['table'] ?></h1>
+    <h1>Update this entry in <?php echo $_GET['table'] ?></h1>
     <form method="post">
         <input name="csrf" type="hidden" value="<?php echo ($_SESSION['csrf']); ?>">
         <?php

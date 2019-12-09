@@ -61,11 +61,11 @@ function createPost($inputs) {
  * @param $where_value row value
  * @return array
  */
-function readSinglePost($group_id) {
+function readSinglePost($post_id) {
     try  {
         global $conn;
-        $sql = "SELECT g.* FROM `orc353_2`.groups g
-            WHERE g.group_ID = $group_id";
+        $sql = "SELECT g.* FROM `orc353_2`.posts p
+            WHERE p.post_ID = $post_id";
 //        var_dump($sql);
         $statement = $conn->prepare($sql);
         $statement->execute();
@@ -82,9 +82,7 @@ function readSinglePost($group_id) {
 function readAllPosts() {
     try  {
         global $conn;
-        $sql = "SELECT DISTINCT g.* FROM `orc353_2`.groups g
-                INNER JOIN group_members ge on ge.group_ID = g.group_ID
-                INNER JOIN users u on u.user_ID = ge.user_ID";
+        $sql = "SELECT DISTINCT p.* FROM `orc353_2`.posts p";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -146,7 +144,7 @@ function updatePost($table, $inputs, $where, $where_value) {
 function deletePost($where,$where_value) {
     try {
         global $conn;
-        $sql = "DELETE FROM orc353_2.groups WHERE $where = $where_value";
+        $sql = "DELETE FROM orc353_2.posts WHERE $where = $where_value";
 //        var_dump($sql);
         $statement = $conn->prepare($sql);
         $statement->bindValue($where_value, $where);
@@ -183,4 +181,31 @@ function time_elapsed_string($datetime, $full = false) {
 
     if (!$full) $string = array_slice($string, 0, 1);
     return $string ? implode(', ', $string) . ' ago' : 'just now';
+}
+
+function CreatePostForGroup($group_id, $post_title, $post_text, $user_id){
+    try  {
+        global $conn;
+        $sql = "INSERT INTO posts (title, text, poster_ID) VALUES ('$post_title', '$post_text', $user_id)";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $sql = "SELECT LAST_INSERT_ID() as id;";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $id = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['id'];
+        return $id;
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+function addPostToGroup($group_id, $post_id){
+    try  {
+        global $conn;
+        $sql = "INSERT INTO group_posts (group_ID, post_ID) VALUES ($group_id, $post_id)";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
 }

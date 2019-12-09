@@ -11,7 +11,7 @@ $error = null;
 
 try {
     $checkGroupMember = isGroupMember($_COOKIE['user_id'], $_GET['id']);
-    if ($checkGroupMember === 'joined'){
+    if ($checkGroupMember === 'joined' || isGroupManager($_COOKIE['user_id'], $_GET['id'])){
         $result = readSingleGroup($_GET['id']);
         $posts = readPostsOfGroup($_GET['id']);
         $members = readGroupMembers($_GET['id']);
@@ -50,13 +50,28 @@ try {
         }
     }
 
-    if (isset($_GET['createpost'])){
+    if (isset($_GET["createpost"])) {
         if ($_COOKIE['user_id']){
-            // addPostToGroup($_GET['id'], escape(urldecode($_GET['createpost'])), $_COOKIE['user_id']);
+            $post_id = CreatePostForGroup($_GET['id'], escape(urldecode($_GET['post_title'])), escape(urldecode($_GET['post_text'])), $_COOKIE['user_id']);
+            addPostToGroup($_GET['id'], $post_id);
             $id = $_GET['id'];
-            echo "<script>setTimeout(function(){
-                window.location.href='./group.php?id=$id';
-            }, 0)</script>";
+            $success = "Post created successfully.";
+        }
+    }
+
+    if (isset($_GET["deletepost"])) {
+        if ($_COOKIE['user_id']){
+            deletePost('post_ID', $_GET['deletepost']);
+            $id = $_GET['id'];
+            $success = "Post deleted successfully.";
+        }
+    }
+
+    if (isset($_GET["deletecomment"])) {
+        if ($_COOKIE['user_id']){
+            deleteComment($_GET['deletecomment']);
+            $id = $_GET['id'];
+            $success = "Comment deleted successfully.";
         }
     }
 ?>
@@ -65,17 +80,7 @@ try {
     $error = "You are not a member of the group you're trying to view. Redirecting to group list.";
 }
 
-if (isset($_POST["submit"])) {
-//    if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();
-    try {
-        deleteGroup(key($result[0]), $_POST["submit"]);
-        $success = "group successfully deleted";
-        $result = readSingleGroup($_GET['group_id']);
-        header('location: groups.php');
-    } catch(PDOException $e) {
-        $error = 'Could not delete group';
-    }
-}
+
 ?>
 
 <?php if ($success != null){ ?>
@@ -84,7 +89,7 @@ if (isset($_POST["submit"])) {
   $id = $_GET['id'];
   echo "<script>setTimeout(function(){
     window.location.href='./group.php?id=$id';
-    }, 2000)</script>";
+    }, 1500)</script>";
     exit;
   ?>
   </div>
@@ -113,8 +118,7 @@ if (isset($_POST["submit"])) {
         $result = $result[0];
 ?>
 <div class="container">
-    <form method="post">
-    <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
+    
     <h3><b>Group: <?php echo $result['name'] ?></b></h3>
     <h5><b>Group Manager: <a href="window.location='user.php?id=<?php echo $result['manager_ID'] ?>;'"><?php echo readSingle('users', 'user_ID', $result['manager_ID'])[0]['name'] ?></a></b></h6>
     <!-- members modal -->
@@ -217,11 +221,16 @@ if (isset($_POST["submit"])) {
                         </ul>
                     </div>
                     <div class="card-body">
+                    <form method="post">
+                        <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                                 <div class="form-group">
-                                    <label class="sr-only" for="message">post</label>
-                                    <textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
+                                    <label class="sr-only" for="message">Post Title</label>
+                                    <input type="text" class="form-control" id="#post_title" placeholder="Post title..."/>
+                                    <hr>
+                                    <label class="sr-only" for="message">Post</label>
+                                    <textarea class="form-control" id="#post_text" rows="3" placeholder="What are you thinking?"></textarea>
                                 </div>
 
                             </div>
@@ -237,9 +246,12 @@ if (isset($_POST["submit"])) {
                         </div>
                         <div class="btn-toolbar justify-content-between">
                             <div class="btn-group">
-                                <button type="submit" class="btn btn-primary">share</button>
+                                <button type="button" onclick="window.location = 'group.php?id=<?php echo $_GET['id']?>&post_title=' 
+                                + encodeURI(document.getElementById('#post_title').value) 
+                                + '&post_text=' + encodeURI(document.getElementById('#post_text').value) + '&createpost=';" class="btn btn-primary">Post</button>
                             </div>
                         </div>
+                    </form>
                     </div>
                 </div>
         </div>
@@ -272,8 +284,7 @@ if (isset($_POST["submit"])) {
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
                                         <div class="h6 dropdown-header">Configuration</div>
-                                        <a class="dropdown-item" href="#">Edit</a>
-                                        <a class="dropdown-item" href="#">Delete</a>
+                                        <a class="dropdown-item" onclick="window.location='group.php?id=<?php echo $_GET['id']?>&deletepost=<?php echo $posts[$index]['post_ID'] ?>'">Delete</a>
                                     </div>
                                 </div>
 
@@ -324,6 +335,21 @@ if (isset($_POST["submit"])) {
                                 <?php echo $comments[$index4]['comment']; ?>
                                 </p>
                               </div>
+                              <div class="media-right">
+                              <?php if (isGroupManager($_COOKIE['user_id'], $_GET['id']) || $comments[$index4]['commenter_ID'] == $_COOKIE['user_id']){ ?>
+                                <div>
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-h"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                        <div class="h6 dropdown-header">Configuration</div>
+                                        <a class="dropdown-item" onclick="window.location='group.php?id=<?php echo $_GET['id']?>&deletecomment=<?php echo $comments[$index4]['post_comment_ID'] ?>'">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php } ?>
+                              </div>
                             </div>
                        </div>
                        <hr>
@@ -335,7 +361,6 @@ if (isset($_POST["submit"])) {
             <?php 
             $index++;
         } ?>
-</form>
 </div>
 <?php } else { ?>
     <blockquote>No results found.</blockquote>

@@ -2,6 +2,7 @@
 
 require "../app/operations/groupsCrud.php";
 require "../app/operations/postsCrud.php";
+require "../app/operations/commentsCrud.php";
 require "../app/operations/crud.php";
 include "header.php";
 
@@ -36,6 +37,26 @@ try {
             $success = "Member: " . readSingle('users', 'user_ID', $_GET['admit_member'])[0]['name'] . " was admitted successfully to the group.";
         } else {
             $error = "You cannot admit members if you're not the group manager.";
+        }
+    }
+
+    if (isset($_GET['comment'])){
+        if ($_COOKIE['user_id']){
+            addCommentToPost($_GET['post'], escape(urldecode($_GET['comment'])), $_COOKIE['user_id']);
+            $id = $_GET['id'];
+            echo "<script>setTimeout(function(){
+                window.location.href='./group.php?id=$id';
+            }, 0)</script>";
+        }
+    }
+
+    if (isset($_GET['createpost'])){
+        if ($_COOKIE['user_id']){
+            // addPostToGroup($_GET['id'], escape(urldecode($_GET['createpost'])), $_COOKIE['user_id']);
+            $id = $_GET['id'];
+            echo "<script>setTimeout(function(){
+                window.location.href='./group.php?id=$id';
+            }, 0)</script>";
         }
     }
 ?>
@@ -188,8 +209,7 @@ if (isset($_POST["submit"])) {
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Make
-                                    a publication</a>
+                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Make a Post</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images">Images</a>
@@ -218,17 +238,6 @@ if (isset($_POST["submit"])) {
                         <div class="btn-toolbar justify-content-between">
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-primary">share</button>
-                            </div>
-                            <div class="btn-group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i class="fa fa-globe"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                    <a class="dropdown-item" href="#"><i class="fa fa-globe"></i> Public</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-users"></i> Friends</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Just me</a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -284,9 +293,44 @@ if (isset($_POST["submit"])) {
                                 <?php echo $posts[$index]['text']; ?>
                         </p>
                     </div>
-                    <div class="card-footer">
-                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                    </div>
+                    <section class="card-footer">
+                        <a href="#" class="card-link" onclick="document.getElementById('#commentBox').hidden = !document.getElementById('#commentBox').hidden;"><i class="fa fa-comment"></i>
+                        Comment
+                        </button></a>
+                   <hr>
+                   <div class="card-footer-comment-wrapper">
+                       <div class="comment-form" hidden="true" id="#commentBox">
+                            <textarea class="form-control" id="#commentContent" placeholder="write a comment..." rows="3"></textarea>
+                            <br>
+                            <button type="button" class="btn btn-primary pull-right" onclick="window.location = 'group.php?id=<?php echo $_GET['id']?>&comment=' + encodeURI(document.getElementById('#commentContent').value) + '&post=<?php echo $posts[$index]['post_ID']?>';">Post Comment</button>
+                            <div class="clearfix"></div>
+                            <hr>
+                       </div>
+                       <?php 
+                       $index4 = 0;
+                       $comments = readPostComments($posts[$index]['post_ID']);
+                       foreach ($comments as $key => $value ){?>
+                       <div class="comment">
+                            <div class="media">
+                              <div class="media-left">
+                              <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/60/60" alt="">
+                                </div>
+                              </div>
+                              <div class="media-body">
+                                <a href="user.php?id=<?php $comments[$index4]['commenter_ID'] ?>" class="anchor-username"><h7 class="media-heading"><?php echo readSingle('users', 'user_ID', $comments[$index4]['commenter_ID'])[0]['name'] ?></h7></a> 
+                                <div class="text-muted h7 mb-2"> <small><i class="fa fa-clock-o"></i> <?php echo time_elapsed_string($comments[$index4]['timestamp']); ?></small></div>
+                                <p class="card-text">
+                                <?php echo $comments[$index4]['comment']; ?>
+                                </p>
+                              </div>
+                            </div>
+                       </div>
+                       <hr>
+                            <?php $index4++;
+                        }?>
+                   </div>
+               </section>
                 </div>
             <?php 
             $index++;

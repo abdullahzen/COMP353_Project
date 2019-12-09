@@ -27,9 +27,14 @@ if (isset($_POST["submit"])) {
             $result = readManagedGroups($_GET['user_id']);
         }
         if ($_GET['user_id']){
-          header('location: groups.php?user_id=$_GET["user_id"]');
+          $id = $_GET['user_id'];
+          echo "<script>setTimeout(function(){
+              window.location.href='./groups.php?user_id=$id';
+              }, 2000)</script>";      
         } else {
-          header('location: groups.php');
+          echo "<script>setTimeout(function(){
+            window.location.href='./groups.php';
+            }, 2000)</script>"; 
         }
         
     } catch(PDOException $e) {
@@ -49,10 +54,15 @@ if (isset($_GET["join"])){
       if ($_COOKIE['current_role'] === 'manager' && $_GET['user_id']){
           $result = readManagedGroups($_GET['user_id']);
       }
-      if ($_GET['user_id']){
-        header('window.location: groups.php?user_id=$_GET["user_id"]');
+      if ($_GET['user_id'] && ['current_role'] != 'admin'){
+        $id = $_GET['user_id'];
+        echo "<script>setTimeout(function(){
+            window.location.href='./groups.php?user_id=$id';
+            }, 2000)</script>";      
       } else {
-        header('location: groups.php');
+        echo "<script>setTimeout(function(){
+          window.location.href='./groups.php';
+          }, 2000)</script>"; 
       }
   } catch (PDOException $e){
     $error = "Cannot join group".$_GET['group_id'];
@@ -121,7 +131,7 @@ if (isset($_GET["join"])){
               </div>
               <p class="mb-1">
                 <b>Associated Event(s):</b><br> 
-                <?php if ($_COOKIE['current_role'] === 'admin' || ($_COOKIE['user_id'] === $result[$index]['manager_ID'])){?>
+                <?php if (/*$_COOKIE['current_role'] === 'admin' ||*/ ($_COOKIE['user_id'] === $result[$index]['manager_ID'])){?>
                   <div class="btn btn-secondary pull-right"
                   onclick="window.location='update.php?table=groups&key=<?php echo escape(key($result[$index])) ?>&id=<?php echo escape($result[$index][key($result[$index])]);?>';">
                   Edit</div>

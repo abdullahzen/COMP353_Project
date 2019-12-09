@@ -120,7 +120,7 @@ if (isset($_GET["join"])){
                 </medium>
               </div>
               <p class="mb-1">
-                <b>Associated Event(s):</b>:<br> 
+                <b>Associated Event(s):</b><br> 
                 <?php if ($_COOKIE['current_role'] === 'admin' || ($_COOKIE['user_id'] === $result[$index]['manager_ID'])){?>
                   <div class="btn btn-secondary pull-right"
                   onclick="window.location='update.php?table=groups&key=<?php echo escape(key($result[$index])) ?>&id=<?php echo escape($result[$index][key($result[$index])]);?>';">
@@ -139,7 +139,9 @@ if (isset($_GET["join"])){
                         $index2 = 0;
                         foreach($associatedEvents as $key => $value){?>
                           <span class="btn btn-link" onclick="window.location='event.php?event_id=<?php echo $associatedEvents[$index2]['event_ID'] ?>';"><?php echo $associatedEvents[$index2]['name'] ?></span>
-                       <?php }
+                       <?php 
+                          $index2++;
+                       }
                       } else {?>
                         None
                       <?php }

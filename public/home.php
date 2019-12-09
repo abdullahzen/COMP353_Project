@@ -19,7 +19,7 @@ if ($_GET['role'] === NULL) {
 <!--    <h2>Admin Profile</h2>-->
     <hr>
 
-    <div>
+    <div class="container">
 <!--        --><?php //var_dump($_COOKIE['user_id'])?>
 <!--        --><?php //var_dump($_COOKIE['current_role'])?>
         <h2>Hi, <?php echo $_COOKIE['name'] ?>!</h2>

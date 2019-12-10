@@ -121,7 +121,7 @@ try {
 
     <h3><b>Group: <?php echo $result['name'] ?></b></h3>
     <h5><b>Group Manager: <a href="user.php?id=<?php echo $result['manager_ID'] ?>"><?php 
-    if ($_COOKIE['user_id'] === $comments['manager_ID']){
+    if ($_COOKIE['user_id'] === $result['manager_ID']){
         echo "You";
     } else {
         echo readSingle('users', 'user_ID', $result['manager_ID'])[0]['name'];

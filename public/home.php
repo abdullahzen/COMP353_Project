@@ -3,7 +3,10 @@ if ($_COOKIE['current_role'] === NULL || $_COOKIE['current_role'] !== $_GET['rol
     setcookie('current_role', $_GET['role']);
 }
 if ($_GET['role'] === NULL) {
-    header("location: home.php?role=".$_COOKIE['current_role']);
+    $curr_role = $_COOKIE['current_role'];
+    echo "<script>setTimeout(function(){
+        window.location.href='home.php?role=$curr_role';
+        }, 0)</script>";
 }
 ?>
  <?php

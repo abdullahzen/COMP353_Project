@@ -9,53 +9,6 @@ try {
 }
 
 /**
- * @param $inputs
- */
-function createPost($inputs) {
-    try  {
-        global $conn;
-        unset($inputs['csrf']);
-        unset($inputs['submit']);
-        $user_id = $_COOKIE['user_id'];
-        $data = $inputs;
-        $set_data = "";
-        for ($i = 0; $i < sizeof($inputs); $i++) {
-            $set_data .= array_keys($inputs)[$i] . " = " . "\"" . $data[array_keys($inputs)[$i]] . "\"";
-            if ($i < sizeof($inputs) - 1) {
-                $set_data .= ", ";
-            }
-        }
-
-        //create event
-        $sql = sprintf(
-        "INSERT INTO %s (%s) values (%s)",
-            "events",
-            implode(", ", array_keys($inputs)),
-            ":" . implode(", :", array_keys($inputs))
-        );
-
-        $statement = $conn->prepare($sql);
-        $statement->execute($inputs);
-
-        //sets user to be a manager if not already
-        if($_COOKIE['isManager'] === false) {
-            $sql = sprintf(
-                "INSERT INTO %s (%s) values (%s)",
-                "user_roles",
-                implode(", ", array('user_ID', 'role_ID')),
-                ":" . implode(", :", array($user_id, '2'))
-            );
-
-            $statement = $conn->prepare($sql);
-            $statement->execute($inputs);
-            setcookie('isManager', true);
-        }
-    } catch(PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
-    }
-}
-
-/**
  * @param $table table name
  * @param $where row target
  * @param $where_value row value
@@ -183,7 +136,7 @@ function time_elapsed_string($datetime, $full = false) {
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
 
-function CreatePostForGroup($group_id, $post_title, $post_text, $user_id){
+function createPost($group_id, $post_title, $post_text, $user_id){
     try  {
         global $conn;
         $sql = "INSERT INTO posts (title, text, poster_ID) VALUES ('$post_title', '$post_text', $user_id)";
@@ -203,6 +156,17 @@ function addPostToGroup($group_id, $post_id){
     try  {
         global $conn;
         $sql = "INSERT INTO group_posts (group_ID, post_ID) VALUES ($group_id, $post_id)";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+function addPostToEvent($event_id, $post_id){
+    try  {
+        global $conn;
+        $sql = "INSERT INTO event_posts (event_id, post_ID) VALUES ($event_id, $post_id)";
         $statement = $conn->prepare($sql);
         $statement->execute();
     } catch(PDOException $error) {

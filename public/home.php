@@ -25,35 +25,59 @@ if ($_GET['role'] === NULL) {
         <h2>Hi, <?php echo $_COOKIE['name'] ?>!</h2>
         <hr>
         <?php if ($_COOKIE['isAdmin']) {
-            echo "As an admin, you have the privilege to perform the following tasks:";
-               echo "\n- Manage Events (view/ create/ delete/ edit events and assign events managers)";
-               echo "\n- Manage Roles (view/ assign roles to members)";
-               echo "\n- Manage Users (view/ create, edit, delete)";
-               echo "\n- Manage Groups (view/ create, edit, delete)";
-               echo "\n- Manage Posts (view/ create, edit, delete)";
-               echo "\n- Send Messages";}
+        echo "
+                <p><h3>As an admin, you have the privilege to perform the following tasks:</h3><br>
+                       <ul>
+                           <li>Manage Events (view/ create/ delete/ edit events and assign events managers)</li>
+                           <li>Manage Users (view/ create, edit, delete)</li>
+                           <li>Manage Posts (view/ create, edit, delete)</li>
+                           <li>Manage Roles (view/ assign roles to members)</li>
+                           <li>Manage Groups (view/ create, edit, delete)</li>
+                           <li>Request to join an event</li>
+                           <li>Send Messages</li>
+                        </ul> 
+                </p>";}
         ?>
-        <br><br>
+        <br>
         <?php if ($_COOKIE['isManager']) {
-            echo "\n As an Event Manager, you have the privilege to perform the following tasks:";
-                echo "\n- Manage Events (view/ create/ delete/ edit events and assign events managers)";
-                echo "\n- Manage Join-Group requests";
-                echo "\n- Send Messages\n";
+            echo "<p><h3>As an Event Manager, you have the privilege to perform the following tasks:</h3><br>
+                       <ul>
+                           <li>Manage Events (view/ create/ delete/ edit events and assign events managers)</li>
+                           <li>Add members to groups/events</li>
+                           <li>Manage Join-Group requests</li>
+                           <li>Request to join an event</li>
+                           <li>Send Messages</li>
+                        </ul> 
+                </p>";
         }
         ?>
-        <br><br>
+        <br>
         <?php if ($_COOKIE['isController']) {
-            echo "\n As an Controller, you have the privilege to perform the following tasks:
-                \n - Set Event Prices
-                \n - Send Messages\r\n";
+
+            echo "
+                <p><h3>As an Controller, you have the privilege to perform the following tasks:</h3><br>
+                       <ul>
+                           <li>View Events</li>
+                           <li>View Groups</li>
+                           <li>Set Event Prices</li>
+                      
+                        </ul> 
+                </p>";
         }
         ?>
-        <br><br>
+        <br>
         <?php if ($_COOKIE['isParticipant']) {
-            echo "\n As an Event Participant, you have the privilege to perform the following tasks:
-            \n- View Events you are a participant of
-            \n- Request to join an event
-            \n- Send Messages\r\n";
+
+            echo "
+                <p><h3>As an Controller, you have the privilege to perform the following tasks:</h3><br>
+                       <ul>
+                           <li>View Events you are a participant of</li>
+                           <li>View groups you are a member of</li>
+                           <li>Request to join an event</li>
+                           <li>Send Messages</li>
+                        </ul> 
+                </p>";
+            
         }
 
         ?>

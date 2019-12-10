@@ -144,7 +144,7 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && ($_GET['role'] != "" || $_GET[
     </ul>
     <ul class="navbar-nav">
       <li class='nav-item'>
-              <a class='nav-link' href='read.php?table=users'>My Profile</a>
+              <a class='nav-link' href='user.php?id=<?php echo $_COOKIE['user_id'] ?>'>My Profile</a>
       </li>
       <li class='nav-item'>
           <a class='nav-link' href='role-list.php'>Switch Access Role</a>

@@ -56,18 +56,106 @@ function createEvent($inputs) {
 }
 
 /**
- * @param $table table name
- * @param $where row target
- * @param $where_value row value
  * @return array
  */
-function readSingleEvent($table, $where, $where_value) {
+function readSingleEvent($event_id) {
     try  {
         global $conn;
-        $sql = "SELECT * FROM $table WHERE $where = $where_value";
-//        var_dump($sql);
+        $sql = "SELECT * FROM orc353_2.events WHERE events.event_ID = $event_id";
         $statement = $conn->prepare($sql);
-        $statement->bindValue($where_value, $where);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+/**
+ * @return array
+ */
+function readPostsOfEvent($event_id) {
+    try  {
+        global $conn;
+        $sql = "SELECT p.* FROM orc353_2.events e 
+        INNER JOIN event_posts ep on ep.event_ID = e.event_ID
+        INNER JOIN posts p on p.post_ID = ep.post_ID
+        WHERE e.event_ID = $event_id
+        ORDER BY p.timestamp DESC";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+/**
+ * @return array
+ */
+function readGroupsOfEvent($event_id) {
+    try  {
+        global $conn;
+        $sql = "SELECT g.* FROM orc353_2.events e 
+        INNER JOIN event_groups ge on ge.event_ID = e.event_ID
+        INNER JOIN orc353_2.groups g on g.group_ID = ge.group_ID
+        WHERE e.event_ID = $event_id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+/**
+ * @return array
+ */
+function isInCurrentEvent($user_id, $event_id) {
+    try  {
+        global $conn;
+        $sql = "SELECT e.* FROM orc353_2.events e 
+        INNER JOIN event_organization_participants eu on eu.event_ID = e.event_ID
+        WHERE e.event_ID = $event_id AND (eu.user_ID = $user_id OR e.manager_ID = $user_id)";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if (sizeof($result) > 0){
+            return true;
+        } else {
+            return false;
+        }
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+        return false;
+    }
+}
+
+function addParticipantToEvent($event_id, $organization_id, $user_id){
+    try  {
+        global $conn;
+        $sql = "INSERT INTO event_organization_participants (event_ID, organization_ID, user_ID) VALUES ($event_id, $organization_id,$user_id)";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+
+/**
+ * @return array
+ */
+function readParticipantsOfEvent($event_id) {
+    try  {
+        global $conn;
+        $sql = "SELECT u.* FROM orc353_2.events e 
+        INNER JOIN event_organization_participants eu on eu.event_ID = e.event_ID
+        INNER JOIN orc353_2.users u on u.user_ID = eu.user_ID
+        WHERE e.event_ID = $event_id";
+        $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -161,7 +249,7 @@ function readParticipatingEvents($user_id) {
  * @param $where row target
  * @param $where_value row value
  */
-function updateEvent($table, $inputs, $where, $where_value) {
+function updateEvent($inputs, $where, $where_value) {
     try {
         global $conn;
         unset($inputs['csrf']);
@@ -174,7 +262,7 @@ function updateEvent($table, $inputs, $where, $where_value) {
                 $set_data .= ", ";
             }
         }
-        $sql = "UPDATE $table SET $set_data WHERE $where = $where_value";
+        $sql = "UPDATE orc353_2.events SET $set_data WHERE $where = $where_value";
         $statement = $conn->prepare($sql);
         $statement->execute($data);
     } catch(PDOException $error) {
@@ -201,7 +289,6 @@ function getEventParticipantsNumber(){
 function deleteEvent($where, $where_value) {
     global $conn;
     $sql = "DELETE FROM events WHERE $where = $where_value";
-//        var_dump($sql);
     $statement = $conn->prepare($sql);
     $statement->bindValue($where_value, $where);
     $statement->execute();
@@ -240,6 +327,28 @@ function isEventManager($user_id, $event_id){
             return true;
         } else {
             return false;
+        }
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+        return false;
+    }
+}
+
+function readOrganizationIdOfEvent($event_id){
+    try  {
+        global $conn;
+        $sql = "SELECT eu.* FROM `orc353_2`.events e
+                INNER JOIN event_organization_participants eu on eu.event_ID = e.event_ID
+                WHERE e.event_ID = $event_id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if (sizeof($result) > 1){
+            $result = $result[1]['organization_ID'];
+            return $result;
+        } else if (sizeof($result) > 0){
+            $result = $result[0]['organization_ID'];
+            return $result;
         }
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();

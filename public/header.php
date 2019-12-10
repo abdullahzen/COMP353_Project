@@ -143,6 +143,9 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && ($_GET['role'] != "" || $_GET[
       </li>
     </ul>
     <ul class="navbar-nav">
+    <li class='nav-item'>
+              <a class='nav-link' href='messages.php'>My Messages</a>
+      </li>
       <li class='nav-item'>
               <a class='nav-link' href='user.php?id=<?php echo $_COOKIE['user_id'] ?>'>My Profile</a>
       </li>

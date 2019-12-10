@@ -12,6 +12,15 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && ($_GET['role'] != "" || $_GET[
 ?>
 
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-154376590-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154376590-1');
+</script>
   <meta charset="UTF-8">
   <!--    get the style sheet-->
   <link rel="stylesheet" href="css/style.css">

@@ -36,9 +36,9 @@ if ($_GET['role'] === NULL) {
                            <li>Request to join an event</li>
                            <li>Send Messages</li>
                         </ul> 
-                </p>";}
+                </p><br>";}
         ?>
-        <br>
+
         <?php if ($_COOKIE['isManager']) {
             echo "<p><h3>As an Event Manager, you have the privilege to perform the following tasks:</h3><br>
                        <ul>
@@ -48,10 +48,10 @@ if ($_GET['role'] === NULL) {
                            <li>Request to join an event</li>
                            <li>Send Messages</li>
                         </ul> 
-                </p>";
+                </p><br>";
         }
         ?>
-        <br>
+
         <?php if ($_COOKIE['isController']) {
 
             echo "

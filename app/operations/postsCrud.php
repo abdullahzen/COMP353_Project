@@ -11,7 +11,7 @@ try {
 /**
  * @param $inputs
  */
-function createEvent($inputs) {
+function createPost($inputs) {
     try  {
         global $conn;
         unset($inputs['csrf']);
@@ -61,13 +61,13 @@ function createEvent($inputs) {
  * @param $where_value row value
  * @return array
  */
-function readSingleEvent($table, $where, $where_value) {
+function readSinglePost($post_id) {
     try  {
         global $conn;
-        $sql = "SELECT * FROM $table WHERE $where = $where_value";
+        $sql = "SELECT g.* FROM `orc353_2`.posts p
+            WHERE p.post_ID = $post_id";
 //        var_dump($sql);
         $statement = $conn->prepare($sql);
-        $statement->bindValue($where_value, $where);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -79,13 +79,10 @@ function readSingleEvent($table, $where, $where_value) {
 /**
  * @return array
  */
-function readAllEvents() {
+function readAllPosts() {
     try  {
         global $conn;
-        $sql = "SELECT DISTINCT events.*, COUNT(*) AS participants_num FROM events 
-                INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
-                INNER JOIN users u on u.user_ID = e.user_ID 
-                GROUP BY events.event_ID";
+        $sql = "SELECT DISTINCT p.* FROM `orc353_2`.posts p";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -98,62 +95,24 @@ function readAllEvents() {
 /**
  * @return array
  */
-function readAllEventsParticipants() {
+function isPostOwner($post_id, $user_id) {
     try  {
         global $conn;
-        $sql = "SELECT * FROM events 
-                INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
-                INNER JOIN users u on u.user_ID = e.user_ID
-                INNER JOIN organizations o on o.organization_ID = e.organization_ID
-                INNER JOIN event_groups eg on eg.event_ID = events.event_ID
-                INNER JOIN orc353_2.groups g on g.group_ID = eg.group_ID";
+        $sql = "SELECT * FROM `orc353_2`.posts p
+        WHERE p.poster_ID = $user_id AND p.post_ID = $post_id";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
+        if (sizeof($result) > 0){
+            return true;
+        } else {
+            return false;
+        }
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
 }
 
-/**
- * @return array
- */
-function readManagedEvents($user_id) {
-    try  {
-        global $conn;
-        $sql = "SELECT DISTINCT events.* FROM events 
-        INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
-        INNER JOIN users u on u.user_ID = e.user_ID 
-        WHERE e.user_ID = $user_id OR events.manager_ID = $user_id";
-        $statement = $conn->prepare($sql);
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    } catch(PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
-    }
-}
-
-/**
- * @return array
- */
-function readParticipatingEvents($user_id) {
-    try  {
-        global $conn;
-        $sql = "SELECT DISTINCT events.*, COUNT(*) AS participants_num FROM events 
-        INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
-        INNER JOIN users u on u.user_ID = e.user_ID  
-        WHERE e.user_ID = $user_id
-        GROUP BY events.event_ID";
-        $statement = $conn->prepare($sql);
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    } catch(PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
-    }
-}
 
 /**
  * @param $table table name
@@ -161,7 +120,7 @@ function readParticipatingEvents($user_id) {
  * @param $where row target
  * @param $where_value row value
  */
-function updateEvent($table, $inputs, $where, $where_value) {
+function updatePost($table, $inputs, $where, $where_value) {
     try {
         global $conn;
         unset($inputs['csrf']);
@@ -182,67 +141,71 @@ function updateEvent($table, $inputs, $where, $where_value) {
     }
 }
 
-function getEventParticipantsNumber(){
-    try  {
+function deletePost($where,$where_value) {
+    try {
         global $conn;
-        $sql = "SELECT DISTINCT events.*, COUNT(*) AS participants_num FROM events 
-                INNER JOIN event_organization_participants e on events.event_ID = e.event_ID
-                INNER JOIN users u on u.user_ID = e.user_ID 
-                GROUP BY events.event_ID";
-        $statement = $conn->prepare($sql);
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    } catch(PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
-    }
-}
-
-function deleteEvent($where, $where_value) {
-    global $conn;
-    $sql = "DELETE FROM events WHERE $where = $where_value";
+        $sql = "DELETE FROM orc353_2.posts WHERE $where = $where_value";
 //        var_dump($sql);
-    $statement = $conn->prepare($sql);
-    $statement->bindValue($where_value, $where);
-    $statement->execute();
-}
-
-function isEventParticipant($user_id, $event_id){
-    try  {
-        global $conn;
-        $sql = "SELECT DISTINCT e.* FROM `orc353_2`.events e
-                INNER JOIN event_organization_participants ev on ev.event_ID = e.event_ID
-                WHERE ev.user_ID = $user_id AND e.event_ID = $event_id";
         $statement = $conn->prepare($sql);
+        $statement->bindValue($where_value, $where);
         $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        if (sizeof($result) > 0){
-            return true;
-        } else {
-            return false;
-        }
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
-        return false;
     }
 }
 
-function isEventManager($user_id, $event_id){
+function time_elapsed_string($datetime, $full = false) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
+}
+
+function CreatePostForGroup($group_id, $post_title, $post_text, $user_id){
     try  {
         global $conn;
-        $sql = "SELECT DISTINCT e.* FROM `orc353_2`.events e
-                INNER JOIN users u on e.manager_ID = u.user_ID
-                WHERE u.user_ID = $user_id AND e.event_ID = $event_id";
+        $sql = "INSERT INTO posts (title, text, poster_ID) VALUES ('$post_title', '$post_text', $user_id)";
         $statement = $conn->prepare($sql);
         $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        if (sizeof($result) > 0){
-            return true;
-        } else {
-            return false;
-        }
+        $sql = "SELECT LAST_INSERT_ID() as id;";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $id = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['id'];
+        return $id;
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
-        return false;
+    }
+}
+
+function addPostToGroup($group_id, $post_id){
+    try  {
+        global $conn;
+        $sql = "INSERT INTO group_posts (group_ID, post_ID) VALUES ($group_id, $post_id)";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
     }
 }

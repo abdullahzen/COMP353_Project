@@ -1,6 +1,6 @@
 <?php
 
-require "../app/operations/eventsCrud.php";
+require "../app/operations/groupsCrud.php";
 require "../app/operations/postsCrud.php";
 require "../app/operations/commentsCrud.php";
 require "../app/operations/crud.php";
@@ -10,7 +10,8 @@ $success = null;
 $error = null;
 
 try {
-    if (isEventParticipant($_COOKIE['user_id'], $_GET['id']) || isEventManager($_COOKIE['user_id'], $_GET['id'])){
+    $checkGroupMember = isGroupMember($_COOKIE['user_id'], $_GET['id']);
+    if ($checkGroupMember === 'joined' || isGroupManager($_COOKIE['user_id'], $_GET['id'])){
         $result = readSingleGroup($_GET['id']);
         $posts = readPostsOfGroup($_GET['id']);
         $members = readGroupMembers($_GET['id']);
@@ -76,7 +77,7 @@ try {
 ?>
 <?php
 } catch(PDOException $e) {
-    $error = "You are not a member of the event you're trying to view. Redirecting to events list.";
+    $error = "You are not a member of the group you're trying to view. Redirecting to group list.";
 }
 
 
@@ -96,12 +97,12 @@ try {
 <?php if ($error != null){ ?>
   <div class="alert alert-danger" role="alert">
   <?php
-  if ($error === "You are not a member of the event you're trying to view. Redirecting to events list."){
+  if ($error === "You are not a member of the group you're trying to view. Redirecting to group list."){
     echo $error;
 ?>
 <?php
     echo "<script>setTimeout(function(){
-        window.location.href='./events.php';
+        window.location.href='./groups.php';
     }, 3000)</script>";
     exit;
 ?>

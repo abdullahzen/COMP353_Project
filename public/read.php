@@ -43,12 +43,13 @@ if (isset($_POST["submit"])) {
 <?php
     if (sizeof($result) > 0) {
 ?>
-        <div class="content">
+        <div>
             <form method="post">
                 <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
                 <div align="right">
-                    <a class="create_new" href="create.php?table=<?php echo escape($table) ?>">Create new entry for <?php echo escape($table) ?></a>
+                    <a class="create_new" href="create.php?table=<?php echo escape($table) ?>">Create new <?php echo escape($table) ?></a>
                 </div>
+                <hr>
                 <table class="table_template center" >
                     <div>
                         <h1 class="center">Manage <?php echo $_GET['table'] ?></h1>

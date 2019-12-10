@@ -25,6 +25,18 @@ try {
         BEGIN
         INSERT INTO user_roles(user_ID, role_ID) VALUES (new.user_ID, 4);
         END");
+        $connection->exec("CREATE TRIGGER `make_group_manager_member_of_group`
+        AFTER INSERT
+        ON `orc353_2`.groups FOR EACH ROW
+        BEGIN
+        INSERT INTO group_members(group_ID, user_ID, admitted) VALUES (new.group_ID, new.manager_ID, TRUE);
+        END");
+        $connection->exec("CREATE TRIGGER `make_event_managers_participants_of_event`
+        AFTER INSERT
+        ON `orc353_2`.events FOR EACH ROW
+        BEGIN
+        INSERT INTO event_organization_participants(event_ID, organization_ID, user_ID) VALUES (new.event_ID, 1, new.manager_ID);
+        END");
         $sql = file_get_contents("db/data.sql");
         $connection->exec($sql);
     } else {

@@ -146,7 +146,7 @@ try {
                     Edit
                 </button>
             <?php } else {?>
-                <button type="button" class="btn btn-secondary pull-right" href="message.php?id=<?php echo $result['user_ID'] ?>;">
+                <button type="button" class="btn btn-secondary pull-right" onclick="window.location='message.php?id=<?php echo $result['user_ID'] ?>';">
                     Message User
                 </button>
             <?php }?>

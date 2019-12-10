@@ -55,7 +55,7 @@ if ($_GET['role'] === NULL) {
         <?php if ($_COOKIE['isController']) {
 
             echo "
-                <p><h3>As an Controller, you have the privilege to perform the following tasks:</h3><br>
+                <p><h3>As a Controller, you have the privilege to perform the following tasks:</h3><br>
                        <ul>
                            <li>View Events</li>
                            <li>View Groups</li>
@@ -69,7 +69,7 @@ if ($_GET['role'] === NULL) {
         <?php if ($_COOKIE['isParticipant']) {
 
             echo "
-                <p><h3>As an Controller, you have the privilege to perform the following tasks:</h3><br>
+                <p><h3>As an Event Participant, you have the privilege to perform the following tasks:</h3><br>
                        <ul>
                            <li>View Events you are a participant of</li>
                            <li>View groups you are a member of</li>
@@ -77,7 +77,7 @@ if ($_GET['role'] === NULL) {
                            <li>Send Messages</li>
                         </ul> 
                 </p>";
-            
+
         }
 
         ?>

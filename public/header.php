@@ -3,9 +3,12 @@ require "../app/operations/auth.php";
 require "./bootstrap.php";
 
 isLoggedIn();
-if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
-    header("location: home.php?role=".$_GET['role']);
-}
+if ($_COOKIE['current_role'] !== $_GET['role'] && ($_GET['role'] != "" || $_GET['role'] != NULL)) {
+  $role = $_GET['role'];
+  echo "<script>setTimeout(function(){
+    window.location.href='home.php?role=$role';
+    }, 0)</script>";
+} 
 ?>
 
 <head>
@@ -129,16 +132,17 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && $_GET['role'] !== NULL) {
             <?php } ?>
         </div>
       </li>
-
-    <li class='nav-item pull-right'>
-            <a class='nav-link' href='read.php?table=users'>My Profile</a>
-    </li>
-        <li class='nav-item'>
-            <a class='nav-link' href='role-list.php'>Switch Access Role</a>
-        </li>
-        <li class='nav-item'>
-            <a class='nav-link' href='logout.php'>Log out</a>
-        </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class='nav-item'>
+              <a class='nav-link' href='read.php?table=users'>My Profile</a>
+      </li>
+      <li class='nav-item'>
+          <a class='nav-link' href='role-list.php'>Switch Access Role</a>
+      </li>
+      <li class='nav-item'>
+          <a class='nav-link' href='logout.php'>Log out</a>
+      </li>
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

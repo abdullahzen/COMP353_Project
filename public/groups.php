@@ -148,7 +148,7 @@ if (isset($_GET["join"])){
                       if (sizeof($associatedEvents) > 0){
                         $index2 = 0;
                         foreach($associatedEvents as $key => $value){?>
-                          <span class="btn btn-link" onclick="window.location='event.php?event_id=<?php echo $associatedEvents[$index2]['event_ID'] ?>';"><?php echo $associatedEvents[$index2]['name'] ?></span>
+                          <span class="btn btn-link" onclick="window.location='event.php?id=<?php echo $associatedEvents[$index2]['event_ID'] ?>';"><?php echo $associatedEvents[$index2]['name'] ?></span>
                        <?php 
                           $index2++;
                        }

@@ -155,7 +155,8 @@ function readPostComments($post_ID){
     try  {
         global $conn;
         $sql = "SELECT DISTINCT c.* FROM `orc353_2`.post_comments c
-                WHERE c.post_ID = $post_ID";
+                WHERE c.post_ID = $post_ID
+                ORDER BY c.timestamp DESC";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);

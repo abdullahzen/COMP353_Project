@@ -52,7 +52,7 @@ try {
 
     if (isset($_GET["createpost"])) {
         if ($_COOKIE['user_id']){
-            $post_id = CreatePostForGroup($_GET['id'], escape(urldecode($_GET['post_title'])), escape(urldecode($_GET['post_text'])), $_COOKIE['user_id']);
+            $post_id = createPost($_GET['id'], escape(urldecode($_GET['post_title'])), escape(urldecode($_GET['post_text'])), $_COOKIE['user_id']);
             addPostToGroup($_GET['id'], $post_id);
             $id = $_GET['id'];
             $success = "Post created successfully.";
@@ -89,7 +89,7 @@ try {
   $id = $_GET['id'];
   echo "<script>setTimeout(function(){
     window.location.href='./group.php?id=$id';
-    }, 1500)</script>";
+    }, 1000)</script>";
     exit;
   ?>
   </div>
@@ -120,7 +120,12 @@ try {
 <div class="container">
 
     <h3><b>Group: <?php echo $result['name'] ?></b></h3>
-    <h5><b>Group Manager: <a href="window.location='user.php?id=<?php echo $result['manager_ID'] ?>;'"><?php echo readSingle('users', 'user_ID', $result['manager_ID'])[0]['name'] ?></a></b></h5>
+    <h5><b>Group Manager: <a href="user.php?id=<?php echo $result['manager_ID'] ?>"><?php 
+    if ($_COOKIE['user_id'] === $comments['manager_ID']){
+        echo "You";
+    } else {
+        echo readSingle('users', 'user_ID', $result['manager_ID'])[0]['name'];
+    } ?></a></b></h5>
     <!-- members modal -->
     <!-- Button trigger modal -->
     <div class="row">
@@ -151,7 +156,13 @@ try {
                     ?>
                     <li class="list-group-item list-group-item-action flex-column align-items-start" style='border-color:black;'>
                     <a href="user.php?id=<?php echo escape($members[$index2]['user_ID'])?>">
-                    <h5 class="mb-1"><?php echo $members[$index2]['name'] ?></h5></a>
+                    <h5 class="mb-1"><?php 
+                    if ($_COOKIE['user_id'] === $members[$index2]['user_ID']){
+                        echo "You";
+                    } else {
+                        echo $members[$index2]['name'];
+                    }
+                    ?></h5></a>
                     <p class="mb-1">
                         <?php if (isGroupManager($members[$index2]['user_ID'], $_GET['id'])){
                                         echo "<b>Group Manager</b>";
@@ -269,7 +280,12 @@ try {
                                     <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
                                 </div>
                                 <div class="ml-2">
-                                    <div class="h5 m-0"><?php echo readSingle('users', 'user_ID', $posts[$index]['poster_ID'])[0]['name'] ?></div>
+                                <a href="user.php?id=<?php echo readSingle('users', 'user_ID', $posts[$index]['poster_ID'])[0]['user_ID'] ?>"><div class="h5 m-0"><?php 
+                                if ($_COOKIE['user_id'] === $posts[$index]['poster_ID']){
+                                    echo "You";
+                                } else {
+                                    echo readSingle('users', 'user_ID', $posts[$index]['poster_ID'])[0]['name'];
+                                } ?></div></a>
                                     <div class="h7 text-muted">
                                         <?php if (isGroupManager($posts[$index]['poster_ID'], $_GET['id'])){
                                         echo "<b>Group Manager</b>";
@@ -305,22 +321,21 @@ try {
                         </p>
                     </div>
                     <section class="card-footer">
-                        <a href="#" class="card-link" onclick="document.getElementById('#commentBox').hidden = !document.getElementById('#commentBox').hidden;"><i class="fa fa-comment"></i>
+                        <a href="#" class="card-link" onclick="document.getElementById('#commentBox<?php echo $posts[$index]['post_ID'].'-'.$result['group_ID'] ?>').hidden = !document.getElementById('#commentBox<?php echo $posts[$index]['post_ID'].'-'.$result['group_ID'] ?>').hidden;"><i class="fa fa-comment"></i>
                         Comment
                         </button></a>
-                   <hr>
                    <div class="card-footer-comment-wrapper">
-                       <div class="comment-form" hidden="true" id="#commentBox">
-                            <textarea class="form-control" id="#commentContent" placeholder="write a comment..." rows="3"></textarea>
+                       <div class="comment-form" hidden="true" id="#commentBox<?php echo $posts[$index]['post_ID'].'-'.$result['group_ID'] ?>">
+                            <textarea class="form-control" id="#commentContent<?php echo $posts[$index]['post_ID'].'-'.$result['group_ID'] ?>" placeholder="write a comment..." rows="3"></textarea>
                             <br>
-                            <button type="button" class="btn btn-primary pull-right" onclick="window.location = 'group.php?id=<?php echo $_GET['id']?>&comment=' + encodeURI(document.getElementById('#commentContent').value) + '&post=<?php echo $posts[$index]['post_ID']?>';">Post Comment</button>
+                            <button type="button" class="btn btn-primary pull-right" onclick="window.location = 'group.php?id=<?php echo $_GET['id']?>&comment=' + encodeURI(document.getElementById('#commentContent<?php echo $posts[$index]['post_ID'].'-'.$result['group_ID'] ?>').value) + '&post=<?php echo $posts[$index]['post_ID']?>';">Post Comment</button>
                             <div class="clearfix"></div>
-                            <hr>
                        </div>
                        <?php
                        $index4 = 0;
                        $comments = readPostComments($posts[$index]['post_ID']);
                        foreach ($comments as $key => $value ){?>
+                        <hr>
                        <div class="comment">
                             <div class="media">
                               <div class="media-left">
@@ -329,7 +344,12 @@ try {
                                 </div>
                               </div>
                               <div class="media-body">
-                                <a href="user.php?id=<?php $comments[$index4]['commenter_ID'] ?>" class="anchor-username"><h7 class="media-heading"><?php echo readSingle('users', 'user_ID', $comments[$index4]['commenter_ID'])[0]['name'] ?></h7></a>
+                                <a href="user.php?id=<?php echo $comments[$index4]['commenter_ID'] ?>" class="anchor-username"><h7 class="media-heading"><?php 
+                                if ($_COOKIE['user_id'] === $comments[$index4]['commenter_ID']){
+                                    echo "You";
+                                } else {
+                                    echo readSingle('users', 'user_ID', $comments[$index4]['commenter_ID'])[0]['name'];
+                                } ?></h7></a>
                                 <div class="text-muted h7 mb-2"> <small><i class="fa fa-clock-o"></i> <?php echo time_elapsed_string($comments[$index4]['timestamp']); ?></small></div>
                                 <p class="card-text">
                                 <?php echo $comments[$index4]['comment']; ?>
@@ -352,7 +372,6 @@ try {
                               </div>
                             </div>
                        </div>
-                       <hr>
                             <?php $index4++;
                         }?>
                    </div>

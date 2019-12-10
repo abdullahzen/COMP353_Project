@@ -265,3 +265,17 @@ button{
 a {
     cursor: pointer;
 }
+
+.btn-link {
+    cursor: pointer;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.link {
+    cursor: pointer;
+    text-underline-position: below;
+    color: blue;
+}

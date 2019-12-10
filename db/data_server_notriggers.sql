@@ -112,6 +112,8 @@ INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_dat
 INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('Concordias Career Fair 2019', '1148 Robson St, Vancouver, BC V6B 3K9', 4, '2020-04-29', '2027-04-29', 40);
 /* events without any groups associated to them */
 INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, expiration_date, price) VALUES ('Build Your CV Event', '4264 Papineau Avenue, Montreal, QC H2K 4J5', 6, '2020-03-13', '2027-03-13', 15);
+INSERT INTO `orc353_2`.`events` (name, address, manager_ID, date, price, status) VALUES ('Build Your CV Event', '4264 Papineau Avenue, Montreal, QC H2K 4J5', 6, '2001-03-13', 15, 0);
+
 /* ====================================================================*/
 
 
@@ -202,7 +204,7 @@ INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (1, 
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (2, 12, TRUE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (2, 13, TRUE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (2, 5, TRUE);
-INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (2, 3, TRUE);
+/* INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (2, 3, TRUE); */
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (3, 14, TRUE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (3, 15, TRUE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (4, 16, TRUE);

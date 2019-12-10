@@ -84,6 +84,10 @@ if (isset($_POST["submit"])) {
                             <span
                         class="badge badge-info badge-pill align-right">Managing</span>
                         <?php } ?>
+                        <?php if (isEventParticipant($_COOKIE['user_id'], $result[$index]['event_ID'])){?>
+                            <span
+                        class="badge badge-primary badge-pill align-right">Participating</span>
+                        <?php } ?>
                 </medium>
               </div>
               <p class="mb-1">

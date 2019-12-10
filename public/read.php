@@ -56,7 +56,11 @@ if (isset($_POST["submit"])) {
                     </div>
                     <thead>
                     <tr>
-                        <?php foreach($result[0] as $key => $value){ ?>
+                        <?php foreach($result[0] as $key => $value){ 
+                            if ($key == 'password'){
+                                continue;
+                            }
+                            ?>
                             <th>
                                 <?php echo $key; ?>
                             </th>
@@ -68,10 +72,18 @@ if (isset($_POST["submit"])) {
                     <tbody>
                     <?php
                     $index = 0;
-                    foreach ($result as $key => $value) { ?>
+                    foreach ($result as $key => $value) { 
+                        if ($key == 'password'){
+                            $index++;
+                            continue;
+                        }
+                        ?>
                         <tr>
                             <?php
                             foreach ($result[$index] as $key => $value) {
+                                if ($key == 'password'){
+                                    continue;
+                                }
                                 ?>
                                 <td><?php echo $result[$index][$key]; ?></td>
                                 <?php

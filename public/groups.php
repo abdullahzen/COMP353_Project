@@ -1,6 +1,7 @@
 <?php
 
 require "../app/operations/groupsCrud.php";
+require "../app/operations/crud.php";
 include "header.php";
 
 $success = null;
@@ -130,6 +131,15 @@ if (isset($_GET["join"])){
                 </medium>
               </div>
               <p class="mb-1">
+                <b>Managed By:</b> <br><a href="user.php?id=<?php echo $result[$index]['manager_ID'] ?>"><?php 
+                if ($_COOKIE['user_id'] == $result[$index]['manager_ID']){
+                    echo "You";
+                } else {
+                    echo readSingle('users', 'user_ID', $result[$index]['manager_ID'])[0]['name'];
+                } ?>
+                </a>
+              <br>
+              
                 <b>Associated Event(s):</b><br> 
                 <?php if ($_COOKIE['current_role'] === 'admin' || ($_COOKIE['user_id'] === $result[$index]['manager_ID'])){?>
                   <div class="btn btn-secondary pull-right"

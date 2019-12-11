@@ -34,14 +34,9 @@ if (isset($_POST["submit"])) {
         $success = "Event successfully deleted";
         var_dump($success);
         if ($_GET['user_id']){
-          $idd = $_GET["user_id"];
-          echo "<script>setTimeout(function(){
-            window.location.href='events.php?user_id=$idd';
-          }, 0)</script>";
+          header('location: events.php?user_id=$_GET["user_id"]');
         } else {
-          echo "<script>setTimeout(function(){
-            window.location.href='events.php';
-          }, 0)</script>";
+          header('location: events.php');
         }    
     } catch(PDOException $e) {
         $error = "Failed to delete event.";

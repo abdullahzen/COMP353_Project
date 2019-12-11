@@ -58,11 +58,8 @@ try {
         $connection->exec($sql);
     }
 
-    echo "<script>setTimeout(function(){
-        window.location.href='index.php';
-    }, 0)</script>";
+    header("location: index.php");
     echo "Database and table users created successfully.";
-    exit;
 } catch(PDOException $error) {
     echo $sql . "<br>" . $error->getMessage();
 }

@@ -52,9 +52,7 @@ function logout() {
             setcookie($name, '', time()-1000);
             setcookie($name, '', time()-1000, '/');
         }
-        echo "<script>setTimeout(function(){
-            window.location.href='index.php';
-        }, 0)</script>";
+        header("location: index.php");
     }
 }
 
@@ -63,8 +61,6 @@ function logout() {
  */
 function isLoggedIn() {
     if($_COOKIE['email'] === null || $_COOKIE['name'] === null || $_COOKIE['time'] === null) {
-        echo "<script>setTimeout(function(){
-            window.location.href='index.php';
-        }, 0)</script>";
+        header("location: index.php");
     }
 }

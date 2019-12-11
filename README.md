@@ -141,48 +141,48 @@ Changes made since the demo:
 =======================================================================================================
 List of Files included in the submission:
 ------------------------------------------
-
-- App
-    - Operations
-        - auth.php 
-        - commentsCrud.php 
-        - crud.php
-        - eventsCrud.php
-        - groupsCrud.php
-        - helper.php
-        - postsCrud.php
-        - sendMessage.php
-- db
-    - data.sql
-    - data_server_notriggers.sql
-    - schema.sql
-- public
-    - css
-       - style.css
-    - bank_information.php
-    - bootstrap.php
-    - create.php
-    - event.php
-    - events.php
-    - group.php
-    - groups.php
-    - header.php
-    - home.php
+- COMP353_Project
+    - App
+        - Operations
+            - auth.php 
+            - commentsCrud.php 
+            - crud.php
+            - eventsCrud.php
+            - groupsCrud.php
+            - helper.php
+            - postsCrud.php
+            - sendMessage.php
+    - db
+        - data.sql
+        - data_server_notriggers.sql
+        - schema.sql
+    - public
+        - css
+           - style.css
+        - bank_information.php
+        - bootstrap.php
+        - create.php
+        - event.php
+        - events.php
+        - group.php
+        - groups.php
+        - header.php
+        - home.php
+        - index.php
+        - logout.php
+        - message.php
+        - messages.php
+        - read.php
+        - role-list.php
+        - sign-in.php
+        - sign-up.php
+        - update.php
+        - user.php
+    - .gitignore
+    - LICENSE
+    - README.md
+    - common.php
+    - config.php
     - index.php
-    - logout.php
-    - message.php
-    - messages.php
-    - read.php
-    - role-list.php
-    - sign-in.php
-    - sign-up.php
-    - update.php
-    - user.php
-- .gitignore
-- LICENSE
-- README.md
-- common.php
-- config.php
-- index.php
-- install.php
+    - install.php
 

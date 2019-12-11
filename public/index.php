@@ -14,7 +14,13 @@
 <?php
 
 if($_COOKIE['email'] !== null && $_COOKIE['name'] !== null && $_COOKIE['time'] !== null) {
-    header("location: role-list.php");
+    echo "<script>setTimeout(function(){
+        window.location.href='role-list.php';
+    }, 0)</script>";
+    exit;
 } else {
-    header("location: sign-in.php");
+    echo "<script>setTimeout(function(){
+        window.location.href='sign-in.php';
+    }, 0)</script>";
+    exit;
 }

@@ -42,14 +42,14 @@ The following is a list of users already registered on the system.
 NOTE: (make sure to not added spaces to either the email of the password of these users)
 
 
+Sign in as an event manager: (This user has many roles assigned)
+----------------------------
+email: jenny.souder@gmail.com, passowrd: 12356
+
+
 Sign in as an admin:
 --------------------
 email: natalie.burnham@gmail.com, password: 123456
-
-
-Sign in as an event manager:
-----------------------------
-email: jenny.souder@gmail.com, passowrd: 12356
 
 
 Sign in as a Participant:
@@ -66,13 +66,27 @@ password: 123456
 
 Changes made since the demo:
 -----------------------------
-1-
+1- Added View All Groups Page
 
-2-
+2- Added View all events Page
 
-3-
+3- Added Personal Profile Page (managing all personal data can be done on that page)
 
-4-
+4- Added Bank Info Page (Managing user credit card info)
+
+5- Added google analytics 
+
+6- Added customized header for each user role
+
+7- Added a Role-list page where the user identifies what role they would like to view the website as
+
+8- Added Posts + Comments pages 
+
+9- Added Chatting system 
+
+10- Updated database tables + E-R diagrams in report
+
+11- Updated most section of the report to match changes
 
 
 List of Files included in the submission:

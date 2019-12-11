@@ -1,3 +1,13 @@
+# Team Member and their IDs:
+# Abdulla Alhaj Zin, 40013496, email: a_alhajz@encs.concordia.ca
+#
+# Lin Kevin, 40002383, email: k_in@encs.concordia.ca
+#
+# Nour El Natour,40013102, email: n_elnato@encs.concordia.ca
+#
+# Omnia Gomaa, 40017116 , email: o_gomaa@encs.concordia.ca
+
+
 DROP DATABASE IF EXISTS `orc353_2`;
 CREATE DATABASE IF NOT EXISTS `orc353_2`;
 USE `orc353_2`;

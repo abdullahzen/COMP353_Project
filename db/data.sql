@@ -224,6 +224,7 @@ INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (3, 
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (4, 16, TRUE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (4, 17, TRUE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (4, 18, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (5, 3, FALSE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (5, 10, TRUE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (5, 11, TRUE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (5, 12, TRUE);
@@ -235,6 +236,7 @@ INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (7, 
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (7, 3, TRUE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (8, 4, TRUE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (8, 5, TRUE);
+INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (9, 18, TRUE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (9, 18, TRUE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (9, 10, TRUE);
 INSERT INTO `orc353_2`.`group_members` (group_ID, user_ID, admitted) VALUES (9, 11, TRUE);
@@ -323,7 +325,7 @@ INSERT INTO `orc353_2`.`group_posts` (group_ID, post_ID) VALUES (14 ,14);
 INSERT INTO `orc353_2`.`group_posts` (group_ID, post_ID) VALUES (15 ,15); 
 INSERT INTO `orc353_2`.`group_posts` (group_ID, post_ID) VALUES (16 ,16);
 INSERT INTO `orc353_2`.`group_posts` (group_ID, post_ID) VALUES (1 ,17); 
-INSERT INTO `orc353_2`.`group_posts` (group_ID, post_ID) VALUES (2 ,18); 
+INSERT INTO `orc353_2`.`gronatalie.burnhamup_posts` (group_ID, post_ID) VALUES (2 ,18); 
 /* ====================================================================*/
 
 
@@ -392,6 +394,13 @@ INSERT INTO `orc353_2`.`messages` (sender_ID, receiver_ID, text) VALUES (12, 13,
 INSERT INTO `orc353_2`.`messages` (sender_ID, receiver_ID, text) VALUES (13, 12, 'Sure, when and where?');
 INSERT INTO `orc353_2`.`messages` (sender_ID, receiver_ID, text) VALUES (12, 13, 'My place and next week.');
 INSERT INTO `orc353_2`.`messages` (sender_ID, receiver_ID, text) VALUES (13, 12, 'I am super down! looking forward to it');
+INSERT INTO `orc353_2`.`messages` (sender_ID, receiver_ID, text) VALUES (1, 3, 'Hello! Can we change the event location to be closer to me?');
+INSERT INTO `orc353_2`.`messages` (sender_ID, receiver_ID, text) VALUES (3, 1, 'Sure thing, I will verify with the rest of the participants.');
+INSERT INTO `orc353_2`.`messages` (sender_ID, receiver_ID, text) VALUES (1, 4, 'Thank you for your help.');
+INSERT INTO `orc353_2`.`messages` (sender_ID, receiver_ID, text) VALUES (13, 2, 'Hey, lets throw a party for our friend Jim');
+INSERT INTO `orc353_2`.`messages` (sender_ID, receiver_ID, text) VALUES (2, 13, 'Sure, when and where?');
+INSERT INTO `orc353_2`.`messages` (sender_ID, receiver_ID, text) VALUES (13, 2, 'My place and next week.');
+INSERT INTO `orc353_2`.`messages` (sender_ID, receiver_ID, text) VALUES (2, 13, 'I am super down! looking forward to it');
 /* ====================================================================*/
 
 

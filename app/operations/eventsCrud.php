@@ -355,3 +355,15 @@ function readOrganizationIdOfEvent($event_id){
         return false;
     }
 }
+
+function deleteParticipant($user_id, $event_id){
+    try  {
+        global $conn;
+        $sql = "DELETE FROM orc353_2.event_organization_participants e 
+        WHERE e.event_ID = $event_id AND e.user_ID = $user_id";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}

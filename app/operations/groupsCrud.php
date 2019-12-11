@@ -17,6 +17,7 @@ function createGroup($inputs) {
         unset($inputs['csrf']);
         unset($inputs['submit']);
         $user_id = $_COOKIE['user_id'];
+        $inputs = array_merge($inputs, ['manager_ID' => $user_id]);
         $data = $inputs;
         $set_data = "";
         for ($i = 0; $i < sizeof($inputs); $i++) {
@@ -25,31 +26,15 @@ function createGroup($inputs) {
                 $set_data .= ", ";
             }
         }
-
-        //create event
         $sql = sprintf(
         "INSERT INTO %s (%s) values (%s)",
-            "events",
+            "orc353_2.groups",
             implode(", ", array_keys($inputs)),
             ":" . implode(", :", array_keys($inputs))
         );
 
         $statement = $conn->prepare($sql);
         $statement->execute($inputs);
-
-        //sets user to be a manager if not already
-        if($_COOKIE['isManager'] === false) {
-            $sql = sprintf(
-                "INSERT INTO %s (%s) values (%s)",
-                "user_roles",
-                implode(", ", array('user_ID', 'role_ID')),
-                ":" . implode(", :", array($user_id, '2'))
-            );
-
-            $statement = $conn->prepare($sql);
-            $statement->execute($inputs);
-            setcookie('isManager', true);
-        }
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
@@ -335,6 +320,18 @@ function deleteGroup($where,$where_value) {
 //        var_dump($sql);
         $statement = $conn->prepare($sql);
         $statement->bindValue($where_value, $where);
+        $statement->execute();
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+function deleteMember($user_id,$group_id) {
+    try {
+        global $conn;
+        $sql = "DELETE FROM orc353_2.group_members g
+        WHERE g.group_ID = $group_id AND g.user_ID = $user_id";
+        $statement = $conn->prepare($sql);
         $statement->execute();
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();

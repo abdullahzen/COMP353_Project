@@ -65,6 +65,15 @@ try {
             $success = "Comment deleted successfully.";
         }
     }
+
+    if (isset($_GET["deleteparticipant"])) {
+        if ($_COOKIE['user_id'] == $result[0]['manager_ID'])
+        {
+            deleteParticipant($_GET['deleteparticipant'], $_GET['id']);
+            $id = $_GET['id'];
+            $success = "Participant deleted successfully";
+        }
+    }
 ?>
 <?php
 } catch(PDOException $e) {
@@ -202,7 +211,11 @@ try {
                     <p class="mb-1">
                         <?php if (isEventManager($participants[$index2]['user_ID'], $_GET['id'])){
                                         echo "<b>Event Manager</b>";
-                                } else {echo "Participant";}?>
+                                } else {echo "Participant";
+                                }?>
+                        <?php if (isEventManager($_COOKIE['user_id'], $_GET['id']) && $participants[$index2]['user_ID'] != $result['manager_ID']) { ?>
+                            <div class='btn btn-danger pull-right' onclick="window.location='event.php?id=<?php echo $_GET['id'] ?>&deleteparticipant=<?php echo $participants[$index2]['user_ID'] ?>'" ><i class="fa fa-trash" aria-hidden="true"></i></div>
+                        <?php } ?>
                     </p>
                     </li>
 

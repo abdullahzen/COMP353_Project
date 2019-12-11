@@ -134,10 +134,11 @@ if ($_COOKIE['current_role'] !== $_GET['role'] && ($_GET['role'] != "" || $_GET[
                     <div class='dropdown-divider'></div>
                     <a class='dropdown-item' href='create.php?table=groups'>New Group</a>
                     <a class='dropdown-item' href='create.php?table=group_members'>New Group Member</a>
+                    <div class='dropdown-divider'></div>
+                    <a class='dropdown-item' href='create.php?table=users'>New User for an Event</a>
             <?php } 
             if ($_COOKIE['isParticipant'] && $_COOKIE['current_role'] === 'participant') { ?>
                     <a class='dropdown-item' href='create.php?table=groups'>New Group</a>
-                    <a class='dropdown-item' href='create.php?table=posts'>New Post</a>
             <?php } ?>
         </div>
       </li>

@@ -7,24 +7,13 @@
  */
 
 require "../app/operations/crud.php";
-
+$error = null;
+$success = null;
 if (isset($_POST['submit'])) {
 //    if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();
     try {
         $update = update($_GET['table'], $_POST, $_GET['key'], $_GET['id']);
-        ?>
-        <script type="text/javascript">
-            window.location = "
-            <?php
-                if ($_COOKIE['current_role'] === 'admin') {
-                    echo "/read.php?table=" . $_GET['table'];
-                }
-                if ($_COOKIE['current_role'] === 'manager') {
-                    echo "/events.php";
-                }
-                ?>";
-        </script>
-        <?php
+        $success = $_GET['table'] . " updated successfully.";
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
@@ -45,6 +34,31 @@ if (isset($_GET['table']) && isset($_GET['key']) && isset($_GET['id'])) {
 <?php
 include "header.php";
 ?>
+<?php if ($success != null){ ?>
+  <div class="alert alert-success" role="alert">
+  <?php echo $success;
+    if ($_COOKIE['current_role'] === 'admin') {
+        $table = $_GET['table'];
+        echo "<script>setTimeout(function(){
+            window.location.href='./read.php?table=$table';
+            }, 1000)</script>";
+            exit;
+    }
+    if ($_COOKIE['current_role'] === 'manager') {
+        echo "<script>setTimeout(function(){
+            window.location.href='./events.php';
+            }, 1000)</script>";
+        exit;
+    }
+  
+  ?>
+  </div>
+<?php } ?>
+<?php if ($error != null){ ?>
+  <div class="alert alert-danger" role="alert">
+  <?php echo $error ?>
+  </div>
+<?php } ?>
 <div class="row">
     <div class="col-4"></div>
     <div class=" update col-4">

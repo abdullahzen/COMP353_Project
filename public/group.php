@@ -74,6 +74,15 @@ try {
             $success = "Comment deleted successfully.";
         }
     }
+
+    if (isset($_GET["deletemember"])) {
+        if ($_COOKIE['user_id'] == $result[0]['manager_ID'])
+        {
+            deleteMember($_GET['deletemember'], $_GET['id']);
+            $id = $_GET['id'];
+            $success = "Member deleted successfully";
+        }
+    }
 ?>
 <?php
 } catch(PDOException $e) {
@@ -168,7 +177,10 @@ try {
                                         echo "<b>Group Manager</b>";
                                 } else {echo "Member";}?>
                         <?php if ($members[$index2]['admitted'] != 1){?>
-                            <button type="button" class="btn btn-danger" onclick="window.location='group.php?id=<?php echo $_GET['id'] ?>&admit_member=<?php echo $members[$index2]['user_ID']?>'">Admit Member</button>
+                            <button type="button" class="btn btn-warning pull-right" onclick="window.location='group.php?id=<?php echo $_GET['id'] ?>&admit_member=<?php echo $members[$index2]['user_ID']?>'">Admit Member</button>
+                        <?php } ?>
+                        <?php if (isGroupManager($_COOKIE['user_id'], $_GET['id']) && $members[$index2]['user_ID'] != $result['manager_ID']) { ?>
+                            <div class='btn btn-danger pull-right' onclick="window.location='group.php?id=<?php echo $_GET['id'] ?>&deletemember=<?php echo $members[$index2]['user_ID'] ?>'" ><i class="fa fa-trash" aria-hidden="true"></i></div>
                         <?php } ?>
                     </p>
                     </li>

@@ -60,8 +60,10 @@ if (isset($_POST["submit"])) {
         <h2><?php if ($_GET['user_id']) {echo "My ";}?>Events</h2>
       </div>
         <div class="col-2">
-        <div class="btn btn-secondary " onclick="window.location='create.php?table=events'">Add a new Event
+          <?php if ($_COOKIE['current_role'] !== 'participant' && $_COOKIE['current_role'] !== 'controller'){?>
+            <div class="btn btn-secondary " onclick="window.location='create.php?table=events'">Add a new Event
         </div>
+        <?php } ?>
       </div>
     </div>
     <div class="row">

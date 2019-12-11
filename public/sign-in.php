@@ -17,7 +17,9 @@ require "../app/operations/crud.php";
 $error = "";
 
 if(session_id() !== '') {
-    header("location: role-list.php");
+    echo "<script>setTimeout(function(){
+        window.location.href='role-list.php';
+    }, 0)</script>";
 }
 
 if(isset($_POST['submit'])) {
@@ -52,7 +54,9 @@ if(isset($_POST['submit'])) {
                     break;
             }
         }
-        header("location: index.php");
+        echo "<script>setTimeout(function(){
+            window.location.href='index.php';
+          }, 0)</script>";
     } else {
         $error = "Your Login Name or Password is invalid";
     }

@@ -1,16 +1,3 @@
-<!-- 
-- P2 - Project 2
-- Group 15
-- Team Member, Student IDs, and Emails:
-    Abdulla ALHAJ ZIN, 40013496, email: a_alhajz@encs.concordia.ca
-
-    Kevin LIN, 40002383, email: k_in@encs.concordia.ca
-
-    Nour EL NATOUR,40013102, email: n_elnato@encs.concordia.ca
-
-    Omnia GOMAA, 40017116 , email: o_gomaa@encs.concordia.ca
--->
-
 <?php
 if ($_COOKIE['current_role'] === NULL || $_COOKIE['current_role'] !== $_GET['role']) {
     setcookie('current_role', $_GET['role']);
@@ -25,6 +12,18 @@ if ($_GET['role'] === NULL) {
  <?php
         include 'header.php';
 ?>
+<!-- 
+// - P2 - Project 2
+// - Group 15
+// - Team Member, Student IDs, and Emails:
+//     Abdulla ALHAJ ZIN, 40013496, email: a_alhajz@encs.concordia.ca
+//
+//     Kevin LIN, 40002383, email: k_in@encs.concordia.ca
+//
+//     Nour EL NATOUR,40013102, email: n_elnato@encs.concordia.ca
+//
+//     Omnia GOMAA, 40017116 , email: o_gomaa@encs.concordia.ca
+// -->
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
